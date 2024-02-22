@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_marginHorizontal="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        style="@style/MyButtonStyle"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Are You Sure?"
+            android:textSize="22dp"
+            android:fontFamily="@font/roboto_medium"
+            style="@style/TEXT"/>
+
+        <TextView
+            android:id="@+id/tvMessage"
+            android:layout_width="320dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:textSize="16sp"
+            android:text="Are You sure you want to logout from Gladiance"
+            android:fontFamily="@font/roboto_medium"
+            style="@style/TEXT"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="@dimen/_10sdp">
+
+            <Button
+                android:id="@+id/btn_Yes"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Yes"
+                android:background="@drawable/transparent_button_background"
+                android:textAllCaps="false"
+                style="@style/TEXT"
+                android:textSize="18dp"
+                />
+
+            <Button
+                android:id="@+id/btn_No"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:textSize="18dp"
+                android:textAllCaps="false"
+                android:background="@drawable/transparent_button_background"
+                android:text="No"
+                android:layout_margin="5dp"
+                android:fontFamily="@font/roboto_medium"
+                style="@style/TEXT"/>
+
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,330 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.espressif.ui.navigation.MyProfile.SchedulingAirConditionerFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_450sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.602">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_450sdp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout11"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.125">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    android:src="@drawable/aircondition" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="Air Conditioner"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutTest"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
+                app:layout_constraintVertical_bias="1.0"
+                tools:layout_editor_absoluteX="0dp">
+
+                <TextView
+                    android:id="@+id/textviewFrom"
+                    style="@style/TEXT"
+                    android:layout_width="140dp"
+                    android:layout_height="30dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|left"
+                    android:text="From"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/textviewdemo"
+                    style="@style/TEXT"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/textviewTo"
+                    style="@style/TEXT"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|left"
+                    android:text="To"
+                    android:textSize="20dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
+                app:layout_constraintVertical_bias="0.141">
+
+                <TextView
+                    android:id="@+id/textviewTime1"
+                    style="@style/TEXT"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/transparent_button_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|left"
+                    android:text=" 9:00 pm "
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/textview"
+                    style="@style/TEXT"
+                    android:layout_width="30dp"
+                    android:layout_height="40dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:gravity="center"
+                    android:text=""
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/textviewTime2"
+                    style="@style/TEXT"
+                    android:layout_width="140dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/transparent_button_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|left"
+                    android:text=" 10:00 am "
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayoutText"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                app:layout_constraintVertical_bias="0.048"
+                tools:layout_editor_absoluteX="-16dp">
+
+                <TextView
+                    style="@style/TEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:text="Repeat"
+                    android:textSize="@dimen/_15sdp" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_weight="1"
+                    android:gravity="center|left"
+                    android:padding="@dimen/_8sdp"
+                    android:paddingStart="@dimen/_90sdp"
+                    android:paddingEnd="@dimen/_20sdp"
+                    android:src="@drawable/arrowright" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_70sdp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutText">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_10sdp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutbox"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:foregroundGravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        style="@style/MyButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="Never"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <TextView
+                        style="@style/MyButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="Everyday"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_13sdp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_10sdp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutbox2"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:foregroundGravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        style="@style/MyButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="Week Days"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <TextView
+                        style="@style/MyButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="Week Ends"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_13sdp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_10sdp" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutbox3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:foregroundGravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <TextView
+                        style="@style/MyButtonStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center"
+                        android:text="Custom"
+                        android:textAllCaps="false"
+                        android:textSize="@dimen/_13sdp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginLeft="@dimen/_15sdp"
+                        android:layout_marginRight="@dimen/_15sdp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="@dimen/_8sdp"
+                        android:paddingEnd="@dimen/_20sdp"
+                        android:src="@drawable/arrowright" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginTop="@dimen/_40sdp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:layout_width="@dimen/_120sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_95sdp"
+                        android:background="@drawable/orange_button_background"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Save"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_17sdp" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

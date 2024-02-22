@@ -1,0 +1,265 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/SCREEN"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.espressif.ui.navigation.MyProfile.CheckConnectionFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:id="@+id/linearLayoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_70sdp"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_60sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/myButton1"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_weight="1"
+            style="@style/WhiteButtonStyle"
+            android:fontFamily="@font/roboto_light"
+            android:text="Add Device"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_12sdp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/myButton2"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_weight="1"
+            style="@style/GreyLightButtonStyle"
+            android:fontFamily="@font/roboto_light"
+            android:text="My Device"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_12sdp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutButton">
+
+        <ImageView
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_120sdp"
+            android:src="@drawable/delete" />
+    </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/gridLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="120dp"
+        android:columnCount="1"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:rowCount="6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+        app:layout_constraintVertical_bias="0.300">
+
+        <LinearLayout
+            android:id="@+id/subscription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_2sdp"/>
+
+            <TextView
+                style="@style/TEXT"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="Sending Wi-Fi credentials"
+                android:textSize="@dimen/_13sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Integration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_2sdp"/>
+
+            <TextView
+                style="@style/TEXT"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="Confirming Wi-Fi connecting"
+                android:textSize="@dimen/_13sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Help"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_2sdp"/>
+
+            <TextView
+                style="@style/TEXT"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="Configuring Node association"
+                android:textSize="@dimen/_13sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/AboutUs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_2sdp"/>
+            <TextView
+                style="@style/TEXT"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="Configuring Node association"
+                android:textSize="@dimen/_13sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Setting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_2sdp"/>
+
+            <TextView
+                style="@style/TEXT"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_medium"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_10sdp"
+                android:text="Setting up the Node"
+                android:textSize="@dimen/_13sdp" />
+        </LinearLayout>
+    </GridLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout3">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/doneButton"
+            style="@style/TEXT"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@drawable/orange_button_background"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center"
+            android:text="Done"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/password"
+            app:layout_constraintVertical_bias="0.382" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp" />
+
+        <TextView
+            style="@style/TEXT"
+            android:layout_width="@dimen/_140sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:text="Join Other Network"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/starButton"
+            app:layout_constraintVertical_bias="0.064" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/CheckConnectionFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

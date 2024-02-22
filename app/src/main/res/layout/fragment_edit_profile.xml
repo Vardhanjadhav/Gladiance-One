@@ -1,0 +1,258 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.espressif.ui.navigation.MyProfile.EditProfileFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_marginTop="5dp"
+        style="@style/MyButtonStyle"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center|left"
+            android:paddingStart="@dimen/_20sdp"
+            android:text="Manage Profile"
+            style="@style/TEXT"
+            android:textSize="@dimen/_17sdp"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+            tools:layout_editor_absoluteX="0dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_450sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:overScrollMode="never"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout4"
+        app:layout_constraintVertical_bias="0.179">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/oldPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+                <TextView
+                    style="@style/TEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Name"
+                    android:textSize="@dimen/_13sdp" />
+
+                <EditText
+                    style="@style/MyEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="Sushant Desai"
+                    android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/newPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/oldPass">
+
+                <TextView
+                    style="@style/TEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Contact Number"
+                    android:textSize="@dimen/_13sdp" />
+
+                <EditText
+                    style="@style/MyEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="9120486356"
+                    android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayoutEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/newPass">
+
+                <TextView
+                    style="@style/TEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Email"
+                    android:textSize="@dimen/_13sdp" />
+
+                <EditText
+                    style="@style/MyEditTextStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="Shushantpatil@gmail.com"
+                    android:textSize="@dimen/_12sdp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/TEXT"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_30sdp"
+                android:text="Profile Photo"
+                android:textSize="@dimen/_13sdp"
+                app:layout_constraintTop_toBottomOf="@+id/linearlayoutEmail"
+                tools:layout_editor_absoluteX="27dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:orientation="horizontal"
+                android:layout_weight="2">
+
+                <ImageView
+                    android:id="@+id/imgprofilepic"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:src="@drawable/my_profile"
+                    android:layout_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/TEXT"
+                    android:layout_width="@dimen/_140sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/orange_button_background"
+                    android:fontFamily="@font/roboto_light"
+                    android:text="Change Profile Photo"
+                    android:textAllCaps="false"
+                    android:src="@drawable/my_profile"
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_40sdp"
+                    android:layout_marginEnd="@dimen/_30sdp"
+                    android:layout_marginStart="@dimen/_30sdp"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.494"
+                    app:layout_constraintStart_toEndOf="@+id/imgprofilepic"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    app:layout_constraintVertical_bias="0.427" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:gravity="center"
+                android:weightSum="2"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imgprofilepic"
+                app:layout_constraintVertical_bias="0.370">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/TEXT"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/transparent_button_background"
+                    android:fontFamily="@font/roboto_light"
+                    android:text="Cancel"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_17sdp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    style="@style/TEXT"
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/orange_button_background"
+                    android:fontFamily="@font/roboto_light"
+                    android:text="Update"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_17sdp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

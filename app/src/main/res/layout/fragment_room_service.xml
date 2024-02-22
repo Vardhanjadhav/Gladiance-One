@@ -1,0 +1,285 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.espressif.ui.navigation.ControlBouquet.RoomServiceFragment">
+
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="310dp"
+        android:layout_height="90dp"
+        android:columnCount="3"
+        android:padding="0dp"
+        android:rowCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <!-- First CardView -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            style="@style/MyButtonStyle"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"> <!-- Replace with your image resource -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/MyButtonStyle"
+                android:orientation="horizontal">
+
+                <!-- Text in CardView -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="All Day"
+                    style="@style/TEXT"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Second CardView (similar to the first) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            style="@style/MyButtonStyle"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"> <!-- Replace with your image resource -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/MyButtonStyle"
+                android:orientation="horizontal">
+
+                <!-- Text in CardView -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="Breakfast"
+                    style="@style/TEXT"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Third CardView -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            style="@style/MyButtonStyle"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"> <!-- Replace with your image resource -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/MyButtonStyle"
+                android:orientation="horizontal">
+
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:padding="2dp"
+                    android:src="@drawable/veg_img" />
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="Veg"
+                    style="@style/TEXT"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Fourth CardView (similar to the first) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            style="@style/MyButtonStyle"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"> <!-- Replace with your image resource -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/MyButtonStyle"
+                android:orientation="horizontal">
+
+                <!-- Text in CardView -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="Dinner"
+                    style="@style/TEXT"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Fifth CardView -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            style="@style/MyButtonStyle"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"> <!-- Replace with your image resource -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/MyButtonStyle"
+                android:orientation="horizontal">
+
+                <!-- Text in CardView -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="Lunch"
+                    style="@style/TEXT"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Sixth CardView (similar to the first) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="4dp"
+            style="@style/MyButtonStyle"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"> <!-- Replace with your image resource -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                style="@style/MyButtonStyle"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:padding="2dp"
+                    android:src="@drawable/nonveg_img" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="Non Veg"
+                    style="@style/TEXT"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="BestSellers"
+        style="@style/TEXT"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.236" />
+
+    <ImageView
+        android:id="@+id/imageViewPlaceOrder"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_30sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.707"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.24"
+        style="@style/PlaceOrder"/>
+
+    <Button
+        android:id="@+id/btn_menu"
+        android:layout_width="60dp"
+        android:layout_height="30dp"
+        android:background="@drawable/orange_button_background"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Menu"
+        style="@style/TEXT"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.241" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_food_menu"
+        android:layout_width="350dp"
+        android:layout_height="320dp"
+        android:orientation="horizontal"
+        android:paddingStart="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_menu"
+        android:layout_marginTop="@dimen/_10sdp"
+        tools:listitem="@layout/food_menu_rc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

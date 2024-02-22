@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:textColorPrimary">@color/white</item>
+    </style>
+
+
+
+    DARK THEME CODE
+
+    <!--    Screen Background theme color-->
+    <style name="SCREEN">
+        <item name="android:background">#000000</item>
+    </style>
+
+    <!-- Text background if light mode on -->
+    <style name="TEXT" parent="Theme.AppCompat">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Button and card view and all small small background Theme -->
+    <style name="MyButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/main_light_background</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Grid Backgraund Theme -->
+    <style name="MyGridStyle">
+        <item name="android:background">@drawable/main_light_background</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+
+    <!-- EditText Theme -->
+    <style name="MyEditTextStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/custom_edittext_background_dark</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:gravity">center|left</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <!-- Top Button Theme -->
+    <style name="TopButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/top_button_background_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="CustomSwitchStyle" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:thumb">@drawable/switch_thumb_dark</item>
+        <item name="android:track">@drawable/switch_background_dark</item>
+    </style>
+
+    <!-- Top Feedback Ring Theme -->
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlActivated">@color/color_orange</item>
+    </style>
+
+
+    <!--  Dropdown Theme -->
+    <style name="MyDropdownStyle">
+        <item name="android:background">@drawable/dropdown_backgraund_dark</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- Button Theme -->
+    <style name="WhiteButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/white_button_bg</item>
+        <item name="android:textColor">@color/color_black</item>
+    </style>
+
+    <!-- Grey Button Theme -->
+    <style name="GreyLightButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/grey_light_button</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <!-- MeowBottomNavigation night Theme -->
+    <style name="MeowBottomNavigation">
+        <item name="mbn_backgroundBottomColor">#000000</item>
+        <item name="mbn_circleColor">#ffffff</item>
+        <item name="mbn_countBackgroundColor">#ff6f00</item>
+        <item name="mbn_countTextColor">#000000</item>
+        <item name="mbn_defaultIconColor">#ffffff</item>
+        <item name="mbn_rippleColor">#ffffff</item>
+        <item name="mbn_selectedIconColor">#000000</item>
+        <item name="mbn_shadowColor">#ffffff</item>
+
+    </style>
+
+    // Images
+    <style name="FanImage"><item name="android:src">@drawable/fan_white</item></style>
+
+    // My Profile Page Images
+    <style name="MyProfile"><item name="android:src">@drawable/my_profile</item></style>
+    <style name="Call"><item name="android:src">@drawable/call</item></style>
+    <style name="Project"><item name="android:src">@drawable/project</item></style>
+    <style name="Automation"><item name="android:src">@drawable/automation</item></style>
+    <style name="AddDevice"><item name="android:src">@drawable/add_device</item></style>
+    <style name="Subscription"><item name="android:src">@drawable/subscription</item></style>
+    <style name="Integration"><item name="android:src">@drawable/intigration</item></style>
+    <style name="Help"><item name="android:src">@drawable/help</item></style>
+    <style name="Privacy"><item name="android:src">@drawable/privacy</item></style>
+    <style name="Setting"><item name="android:src">@drawable/setting</item></style>
+    <style name="EditProfile"><item name="android:src">@drawable/editprofile</item></style>
+    <style name="Delete"><item name="android:src">@drawable/delete</item></style>
+
+    //Image Setting Page
+    <style name="DarkTheme"><item name="android:src">@drawable/theme</item></style>
+    <style name="Wallpaper"><item name="android:src">@drawable/wallpaper</item></style>
+    <style name="ChangeIcon"><item name="android:src">@drawable/changeicon</item></style>
+    <style name="PushNotification"><item name="android:src">@drawable/pushnoti</item></style>
+    <style name="Location"><item name="android:src">@drawable/location</item></style>
+    <style name="Camera"><item name="android:src">@drawable/camera</item></style>
+    <style name="Email"><item name="android:src">@drawable/email</item></style>
+
+
+    //Image Room Control
+    <style name="CurtainsClose"><item name="android:src">@drawable/curtains_close</item></style>
+    <style name="CurtainsStop"><item name="android:src">@drawable/curtains_stop</item></style>
+    <style name="CurtainsOpen"><item name="android:src">@drawable/curtains_open</item></style>
+    <style name="Like"><item name="android:src">@drawable/like</item></style>
+
+    //
+    <style name="DoorLock"><item name="android:src">@drawable/doorlock</item></style>
+    <style name="DoorUnlock"><item name="android:src">@drawable/doorunlock</item></style>
+    <style name="PlaceOrder"><item name="android:src">@drawable/placeorder</item></style>
+
+    //Arrows
+    <style name="ArrowUp"><item name="android:src">@drawable/arrowup</item></style>
+    <style name="ArrowDown"><item name="android:src">@drawable/arrowdown2</item></style>
+    <style name="ArrowRight"><item name="android:src">@drawable/arrowright</item></style>
+    <style name="ArrowLeft"><item name="android:src">@drawable/arrowleft</item></style>
+
+    <style name="More"><item name="android:src">@drawable/more</item></style>
+    <style name="Notification_Bell"><item name="android:src">@drawable/notificationbell</item></style>
+
+</resources>
+

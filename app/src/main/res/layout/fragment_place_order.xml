@@ -1,0 +1,89 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.espressif.ui.navigation.ControlBouquet.PlaceOrderFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_place_order"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057"
+        tools:listitem="@layout/place_order_rv" />
+
+
+    <ImageView
+        android:id="@+id/imageViewUser"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:padding="3dp"
+        android:src="@drawable/feedback"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_place_order" />
+
+    <EditText
+        android:id="@+id/editTextUserId"
+        android:layout_width="270dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:hint="Add Cooking Instruction"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.717"
+        app:layout_constraintStart_toEndOf="@+id/imageViewUser"
+        app:layout_constraintTop_toBottomOf="@+id/rv_place_order" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Grand Total"
+        style="@style/TEXT"
+        android:textSize="25dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUserId" />
+
+    <TextView
+        android:layout_width="@dimen/_120sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:fontFamily="@font/roboto_medium"
+        android:gravity="center|right"
+        android:text="R 7000"
+        style="@style/TEXT"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView18"
+        app:layout_constraintTop_toBottomOf="@+id/editTextUserId" />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Place Order"
+        android:textSize="@dimen/_12sdp"
+        style="@style/TEXT"
+        android:background="@drawable/orange_button_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+</FrameLayout>

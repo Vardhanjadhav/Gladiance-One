@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="@dimen/_290sdp"
+        android:layout_height="@dimen/_130sdp"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="4dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            style="@style/MyButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- First Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_weight="7"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mDLabel"
+                    style="@style/TEXT"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Label :"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/mDLabelName"
+                    style="@style/TEXT"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Dev2 AC"
+                    android:textSize="@dimen/_14ssp" />
+
+                <ImageView
+                    android:id="@+id/mDDelete"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/_4sdp"
+                    android:src="@drawable/delete" />
+            </LinearLayout>
+
+            <!-- Second Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="7"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mDProject"
+                    style="@style/TEXT"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Project :"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/mDProjectName"
+                    style="@style/TEXT"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="ABC"
+                    android:textSize="@dimen/_14ssp" />
+
+                <ImageView
+                    android:id="@+id/mDRefresh"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/_4sdp"
+                    android:src="@drawable/reload" />
+                />
+            </LinearLayout>
+
+            <!-- Third Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="7"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mDSpace"
+                    style="@style/TEXT"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Space :"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/mDSpaceName"
+                    style="@style/TEXT"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Veloce"
+                    android:textSize="@dimen/_14ssp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_weight="7"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/mDArea"
+                    style="@style/TEXT"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Area :"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/mDAreaName"
+                    style="@style/TEXT"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Developer Room"
+                    android:textSize="@dimen/_14ssp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

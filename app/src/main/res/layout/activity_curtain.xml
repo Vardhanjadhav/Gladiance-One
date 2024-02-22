@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.espressif.ui.activities.CurtainActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Curtains"
+        android:textColor="@color/color_text"
+        android:textSize="20dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="331dp"
+        android:layout_height="157dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.23000002">
+
+        <!-- First CardView -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/curtainOpen"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"> <!-- Replace with your image resource -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_text"
+                android:orientation="vertical">
+
+                <!-- Image in CardView -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:padding="9dp"
+                    android:src="@drawable/curtains_open" /> <!-- Replace with your image resource -->
+
+                <!-- Text in CardView -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Open"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/curtainClose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@android:color/transparent"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="0dp"> <!-- Replace with your image resource -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_text"
+                android:orientation="vertical">
+
+                <!-- Image in CardView -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="96dp"
+                    android:padding="9dp"
+                    android:src="@drawable/curtains_close"/> <!-- Replace with your image resource -->
+
+                <!-- Text in CardView -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="Close"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18dp" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/curtainStop"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.6"> <!-- Replace with your image resource -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_text"
+            android:orientation="vertical">
+
+            <!-- Image in CardView -->
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="96dp"
+                android:padding="9dp"
+                android:src="@drawable/curtains_stop"/> <!-- Replace with your image resource -->
+
+            <!-- Text in CardView -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="Stop"
+                android:textColor="@color/white"
+                android:textSize="18dp" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:max="299"
+        android:padding="16dp"
+        android:progress="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/curtainStop"
+        app:layout_constraintVertical_bias="0.166"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="116dp"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/setTimeBtn"
+        android:layout_width="100dp"
+        android:layout_height="60dp"
+        android:text="Set"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.395" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

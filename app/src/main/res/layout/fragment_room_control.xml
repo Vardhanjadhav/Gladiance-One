@@ -1,0 +1,83 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/SCREEN"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.espressif.ui.navigation.RoomControl.RoomControlFragment">
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_30sdp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="@dimen/_18sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="horizontal"
+        style="@style/TopButtonStyle">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bedroom"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/_12sdp"
+            android:layout_gravity="center"
+            android:fontFamily="@font/roboto_medium"
+            android:textSize="@dimen/_14ssp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/drop_down"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+
+            />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        app:layout_constraintLeft_toRightOf="@+id/ll_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        app:srcCompat="@drawable/black_notificationbell" />
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycleViewRoomControl"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_33sdp"
+        android:layout_marginTop="@dimen/_17sdp"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/_10sdp"
+        android:paddingEnd="@dimen/_10sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_1"
+        tools:listitem="@layout/room_item" />
+
+    <FrameLayout
+        android:id="@+id/FrameLayoutRoomControl"
+        android:layout_width="match_parent"
+        android:layout_height="488dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.637" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

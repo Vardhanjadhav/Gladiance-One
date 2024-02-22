@@ -1,0 +1,49 @@
+<resources>
+
+     Base application theme.
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="AppTheme.WhiteAccent">
+        <item name="colorAccent">@android:color/white</item> <!-- Whatever color you want-->
+    </style>
+
+
+    <style name="DialogAnimation">
+        <item name="android:windowEnterAnimation">@anim/slide_in_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_out_bottom</item>
+
+    </style>
+
+    <!-- Light Theme -->
+    <style name="AppTheme.Light" parent="Theme.AppCompat.Light">
+        <!-- Customize attributes for light theme -->
+        <item name="buttonStyle">@style/LightButtonStyle</item>
+    </style>
+
+    <!-- Dark Theme -->
+    <style name="AppTheme.Dark" parent="Theme.AppCompat">
+        <!-- Customize attributes for dark theme -->
+        <item name="buttonStyle">@style/DarkButtonStyle</item>
+    </style>
+
+    <style name="LightButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <!-- Dark Button Style -->
+    <style name="DarkButtonStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/white</item>
+    </style>
+
+
+
+
+</resources>

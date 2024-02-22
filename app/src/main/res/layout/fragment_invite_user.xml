@@ -1,0 +1,277 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.espressif.ui.navigation.MyProfile.InviteUserFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_marginTop="5dp"
+        style="@style/MyButtonStyle"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center|left"
+            android:paddingStart="@dimen/_20sdp"
+            android:text="Invite User"
+            style="@style/TEXT"
+            android:textSize="@dimen/_17sdp"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+            tools:layout_editor_absoluteX="0dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_450sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.179">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ProjectType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Project Type"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_13sdp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    style="@style/MyEditTextStyle"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ProjectName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ProjectType">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Project Name"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_13sdp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"
+                    style="@style/MyEditTextStyle"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/RoomType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ProjectName">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Room Type"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_13sdp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"
+                    style="@style/MyEditTextStyle"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/RoomNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/RoomType">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Room No"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_13sdp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"
+                    style="@style/MyEditTextStyle"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/Area"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/RoomNo">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Area"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_13sdp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"
+                    style="@style/MyEditTextStyle"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/UserId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Area">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="User's Email Id"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_13sdp" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:textSize="@dimen/_12sdp"
+                    style="@style/MyEditTextStyle"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"/>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/TEXT"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/orange_button_background"
+                android:text="Send Invite"
+                android:textAllCaps="false"
+                android:textSize="@dimen/_14sdp"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:layout_gravity="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/UserId"
+                app:layout_constraintVertical_bias="0.348" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="349dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        style="@style/MyButtonStyle"
+        app:cardUseCompatPadding="true"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="345dp"
+            style="@style/MyButtonStyle"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="231dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <!-- First Text View -->
+
+                <!-- First Image View -->
+                <ImageView
+                    android:id="@+id/imgVegNonveg"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:contentDescription="Image 1"
+                    android:paddingStart="5dp"
+                    android:paddingTop="5dp"
+                    android:src="@drawable/menu_ic" />
+
+                <TextView
+                    android:id="@+id/tvmenu_name"
+                    android:layout_width="225dp"
+                    android:layout_height="13dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="start"
+                    android:paddingStart="5dp"
+                    android:paddingTop="5dp"
+                    android:text="Chicken Dum Biryani (Full)"
+                    style="@style/TEXT"
+                    android:textSize="18dp" />
+
+                <!-- Second Text View -->
+                <TextView
+                    android:id="@+id/tvmenu_price"
+                    android:layout_width="72dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="start"
+                    android:paddingStart="5dp"
+                    android:paddingTop="5dp"
+                    android:text="Rs 200"
+                    style="@style/TEXT"
+                    android:textSize="18dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="109dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <ImageView
+                    android:id="@+id/imgmenu"
+                    android:layout_width="109dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="Image 2"
+                    android:src="@drawable/menu_ic" />
+
+                <!-- Button -->
+                <Button
+                    android:id="@+id/btnAddItem"
+                    android:layout_width="77dp"
+                    android:layout_height="23dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/orange_button_background"
+                    android:text="Add"
+                    android:fontFamily="@font/roboto_medium"
+                    style="@style/TEXT" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

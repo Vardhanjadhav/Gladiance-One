@@ -1,0 +1,110 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/SCREEN"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.espressif.ui.navigation.ControlBouquet.BillViewFragment">
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Last Updated on 14:00 pm, 22 November 2023"
+        style="@style/TEXT"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.04" />
+
+
+    <TextView
+        android:id="@+id/tv_grand_total"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:text="Press"
+        style="@style/TEXT"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/rs_img"-->
+<!--        android:layout_width="16dp"-->
+<!--        android:layout_height="16dp"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        android:layout_marginStart="2dp"-->
+<!--        android:src="@drawable/currency_rupee"-->
+<!--        android:layout_marginRight="2dp"-->
+<!--        app:layout_constraintRight_toLeftOf="@+id/tvAmount"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView11" />-->
+
+
+    <TextView
+        android:id="@+id/tvAmount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:text="1200"
+        style="@style/TEXT"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+
+        app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+
+
+    <TextView
+        android:id="@+id/tv_grand_total2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:text="Grand Total"
+        style="@style/TEXT"
+        android:textSize="22dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAmount" />
+
+<!--    <ImageView-->
+<!--        android:id="@+id/rs_img1"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="25dp"-->
+
+<!--        android:src="@drawable/currency_rupee"-->
+<!--        android:layout_marginRight="12dp"-->
+<!--        app:layout_constraintRight_toLeftOf="@+id/tvAmount"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/tvAmount" />-->
+
+
+    <TextView
+        android:id="@+id/tvAmount1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/roboto_bold"
+        android:gravity="center"
+        android:text="1200"
+        style="@style/TEXT"
+        android:textSize="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+
+        app:layout_constraintTop_toBottomOf="@+id/tvAmount" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.espressif.ui.activities.AirContiningActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="Air Conditioning"
+        android:textColor="@color/color_text"
+        android:textSize="20dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+
+    <Switch
+        android:id="@+id/switchButtonAirCon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:checked="false"
+        android:showText="true"
+        android:textOff="OFF"
+        android:textOn="ON"
+        android:textSize="25dp"
+        android:theme="@style/Theme.AppCompat.Light"
+        android:thumb="@drawable/switch_thumb2"
+        android:track="@drawable/switch_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.104" />
+
+    <TextView
+        android:id="@+id/textViewTemperature"
+        android:textColor="@color/color_text"
+        android:layout_width="123dp"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="Temperature"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.196" />
+
+    <TextView
+        android:id="@+id/textViewFanSpeed"
+        android:layout_width="123dp"
+        android:layout_height="25dp"
+        android:gravity="center"
+        android:text="Fan Speed"
+        android:textColor="@color/color_text"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.539" />
+
+    <SeekBar
+        android:id="@+id/seekBarAirCond"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="290dp"
+        android:layout_height="40dp"
+        android:max="3"
+        android:progress="0"
+        android:splitTrack="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.587" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Off"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/color_text"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarAirCond"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="48dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Low"
+        android:textColor="@color/color_text"
+        app:layout_constraintLeft_toRightOf="@+id/textView6"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarAirCond" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Medium"
+        android:textColor="@color/color_text"
+        app:layout_constraintLeft_toRightOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarAirCond"
+
+        />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="2dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="High"
+        android:textColor="@color/color_text"
+        app:layout_constraintLeft_toRightOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/seekBarAirCond" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerInParent="true"
+        android:indeterminate="false"
+        android:max="86"
+        android:min="64"
+        android:progress="1"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/switchButtonAirCon"
+        app:layout_constraintVertical_bias="0.188" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/incrementButton"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressBar"
+        android:text="+"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.826"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.465" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/decrementButton"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/progressBar"
+        android:layout_toEndOf="@id/incrementButton"
+        android:text="-"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.17"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.465" />
+
+    <TextView
+        android:id="@+id/progressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/incrementButton"
+        android:textColor="@color/color_text"
+        android:textSize="27dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.328" />
+
+    <TextView
+        android:id="@+id/textViewFan"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:textColor="@color/color_text"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintVertical_bias="0.107" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonCool"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="Cool"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        app:layout_constraintVertical_bias="0.439" />
+
+    <TextView
+        android:id="@+id/textMode"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="120dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/color_text"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonHeat"
+        app:layout_constraintHorizontal_bias="0.385"
+        app:layout_constraintStart_toEndOf="@+id/buttonCool" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonHeat"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="36dp"
+        android:text="Heat"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintVertical_bias="0.439" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonCCent"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="40dp"
+        android:text="Centigrade"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textUnit"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="44dp"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/color_text"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonHeat"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toEndOf="@+id/buttonCool" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonFehr"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="36dp"
+        android:text="Fahrenheit"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

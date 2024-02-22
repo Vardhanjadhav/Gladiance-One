@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_black"
+    tools:context="com.espressif.ui.login.SignUpActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_100sdp"
+        android:src="@drawable/gladiance_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.047" />
+
+    <ImageView
+        android:id="@+id/imageViewUser"
+        android:layout_width="@dimen/_33sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:src="@drawable/username"
+        android:layout_marginTop="@dimen/_5sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        />
+
+
+    <EditText
+        android:id="@+id/eTName"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:background="@drawable/custom_edittext_background"
+        android:hint="Name"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textColorHint="@color/grey"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:paddingStart="@dimen/_5sdp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewUser"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="@dimen/_33sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:padding="6dp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:src="@drawable/telephone"
+        app:layout_constraintStart_toStartOf="@+id/imageViewUser"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewUser"
+        />
+
+
+    <EditText
+        android:id="@+id/eTMobileNo"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:background="@drawable/custom_edittext_background"
+        android:hint="Mobile"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:paddingStart="@dimen/_5sdp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grey"
+        app:layout_constraintStart_toStartOf="@+id/eTName"
+        app:layout_constraintTop_toBottomOf="@+id/eTName"
+        />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="@dimen/_33sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:padding="6dp"
+        android:src="@drawable/email"
+        app:layout_constraintStart_toStartOf="@+id/imageView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        android:layout_marginTop="@dimen/_20sdp"/>
+
+    <EditText
+        android:id="@+id/eTEmail"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:background="@drawable/custom_edittext_background"
+        android:hint="Email Id"
+        android:paddingStart="@dimen/_5sdp"
+        android:textColorHint="@color/grey"
+        android:textColor="@color/white"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="@+id/eTMobileNo"
+        app:layout_constraintTop_toBottomOf="@+id/eTMobileNo"
+        />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="@dimen/_33sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:padding="6dp"
+        android:src="@drawable/doorlock"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/rLPassword"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="@+id/eTEmail"
+        app:layout_constraintTop_toBottomOf="@+id/eTEmail">
+
+        <EditText
+            android:id="@+id/eTPassword"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:background="@drawable/custom_edittext_background"
+            android:hint="Password"
+            android:paddingStart="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:inputType="textPassword"
+            android:maxLines="1"/>
+
+        <ImageView
+            android:id="@+id/iVPasswordShow"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/show"
+            android:adjustViewBounds="true"
+            android:layout_marginEnd="@dimen/_5sdp"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="@dimen/_33sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:padding="6dp"
+        android:src="@drawable/doorlock"
+        app:layout_constraintStart_toStartOf="@+id/imageView5"
+        app:layout_constraintTop_toBottomOf="@+id/imageView5"
+        android:layout_marginTop="@dimen/_20sdp"
+        />
+
+
+    <RelativeLayout
+        android:id="@+id/rLRePassword"
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="@+id/rLPassword"
+        app:layout_constraintTop_toBottomOf="@+id/rLPassword">
+
+        <EditText
+            android:id="@+id/eTRePassword"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:hint="Password"
+            android:paddingStart="@dimen/_5sdp"
+            android:background="@drawable/custom_edittext_background"
+            android:textColor="@color/white"
+            android:textColorHint="@color/grey"
+            android:inputType="textPassword"
+            android:maxLines="1"/>
+
+        <ImageView
+            android:id="@+id/iVRePasswordShow"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/show"
+            android:adjustViewBounds="true"
+            android:layout_marginEnd="@dimen/_5sdp"/>
+
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_agree"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@+id/rLRePassword"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:weightSum="5">
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_weight="1"
+            app:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+
+        <TextView
+            android:id="@+id/tvPrivacyPolice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:fontFamily="@font/roboto_regular"
+            android:linksClickable="true"
+            android:text="@string/TermsAndCondition"
+            android:textColor="@color/white"
+            android:textColorLink="@color/link_color"
+            android:textSize="@dimen/_12ssp"
+            android:paddingStart="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/checkBox"
+            android:layout_weight="4"
+            app:layout_constraintTop_toBottomOf="@+id/eTRePassword" />
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSignUp"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:background="@drawable/orange_button_background"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Sign Up"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_agree" />
+
+    <TextView
+        android:id="@+id/tVLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:adjustViewBounds="true"
+        android:gravity="center"
+        android:text="@string/Login"
+        android:textColor="@color/white"
+        android:textColorLink="@color/link_color"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/roboto_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSignUp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

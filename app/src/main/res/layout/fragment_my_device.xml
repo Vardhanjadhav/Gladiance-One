@@ -1,0 +1,106 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/SCREEN"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.espressif.ui.navigation.MyProfile.MyDeviceFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_60sdp"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_60sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/AddDevice"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:layout_weight="1"
+            style="@style/GreyLightButtonStyle"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Add Device"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/myButton2"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:layout_weight="1"
+            style="@style/WhiteButtonStyle"
+            android:fontFamily="@font/roboto_regular"
+            android:text="My Device"
+            android:textAllCaps="false"
+            android:textSize="@dimen/_14sdp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ProjectType"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:orientation="vertical"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutButton">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/roboto_light"
+            android:gravity="center|left"
+            android:paddingStart="@dimen/_15sdp"
+            android:text="Project Type"
+            style="@style/TEXT"
+            android:textSize="@dimen/_13sdp" />
+
+
+        <Spinner
+            android:id="@+id/dropdownSpinner1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            style="@style/MyDropdownStyle"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_280sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_27sdp"
+        app:layout_constraintTop_toBottomOf="@+id/ProjectType">
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycleViewMyDevice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/my_device_recyleview" />
+
+    </ScrollView>
+    <FrameLayout
+        android:id="@+id/MyDeviceFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

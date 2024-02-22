@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="20dp"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardElevation="0dp"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            style="@style/MyButtonStyle"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <ImageView
+                android:id="@+id/imgpromotion"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:contentDescription="Image Description"
+                android:src="@drawable/promotion_img" />
+
+            <TextView
+                android:id="@+id/tvpromoinfo"
+                android:layout_width="match_parent"
+                android:paddingStart="3dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center|left"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:text="Get ready to indulge in your favorite street foods from various cities and states of India at the Streets of India Food Festival "
+                style="@style/TEXT"
+                android:maxLines="3"
+                android:textSize="@dimen/_12ssp"
+                android:layout_marginLeft="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_5sdp"
+
+                />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonSeeMore"
+                style="@style/TEXT"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_4sdp"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/roboto_bold"
+                android:text="See More..."
+                android:layout_gravity="left"
+                android:textSize="@dimen/_10ssp"
+                android:visibility="visible" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

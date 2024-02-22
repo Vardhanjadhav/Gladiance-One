@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_black"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".AddFoodItemFragment">
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Chicken Dum Biryani"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="138dp"
+        android:layout_height="79dp"
+        android:foregroundGravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/biryaniimg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textView15"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/nonveg_img"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/roboto_bold"
+        android:text="Dinner"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintStart_toEndOf="@+id/imageView6"
+        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="338dp"
+        android:layout_height="37dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="35dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="Chicken Pieces on the bones cooked in dum style with selected basmati rice in a handi"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="22dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="4"
+        android:background="@drawable/common_text_bg"
+        android:layout_marginLeft="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_8sdp"
+        app:layout_constraintVertical_bias="0.078">
+
+        <ImageView
+            android:id="@+id/decrementButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:onClick="decrement"
+            android:textColor="@color/white"
+            android:src="@drawable/decrement"
+            android:layout_marginBottom="10dp"
+            android:textSize="22dp" />
+
+        <TextView
+            android:id="@+id/scoreText"
+            android:layout_width="43dp"
+            android:layout_height="40dp"
+            android:fontFamily="@font/roboto_medium"
+            android:gravity="center"
+            android:inputType="number"
+            android:maxLength="1"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/incrementButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:onClick="decrement"
+            android:textColor="@color/white"
+            android:src="@drawable/increment"/>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_add_item"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/orange_button_background"
+        android:text="Add Item Rs 400"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_12sdp"
+        android:fontFamily="@font/roboto_medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        app:layout_constraintVertical_bias="0.045"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_8sdp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

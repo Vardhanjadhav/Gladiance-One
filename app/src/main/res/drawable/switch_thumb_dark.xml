@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#000000" /> <!-- White background when checked/on -->
+            <corners android:radius="10dp" /> <!-- Adjust the radius based on your preference -->
+        </shape>
+    </item>
+    <item android:state_checked="false">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFF" /> <!-- Transparent white background when unchecked/off -->
+            <corners android:radius="10dp" /> <!-- Adjust the radius based on your preference -->
+        </shape>
+    </item>
+</selector>

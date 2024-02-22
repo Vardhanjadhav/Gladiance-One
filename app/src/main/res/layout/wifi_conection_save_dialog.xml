@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="320dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="10dp"
+    android:layout_marginHorizontal="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        style="@style/MyButtonStyle"
+        android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Label Device"
+        android:textSize="@dimen/_14ssp"
+        android:paddingStart="@dimen/_20sdp"
+        android:fontFamily="@font/roboto_medium"
+        style="@style/TEXT"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:paddingStart="@dimen/_5sdp"
+            android:textSize="@dimen/_12sdp"
+            style="@style/MyEditTextStyle"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:text="Dev2 AC" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"/>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_weight="1"
+            android:background="@drawable/orange_button_background"
+            android:fontFamily="@font/roboto_light"
+            android:text="Save"
+            android:textAllCaps="false"
+            android:gravity="center"
+            style="@style/TEXT"
+            android:textSize="@dimen/_14sdp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_10sdp"/>
+
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

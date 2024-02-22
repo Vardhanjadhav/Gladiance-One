@@ -1,0 +1,236 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/SCREEN"
+    tools:context="com.espressif.ui.navigation.MyProfile.AddDeviceFragment">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutDevice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_marginTop="5dp"
+        style="@style/MyButtonStyle"
+        android:orientation="horizontal"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center|left"
+            android:paddingStart="@dimen/_20sdp"
+            android:text="Device"
+            style="@style/TEXT"
+            android:textSize="@dimen/_17sdp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutDevice" >
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/myButton1"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_40sdp"
+            style="@style/WhiteButtonStyle"
+            android:text="Add Device"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_30sdp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/roboto_regular"
+            android:textSize="@dimen/_14sdp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/MyDevice"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:text="My Device"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/_30sdp"
+            android:textAllCaps="false"
+            android:fontFamily="@font/roboto_regular"
+            style="@style/GreyLightButtonStyle"
+            android:textSize="@dimen/_14sdp"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_400sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutButton"
+        app:layout_constraintVertical_bias="0.256"
+        tools:layout_editor_absoluteX="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ProjectType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayoutButton"
+                tools:ignore="Suspicious0dp">
+
+                <TextView
+                    style="@style/TEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Project Type"
+                    android:textSize="@dimen/_13sdp" />
+
+
+                <Spinner
+                    android:id="@+id/dropdownSpinner1"
+                    style="@style/MyDropdownStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/spaceType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ProjectType">
+
+                <TextView
+                    style="@style/TEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Space Type"
+                    android:textSize="@dimen/_13sdp" />
+
+
+                <Spinner
+                    android:id="@+id/dropdownSpinner2"
+                    style="@style/MyDropdownStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/projectType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spaceType">
+
+                <TextView
+                    style="@style/TEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/roboto_light"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_15sdp"
+                    android:text="Area"
+                    android:textSize="@dimen/_13sdp" />
+
+
+                <Spinner
+                    android:id="@+id/dropdownSpinner3"
+                    style="@style/MyDropdownStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/My_Device_Activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_100sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/orange_button_background"
+                    android:text="My Device"
+                    app:layout_constraintBottom_toBottomOf="@+id/scrollView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_provision_device_add_device_fragment"
+                    style="@style/TEXT"
+                    android:layout_width="@dimen/_160sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:background="@drawable/orange_button_background"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center"
+                    android:text="Save &amp; Scan QR "
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/_17sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/projectType" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <FrameLayout
+        android:id="@+id/fragment_container_QR"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <FrameLayout
+        android:id="@+id/fragment_My_Device"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

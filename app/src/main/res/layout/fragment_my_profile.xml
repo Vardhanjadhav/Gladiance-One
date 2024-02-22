@@ -1,0 +1,412 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/SCREEN"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.espressif.ui.navigation.MyProfile.MyProfileFragment">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_profile"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_marginTop="@dimen/_18sdp"
+        style="@style/TopButtonStyle"
+        android:text="My Profile"
+        android:gravity="center"
+        android:textAllCaps="false"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14ssp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/iv_notification_bell"
+        android:layout_width="@dimen/_20sdp"
+        android:layout_height="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="@dimen/_20sdp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/notificationbell" />
+
+
+    <LinearLayout
+        android:id="@+id/ll_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/btn_profile"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:weightSum="5">
+
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="55dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="20dp"
+            android:layout_weight="0.5"
+            style="@style/MyProfile"
+            android:layout_gravity="center"
+
+            />
+
+        <LinearLayout
+            android:id="@+id/ll_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_weight="4"
+            android:weightSum="5">
+
+
+            <TextView
+                android:id="@+id/tv_hotel_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_italic"
+                android:layout_weight="4"
+                android:text="Sushant Desai"
+                android:textSize="20sp"
+                android:textColor="@color/link_color"
+                android:layout_marginRight="2dp"
+                app:layout_constraintTop_toTopOf="parent"
+                />
+
+            <LinearLayout
+                android:id="@+id/ll_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/btn_profile"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="20dp"
+                android:weightSum="5">
+
+                <ImageView
+                    android:id="@+id/iv_profile2"
+                    android:layout_width="10dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.5"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    style="@style/Call"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+
+
+                <TextView
+                    android:id="@+id/tv_hotel_name2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_light"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_weight="4"
+                    android:text="9120486356"
+                    android:textSize="16sp"
+                    style="@style/TEXT"
+                    android:layout_marginRight="2dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:orientation="horizontal"
+                android:weightSum="5"
+                app:layout_constraintTop_toBottomOf="@+id/btn_profile">
+
+
+
+                <TextView
+                    android:id="@+id/tv_view_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_1sdp"
+                    android:layout_weight="4"
+                    android:fontFamily="@font/roboto_light"
+                    android:text="View More..."
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <GridLayout
+        android:id="@+id/gridLayout4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="@style/MyGridStyle"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:rowCount="2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_1">
+
+
+        <LinearLayout
+            android:id="@+id/Project"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/_3sdp"
+                style="@style/Project" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="Project"
+                style="@style/TEXT"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Automation"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/_3sdp"
+                style="@style/Automation"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="Automation"
+                style="@style/TEXT"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/AddDevice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/_3sdp"
+                style="@style/AddDevice"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="Device"
+                style="@style/TEXT"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+
+    </GridLayout>
+
+
+    <GridLayout
+        android:id="@+id/gridLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="90dp"
+        style="@style/MyGridStyle"
+        android:columnCount="1"
+        android:paddingTop="@dimen/_10sdp"
+        android:paddingBottom="@dimen/_10sdp"
+        android:rowCount="6"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout4"
+        app:layout_constraintVertical_bias="0.300">
+
+        <LinearLayout
+            android:id="@+id/subscription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/_6sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                style="@style/Subscription" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_20sdp"
+                android:text="Subscription"
+                style="@style/TEXT"
+                android:textSize="@dimen/_15sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Integration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/_6sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                style="@style/Integration" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_20sdp"
+                android:text="Third Party Integration"
+                style="@style/TEXT"
+                android:textSize="@dimen/_15sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Help"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/_6sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                style="@style/Help"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_20sdp"
+                android:text="Help"
+                style="@style/TEXT"
+                android:textSize="@dimen/_15sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/AboutUs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/_6sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                style="@style/Privacy" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_20sdp"
+                android:text="About Us - Privacy Police"
+                style="@style/TEXT"
+                android:textSize="@dimen/_15sdp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Setting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="@dimen/_35sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:padding="@dimen/_6sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                style="@style/Setting" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_20sdp"
+                android:text="Setting"
+                style="@style/TEXT"
+                android:textSize="@dimen/_15sdp" />
+        </LinearLayout>
+    </GridLayout>
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_52sdp"
+        android:layout_marginBottom="@dimen/_40sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

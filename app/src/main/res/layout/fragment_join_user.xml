@@ -1,0 +1,360 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.espressif.ui.navigation.MyProfile.JoinUserFragment">
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_marginStart="@dimen/_12sdp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        style="@style/MyButtonStyle"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center|left"
+            android:paddingStart="@dimen/_20sdp"
+            android:text="Join As User"
+            style="@style/TEXT"
+            android:textSize="@dimen/_17sdp"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+            tools:layout_editor_absoluteX="0dp" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_450sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.179">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/llProjectType"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+                <TextView
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="Project Type"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text=":"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+
+                <TextView
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Hotel"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llProjectName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llProjectType">
+
+                <TextView
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="Project Name"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text=":"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+
+                <TextView
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Taj Blue Diamond"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llRoomType"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llProjectName">
+
+                <TextView
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="Room Type"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text=":"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+
+                <TextView
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Regular"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llRoomNo"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llRoomType">
+
+                <TextView
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="Room No"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text=":"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+
+                <TextView
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="104"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llArea"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llRoomNo">
+
+                <TextView
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="Area"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text=":"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+
+                <TextView
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Bedroom"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llEmailId"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llArea">
+
+                <TextView
+                    android:layout_width="@dimen/_130sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_20sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="User Email ID"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text=":"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_15sdp" />
+
+
+                <TextView
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="match_parent"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:text="Sushant12@gmail.com"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:weightSum="2"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_30sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/llEmailId"
+                app:layout_constraintVertical_bias="0.370" >
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:background="@drawable/transparent_button_background"
+                    android:text="Reject"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/roboto_light"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_17sdp"/>
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:background="@drawable/orange_button_background"
+                    android:text="Accept Invite"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_20sdp"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/roboto_light"
+                    style="@style/TEXT"
+                    android:textSize="@dimen/_14sdp"/>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

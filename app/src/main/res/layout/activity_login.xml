@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_black"
+    tools:context="com.espressif.ui.login.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_120sdp"
+        android:src="@drawable/gladiance_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.047" />
+
+    <ImageView
+        android:id="@+id/imageViewUser"
+        android:layout_width="@dimen/_33sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:src="@drawable/username"
+        android:layout_marginTop="@dimen/_4sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        />
+
+
+    <EditText
+        android:id="@+id/eTUserId"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:background="@drawable/custom_edittext_background"
+        android:hint="Email Id"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:textColorHint="@color/color_dark_gray"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:paddingStart="@dimen/_5sdp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewUser"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="@dimen/_33sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginTop="@dimen/_26sdp"
+        android:padding="@dimen/_4sdp"
+        android:src="@drawable/doorlock"
+        app:layout_constraintStart_toStartOf="@+id/imageViewUser"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewUser" />
+
+
+    <RelativeLayout
+        android:id="@+id/rLPassword"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_32sdp"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:background="@drawable/custom_edittext_background"
+        app:layout_constraintEnd_toEndOf="@+id/eTUserId"
+        app:layout_constraintStart_toStartOf="@+id/eTUserId"
+        app:layout_constraintTop_toBottomOf="@+id/eTUserId">
+
+        <EditText
+            android:id="@+id/eTPassword"
+            android:layout_width="@dimen/_250sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:background="@drawable/custom_edittext_background"
+            android:hint="Password"
+            android:paddingStart="@dimen/_5sdp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/color_dark_gray"
+            android:inputType="textPassword"
+            android:maxLines="1"/>
+
+        <ImageView
+            android:id="@+id/iVPasswordShow"
+            android:layout_width="@dimen/_32sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/show"
+            android:adjustViewBounds="true"
+            android:layout_marginEnd="@dimen/_5sdp"/>
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/tVForgotPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Forget Password ?"
+        android:textColor="#F75C01"
+        android:textSize="@dimen/_11ssp"
+        android:textStyle="normal"
+        android:layout_marginEnd="@dimen/_5sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.976"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rLPassword"
+        app:layout_constraintVertical_bias="0.035" />
+
+
+    <TextView
+        android:id="@+id/TextView"
+        android:layout_width="@dimen/_260sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/roboto_medium"
+        android:linksClickable="true"
+        android:text="@string/TermsAndCondition"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        android:textColorLink="@color/link_color"
+        android:textSize="@dimen/_12ssp"
+        android:layout_marginEnd="@dimen/_2sdp"
+        app:layout_constraintBottom_toTopOf="@+id/Loginbtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.456"
+        app:layout_constraintTop_toBottomOf="@+id/tVForgotPass"
+        app:layout_constraintVertical_bias="0.231" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/Loginbtn"
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/transparent_button_background"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_18ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tVForgotPass" />
+
+    <TextView
+        android:id="@+id/textviewSignup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/_25sdp"
+        android:adjustViewBounds="true"
+        android:gravity="center"
+        android:text="@string/SignUp"
+        android:textColor="@color/white"
+        android:textColorLink="@color/link_color"
+        android:textSize="@dimen/_12ssp"
+        android:fontFamily="@font/roboto_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Loginbtn" />
+
+    <ImageView
+        android:id="@+id/googleImg"
+        android:layout_width="@dimen/_40sdp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/googleimg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textviewSignup" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
