@@ -7,6 +7,8 @@ import android.content.SharedPreferences;
 import com.espressif.AppConstants;
 import com.espressif.ui.models.DeviceInfo;
 import com.espressif.ui.models.Devices;
+import com.espressif.ui.models.LoginRequestModel;
+import com.espressif.ui.models.LoginResponseModel;
 import com.espressif.ui.models.NodeResponseModel;
 import com.espressif.ui.models.RequestModel;
 import com.espressif.ui.models.ResponseModel;
@@ -35,6 +37,6 @@ public interface ApiService {
     @GET("mqtt/nodeid/{MacId}")
     Call<NodeResponseModel> getData2(@Path("MacId") String macId);
 
-//    @POST("login")
-//    Call<LoginResponse> login(@Body LoginRequest loginRequest);
+    @POST("/mobileapp/loginuser")
+    Call<LoginResponseModel> loginUser(@Body LoginRequestModel request);
 }

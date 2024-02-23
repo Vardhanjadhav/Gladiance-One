@@ -36,7 +36,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
         btnOtpSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (getApplicationContext(), NavBarActivity.class);
+                Intent intent = new Intent (OTPVerificationActivity.this, NavBarActivity.class);
                 startActivity(intent);
             }
         });

@@ -10,6 +10,7 @@ import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -20,6 +21,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.espressif.ui.activities.ApiService;
+import com.espressif.ui.activities.RetrofitClient;
+import com.espressif.ui.models.LoginRequestModel;
+import com.espressif.ui.models.LoginResponseModel;
 import com.espressif.ui.navigation.NavBarActivity;
 import com.espressif.wifi_provisioning.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -31,6 +36,10 @@ import com.google.android.gms.tasks.Task;
 
 import java.util.UUID;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class LoginActivity extends AppCompatActivity {
 
     GoogleSignInOptions gso;
@@ -39,11 +48,8 @@ public class LoginActivity extends AppCompatActivity {
     RelativeLayout relativeLayoutGoogleBtn;
     ImageView googleImg;
 
-    //Animation
-    //Animation topSlideAnimation;
-    //View view;
-
     TextView textViewForgotPass;
+
 
 
     private boolean passwordShowing = false;
@@ -52,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-       //topSlideAnimation = AnimationUtils.loadAnimation(this,R.anim.top_slide);
+        //topSlideAnimation = AnimationUtils.loadAnimation(this,R.anim.top_slide);
 
         TextView textView = findViewById(R.id.TextView);
         final EditText editTextUserId = findViewById(R.id.eTUserId);
@@ -68,14 +74,13 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 // checking if password is showing or not
-                if(passwordShowing){
-                    passwordShowing =false;
+                if (passwordShowing) {
+                    passwordShowing = false;
 
                     editTextPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                     passwordIcon.setImageResource(R.drawable.show);
-                }
-                else{
-                    passwordShowing =true;
+                } else {
+                    passwordShowing = true;
 
                     editTextPassword.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
                     passwordIcon.setImageResource(R.drawable.hide);
@@ -95,7 +100,7 @@ public class LoginActivity extends AppCompatActivity {
                 boolean isReady = editTextUserId.getText().toString().length() > 2;
                 boolean isReady2 = editTextPassword.getText().toString().length() > 2;
 
-                if(isReady && isReady2 == true){
+                if (isReady && isReady2 == true) {
                     enableSubmitIfReady();
                 }
             }
@@ -125,7 +130,9 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                //Add Method For LoginPostReq
+                btnLoginRequestClick();
+                Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
                 startActivity(intent);
             }
         });
@@ -176,11 +183,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
         // Google Sing in Code
 
         googleImg = findViewById(R.id.googleImg);
@@ -194,7 +196,44 @@ public class LoginActivity extends AppCompatActivity {
                 singIn();
             }
         });
+    }
 
+    //Login Post Req Method Code
+    public void btnLoginRequestClick() {
+        // Create an instance of ApiService
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        // Prepare login request
+        String userId = "user123";
+        String password = "password123";
+        String deviceId = "deviceId123";
+        LoginRequestModel loginRequest = new LoginRequestModel(userId, password, deviceId);
+
+        // Make API call
+        Call<LoginResponseModel> call = apiService.loginUser(loginRequest);
+        call.enqueue(new Callback<LoginResponseModel>() {
+            @Override
+            public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
+                if (response.isSuccessful()) {
+                    LoginResponseModel loginResponse = response.body();
+                    if (loginResponse != null) {
+                        // Handle successful response
+                        Log.d("LoginResponse", "Successful: " + loginResponse.isSuccessful());
+                        Log.d("LoginResponse", "Message: " + loginResponse.getMessage());
+                        Log.d("LoginResponse", "LoginToken: " + loginResponse.getLoginToken());
+                        Log.d("LoginResponse", "UserTypes: " + loginResponse.getUserTypes().toString());
+                    }
+                } else {
+                    // Handle unsuccessful response
+                    Log.e("LoginResponse", "Unsuccessful: " + response.message());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponseModel> call, Throwable t) {
+                // Handle failure
+                Log.e("LoginResponse", "Failure: " + t.getMessage());
+            }
+        });
     }
 
     void singIn() {
