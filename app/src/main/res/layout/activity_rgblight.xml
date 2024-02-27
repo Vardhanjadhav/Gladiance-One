@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/SCREEN"
     tools:context="com.espressif.ui.activities.RGBLightActivity">
 
     <TextView
@@ -12,7 +13,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="RGB Light"
-        android:textColor="@color/color_text"
+        style="@style/TEXT"
         android:textSize="15sp"
         android:layout_marginTop="15sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +52,7 @@
                 android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="Brightness"
-                android:textColor="@color/color_text"
+                style="@style/TEXT"
                 android:textSize="18dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -78,7 +79,7 @@
                 android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/color_text"
+                style="@style/TEXT"
                 android:textSize="18dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -95,7 +96,7 @@
                 android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="Hue"
-                android:textColor="@color/color_text"
+                style="@style/TEXT"
                 android:textSize="18dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -110,23 +111,21 @@
                 android:min="0"
                 android:padding="1dp"
                 android:progress="1"
-
-
                 app:layout_constraintTop_toBottomOf="@+id/tv2" />
+
+
 
             <TextView
                 android:id="@+id/tv_hue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_gravity="center"
                 android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/color_text"
+                style="@style/TEXT"
                 android:textSize="18dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/seekBarHue"
 
@@ -140,7 +139,7 @@
                 android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="Saturation"
-                android:textColor="@color/color_text"
+                style="@style/TEXT"
                 android:textSize="18dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -166,7 +165,7 @@
                 android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/color_text"
+                style="@style/TEXT"
                 android:textSize="18dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -181,7 +180,7 @@
                 android:gravity="center"
 
                 android:text="CCT"
-                android:textColor="@color/color_text"
+                style="@style/TEXT"
                 android:textSize="18dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -205,7 +204,7 @@
                 android:layout_marginTop="2dp"
                 android:gravity="center"
                 android:text="0"
-                android:textColor="@color/color_text"
+                style="@style/TEXT"
                 android:textSize="18dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -219,7 +218,7 @@
                 android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="White Brightness"
-                android:textColor="@color/color_text"
+                style="@style/TEXT"
                 android:textSize="18dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

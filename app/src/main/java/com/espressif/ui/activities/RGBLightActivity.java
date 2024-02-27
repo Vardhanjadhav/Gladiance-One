@@ -18,6 +18,7 @@ import com.espressif.ui.models.RequestModel;
 import com.espressif.ui.models.ResponseModel;
 import com.espressif.wifi_provisioning.R;
 
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -114,6 +115,7 @@ public class RGBLightActivity extends AppCompatActivity {
                 // Not needed
             }
         });
+
 
         //Seek Bar Saturation
         seekBar3.setMax(100);

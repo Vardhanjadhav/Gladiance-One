@@ -367,7 +367,7 @@
                 android:fontFamily="@font/roboto_regular"
                 android:gravity="center|left"
                 android:paddingStart="@dimen/_20sdp"
-                android:text="About Us - Privacy Police"
+                android:text="About Us - Privacy Policy"
                 style="@style/TEXT"
                 android:textSize="@dimen/_15sdp" />
         </LinearLayout>

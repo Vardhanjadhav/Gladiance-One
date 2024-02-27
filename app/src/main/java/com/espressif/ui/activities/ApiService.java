@@ -10,9 +10,12 @@ import com.espressif.ui.models.Devices;
 import com.espressif.ui.models.LoginRequestModel;
 import com.espressif.ui.models.LoginResponseModel;
 import com.espressif.ui.models.NodeResponseModel;
+import com.espressif.ui.models.ProjectSpaceGroupResModel;
+import com.espressif.ui.models.ProjectSpaceResponseModel;
 import com.espressif.ui.models.RequestModel;
 import com.espressif.ui.models.ResponseModel;
 import com.espressif.ui.models.ResponseModelNode;
+import com.espressif.ui.models.SpaceSpaceGroupResModel;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -39,4 +42,18 @@ public interface ApiService {
 
     @POST("/mobileapp/loginuser")
     Call<LoginResponseModel> loginUser(@Body LoginRequestModel request);
+
+    @GET("mobileapp/loginlandingpagedata/{LoginToken}/{LoginDeviceId}")
+    Call<ProjectSpaceResponseModel> getLoginData(@Path("LoginToken") String loginToken, @Path("LoginDeviceId") String loginDeviceId);
+
+    @GET("mobileapp/projectlandingpagedata/{GAAProjectRef}/{LoginToken}/{LoginDeviceId}")
+    Call<ProjectSpaceGroupResModel> getProjectData(
+            @Path("GAAProjectRef") String projectRef,
+            @Path("LoginToken") String loginToken,
+            @Path("LoginDeviceId") String loginDeviceId);
+
+    @GET("mobileapp/spacegrouplandingpagedata/{GAAProjectSpaceGroupRef}/{LoginToken}/{LoginDeviceId}")
+    Call<SpaceSpaceGroupResModel> getSpaceGroupData(@Path("GAAProjectSpaceGroupRef") String gaaProjectSpaceGroupRef,
+                                                    @Path("LoginToken") String loginToken,
+                                                    @Path("LoginDeviceId") String loginDeviceId);
 }

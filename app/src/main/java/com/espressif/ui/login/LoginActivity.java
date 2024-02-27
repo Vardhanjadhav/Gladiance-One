@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Add Method For LoginPostReq
                 btnLoginRequestClick();
-                Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
+                Intent intent = new Intent(getApplicationContext(), SpaceSpaceGroupListActivity.class);
                 startActivity(intent);
             }
         });
