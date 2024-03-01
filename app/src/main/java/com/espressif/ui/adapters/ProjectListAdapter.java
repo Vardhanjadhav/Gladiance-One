@@ -9,17 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.espressif.ui.models.Project;
 import com.espressif.ui.models.ProjectSpaceRequestModel;
 import com.espressif.wifi_provisioning.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.ViewHolder> {
 
-    private List<ProjectSpaceRequestModel.Project> projects;
+     private static List<Project> arrayList;
 
-    public ProjectListAdapter(List<ProjectSpaceRequestModel.Project> projects) {
-        this.projects = projects;
+    public ProjectListAdapter(ArrayList<Project> arrayList) {
+        this.arrayList = arrayList;
     }
 
     @NonNull
@@ -31,13 +33,13 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ProjectSpaceRequestModel.Project project = projects.get(position);
+        Project project = arrayList.get(position);
         holder.projectNameTextView.setText(project.getGAAProjectName());
     }
 
     @Override
     public int getItemCount() {
-        return projects.size();
+        return arrayList.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

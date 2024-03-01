@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -53,9 +54,9 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView textViewForgotPass;
 
-    String userId;
-    String password;
-    String deviceId;
+    private SharedPreferences sharedPreferences2;
+
+    Context context = this;
 
     private static final String PREFS_NAME = "MyPrefsFile";
     private static final String USER_ID_KEY = "userId";
@@ -136,15 +137,30 @@ public class LoginActivity extends AppCompatActivity {
 //            }
 //        });
 
-        //
+
+        // Retrieve GUID ID from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String GUID = LoginActivity.getUserId(sharedPreferences);
+
+        Log.e(TAG, "onCreate: "+ GUID);
+        Log.e(TAG, "GUID: "+ GUID);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Add Method For LoginPostReq
-                btnLoginRequestClick();
-                Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
-                startActivity(intent);
+                String userId = editTextUserId.getText().toString().trim();
+                String password = editTextPassword.getText().toString().trim();
+                String deviceId = GUID.trim();
+                btnLoginRequestClick(userId, password,deviceId);
+                // Check if user input is empty
+                if (userId.isEmpty() || password.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Please enter UserID and Password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+//                Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -208,16 +224,13 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Retrieve GUID ID from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        String GUID = LoginActivity.getUserId(sharedPreferences);
 
-        Log.e(TAG, "onCreate: "+ GUID);
-        Log.e(TAG, "GUID: "+ GUID);
     }
 
+
+
     //Login Post Req Method Code
-    public void btnLoginRequestClick() {
+    public void btnLoginRequestClick(String userId, String password,String deviceId) {
         // Create an instance of ApiService
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         // Prepare login request
@@ -230,16 +243,23 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
                 if (response.isSuccessful()) {
                     LoginResponseModel loginResponse = response.body();
-                    if (loginResponse.isSuccessful()) {
+                    if (loginResponse != null && loginResponse.isSuccessful()) {
                         // Handle successful response
                         Log.d("LoginResponse", "Successful: " + loginResponse.isSuccessful());
                         Log.d("LoginResponse", "Message: " + loginResponse.getMessage());
                         Log.d("LoginResponse", "LoginToken: " + loginResponse.getLoginToken());
                         Log.d("LoginResponse", "UserTypes: " + loginResponse.getUserTypes().toString());
+
+                        String retrievedLoginDeviceId = loginResponse.getLoginToken();
+                        saveLoginDeviceId(retrievedLoginDeviceId);
+
+                        Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
+                        startActivity(intent);
                     }
                 } else {
                     // Handle unsuccessful response
                     Log.e("LoginResponse", "Unsuccessful: " + response.message());
+
                 }
             }
 
@@ -250,6 +270,15 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void saveLoginDeviceId(String loginDeviceId) {
+        sharedPreferences2 = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences2.edit();
+        editor.putString("LoginDeviceId", loginDeviceId);
+        Log.e(TAG, "saveLoginDeviceId: "+loginDeviceId );
+        editor.apply();
+    }
+
 
     //Generate a GUID Code with SharedPreferences
     public void getGUID(){
@@ -268,7 +297,6 @@ public class LoginActivity extends AppCompatActivity {
     public static String getUserId(SharedPreferences sharedPreferences) {
         return sharedPreferences.getString(USER_ID_KEY, null);
     }
-
 
     //
     void singIn() {

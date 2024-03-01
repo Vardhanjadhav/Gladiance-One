@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -41,38 +43,36 @@ public class ProjectSpaceActivity extends AppCompatActivity {
     private ArrayList<Project> arrayList1;
     String loginToken, loginDeviceId;
 
+    private static final String PREFS_NAME = "MyPrefsFile";
+    private static final String USER_ID_KEY = "userId";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_project_space);
 
-//        rvProjectList = findViewById(R.id.rVProjectName);
-//
-//        List<String> projectList = new ArrayList<>();
-//        projectList.add("Hello, RecyclerView");
-//        projectList.add("Hello, RecyclerView");
-//        projectList.add("Hello, RecyclerView");
-//
-//        projectListAdapter = new ProjectListAdapter(this, projectList);
-//        rvProjectList.setAdapter(projectListAdapter);
-//        rvProjectList.setLayoutManager(new LinearLayoutManager(this));
+        rvProjectList = findViewById(R.id.rVProjectName);
+        rvSpaceList  =findViewById(R.id.rVSpaceName);
 
-        getProjectName();
+        // Retrieve GUID ID from SharedPreferences (loginDeviceId)
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String GUID = LoginActivity.getUserId(sharedPreferences);
+        Log.e(TAG, "Project GUID: "+ GUID);
+        String loginDeviceId = GUID.trim();
+
+
+        SharedPreferences  sharedPreferences2 = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        String savedLoginDeviceId = sharedPreferences2.getString("LoginDeviceId", "");
+        Log.e(TAG, "onCreate: "+savedLoginDeviceId );
+        String loginToken = savedLoginDeviceId.trim();
+
+
+        getProjectName(loginToken,loginDeviceId);
         //Space List Recycle Code
-//        rvSpaceList = findViewById(R.id.rVSpaceName);
-//
-//        List<String> SpaceList = new ArrayList<>();
-//        SpaceList.add("Hello, RecyclerView");
-//        SpaceList.add("Hello, RecyclerView");
-//        SpaceList.add("Hello, RecyclerView");
-//
-//        spaceListAdapter = new SpaceListAdapter(this, SpaceList);
-//        rvSpaceList.setAdapter(spaceListAdapter);
-//        rvSpaceList.setLayoutManager(new LinearLayoutManager(this));
-        getSpaceName();
+       // getSpaceName(loginToken,loginDeviceId);
     }
 
-    private void getProjectName() {
+    private void getProjectName(String loginToken,String loginDeviceId) {
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         Call<ProjectSpaceResponseModel> call = apiService.getLoginData(loginToken, loginDeviceId);
@@ -88,10 +88,10 @@ public class ProjectSpaceActivity extends AppCompatActivity {
                         for(ProjectSpaceRequestModel.Project project1 : projects){
                             Log.e(TAG, "onResponse SpaceName: " + project1.getGAAProjectName());
                             Log.e(TAG, "onResponse Display Order : " + project1.getGAAProjectRef());
-                             //arrayList1.add(new Project(project1.getGAAProjectRef(),project1.getGAAProjectName()));
+                             arrayList1.add(new Project(project1.getGAAProjectRef(),project1.getGAAProjectName()));
                         }
 
-                        ProjectListAdapter projectListAdapter = new ProjectListAdapter(projects);
+                        ProjectListAdapter projectListAdapter = new ProjectListAdapter(arrayList1);
                         rvProjectList.setAdapter(projectListAdapter);
                         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(ProjectSpaceActivity.this,1, GridLayoutManager.VERTICAL,false);
                         rvProjectList.setLayoutManager(gridLayoutManager1);
@@ -111,7 +111,7 @@ public class ProjectSpaceActivity extends AppCompatActivity {
         });
     }
 
-    private void getSpaceName(){
+    private void getSpaceName(String loginToken,String loginDeviceId){
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         Call<ProjectSpaceResponseModel> call = apiService.getLoginData(loginToken, loginDeviceId);
