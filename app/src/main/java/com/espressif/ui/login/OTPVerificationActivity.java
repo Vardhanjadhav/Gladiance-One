@@ -26,6 +26,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
 
     private static final String PREFS_NAME = "MyPrefsFile";
     private static final String USER_ID_KEY = "userId";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +37,7 @@ public class OTPVerificationActivity extends AppCompatActivity {
         btnOtpSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (OTPVerificationActivity.this, NavBarActivity.class);
+                Intent intent = new Intent(OTPVerificationActivity.this, NavBarActivity.class);
                 startActivity(intent);
             }
         });
@@ -72,29 +73,30 @@ public class OTPVerificationActivity extends AppCompatActivity {
         // Make the links clickable
         textView.setMovementMethod(LinkMovementMethod.getInstance());
 
-        //Generate a GUID Code with SharedPreferences
-        btnOtpSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Generate unique ID
-                String GUID = UUID.randomUUID().toString();
-
-                // Save the generated ID
-                saveUserId(GUID);
-
-                // Start next activity
-                startActivity(new Intent(OTPVerificationActivity.this, NavBarActivity.class));
-            }
-        });
-    }
-
-    private void saveUserId(String GUID) {
-        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
-        editor.putString(USER_ID_KEY, GUID);
-        editor.apply();
-    }
-
-    public static String getUserId(SharedPreferences sharedPreferences) {
-        return sharedPreferences.getString(USER_ID_KEY, null);
+//        //Generate a GUID Code with SharedPreferences
+//        btnOtpSend.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Generate unique ID
+//                String GUID = UUID.randomUUID().toString();
+//
+//                // Save the generated ID
+//                saveUserId(GUID);
+//
+//                // Start next activity
+//                startActivity(new Intent(OTPVerificationActivity.this, NavBarActivity.class));
+//            }
+//        });
+//    }
+//
+//    private void saveUserId(String GUID) {
+//        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+//        editor.putString(USER_ID_KEY, GUID);
+//        editor.apply();
+//    }
+//
+//    public static String getUserId(SharedPreferences sharedPreferences) {
+//        return sharedPreferences.getString(USER_ID_KEY, null);
+//    }
     }
 }

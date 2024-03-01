@@ -62,6 +62,8 @@ public class RoomControlAdapter extends RecyclerView.Adapter<RoomControlAdapter.
             notifyItemChanged(selectedPosition);
         });
 
+
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -3,8 +3,10 @@
 
     <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/grey</item>
         <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/grey</item>
+
         <item name="android:textColorPrimary">@color/white</item>
     </style>
 

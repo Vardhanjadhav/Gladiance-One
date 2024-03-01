@@ -79,7 +79,6 @@ public class ProjectSpaceGroupActivity extends AppCompatActivity {
                         rvProjectSpaceGroupList.setAdapter(projectSpaceGroupListAdapter);
                         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(ProjectSpaceGroupActivity.this,1, GridLayoutManager.VERTICAL,false);
                         rvProjectSpaceGroupList.setLayoutManager(gridLayoutManager1);
-
                     }
                 }
             }

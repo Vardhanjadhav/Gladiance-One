@@ -77,12 +77,12 @@ public class NavBarActivity extends AppCompatActivity {
             }
         });
 
-        // Retrieve GUID ID from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        String GUID = OTPVerificationActivity.getUserId(sharedPreferences);
-
-        Log.e(TAG, "onCreate: "+ GUID);
-        Log.e(TAG, "GUID: "+ GUID);
+//        // Retrieve GUID ID from SharedPreferences
+//        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+//        String GUID = OTPVerificationActivity.getUserId(sharedPreferences);
+//
+//        Log.e(TAG, "onCreate: "+ GUID);
+//        Log.e(TAG, "GUID: "+ GUID);
 
     }
 

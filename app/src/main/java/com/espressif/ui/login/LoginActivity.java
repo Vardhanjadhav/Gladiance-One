@@ -1,8 +1,11 @@
 package com.espressif.ui.login;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -50,7 +53,12 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView textViewForgotPass;
 
+    String userId;
+    String password;
+    String deviceId;
 
+    private static final String PREFS_NAME = "MyPrefsFile";
+    private static final String USER_ID_KEY = "userId";
 
     private boolean passwordShowing = false;
     @Override
@@ -67,6 +75,8 @@ public class LoginActivity extends AppCompatActivity {
         final Button btnLogin = findViewById(R.id.Loginbtn);
 
         //View view = findViewById(R.id.screen1);
+
+        getGUID();
 
         //Password Icon code
         passwordIcon.setOnClickListener(new View.OnClickListener() {
@@ -90,40 +100,41 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnLogin.setEnabled(false);
 
-        editTextUserId.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable arg0) {
-                // Toast.makeText(getApplicationContext(), "Please Enter Username and Password", Toast.LENGTH_SHORT).show();
+        //btnLogin.setEnabled(false);
 
-                boolean isReady = editTextUserId.getText().toString().length() > 2;
-                boolean isReady2 = editTextPassword.getText().toString().length() > 2;
-
-                if (isReady && isReady2 == true) {
-                    enableSubmitIfReady();
-                }
-            }
-
-            public void enableSubmitIfReady() {
-
-                boolean isReady = editTextUserId.getText().toString().length() > 2;
-                boolean isReady2 = editTextPassword.getText().toString().length() > 2;
-
-                btnLogin.setEnabled(isReady && isReady2);
-
-                btnLogin.setBackgroundResource(R.drawable.orange_button_background);
-
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-        });
+//        editTextUserId.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void afterTextChanged(Editable arg0) {
+//                // Toast.makeText(getApplicationContext(), "Please Enter Username and Password", Toast.LENGTH_SHORT).show();
+//
+//                boolean isReady = editTextUserId.getText().toString().length() > 2;
+//                boolean isReady2 = editTextPassword.getText().toString().length() > 2;
+//
+//                if (isReady && isReady2 == true) {
+//                    enableSubmitIfReady();
+//                }
+//            }
+//
+//            public void enableSubmitIfReady() {
+//
+//                boolean isReady = editTextUserId.getText().toString().length() > 2;
+//                boolean isReady2 = editTextPassword.getText().toString().length() > 2;
+//
+//                btnLogin.setEnabled(isReady && isReady2);
+//
+//                btnLogin.setBackgroundResource(R.drawable.orange_button_background);
+//
+//            }
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//            }
+//        });
 
         //
 
@@ -132,7 +143,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Add Method For LoginPostReq
                 btnLoginRequestClick();
-                Intent intent = new Intent(getApplicationContext(), SpaceSpaceGroupListActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
                 startActivity(intent);
             }
         });
@@ -196,6 +207,13 @@ public class LoginActivity extends AppCompatActivity {
                 singIn();
             }
         });
+
+        // Retrieve GUID ID from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String GUID = LoginActivity.getUserId(sharedPreferences);
+
+        Log.e(TAG, "onCreate: "+ GUID);
+        Log.e(TAG, "GUID: "+ GUID);
     }
 
     //Login Post Req Method Code
@@ -203,9 +221,6 @@ public class LoginActivity extends AppCompatActivity {
         // Create an instance of ApiService
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         // Prepare login request
-        String userId = "user123";
-        String password = "password123";
-        String deviceId = "deviceId123";
         LoginRequestModel loginRequest = new LoginRequestModel(userId, password, deviceId);
 
         // Make API call
@@ -215,7 +230,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<LoginResponseModel> call, Response<LoginResponseModel> response) {
                 if (response.isSuccessful()) {
                     LoginResponseModel loginResponse = response.body();
-                    if (loginResponse != null) {
+                    if (loginResponse.isSuccessful()) {
                         // Handle successful response
                         Log.d("LoginResponse", "Successful: " + loginResponse.isSuccessful());
                         Log.d("LoginResponse", "Message: " + loginResponse.getMessage());
@@ -236,6 +251,26 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    //Generate a GUID Code with SharedPreferences
+    public void getGUID(){
+        String GUID = UUID.randomUUID().toString();
+        // Save the generated ID
+        Log.e(TAG, "getGUID: "+GUID );
+        saveUserId(GUID);
+    }
+
+    private void saveUserId(String GUID) {
+        SharedPreferences.Editor editor = getSharedPreferences(PREFS_NAME, MODE_PRIVATE).edit();
+        editor.putString(USER_ID_KEY, GUID);
+        editor.apply();
+    }
+
+    public static String getUserId(SharedPreferences sharedPreferences) {
+        return sharedPreferences.getString(USER_ID_KEY, null);
+    }
+
+
+    //
     void singIn() {
         Intent signInIntent = gsc.getSignInIntent();
         startActivityForResult(signInIntent, 1000);
@@ -261,6 +296,4 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
         startActivity(intent);
     }
-
-
 }

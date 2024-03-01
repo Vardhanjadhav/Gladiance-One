@@ -33,7 +33,6 @@ public class ProjectListAdapter extends RecyclerView.Adapter<ProjectListAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProjectSpaceRequestModel.Project project = projects.get(position);
         holder.projectNameTextView.setText(project.getGAAProjectName());
-        // You can also bind other data related to the project here if needed
     }
 
     @Override

@@ -14,14 +14,9 @@ import com.espressif.wifi_provisioning.R;
 public class AirConditioningControlFragment extends Fragment {
 
 
-
     public AirConditioningControlFragment() {
         // Required empty public constructor
     }
-
-
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

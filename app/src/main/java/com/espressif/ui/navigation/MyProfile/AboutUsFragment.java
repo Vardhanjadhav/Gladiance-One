@@ -34,12 +34,12 @@ public class AboutUsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_about_us, container, false);
 
-        // Retrieve GUID ID from SharedPreferences
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        String GUID = OTPVerificationActivity.getUserId(sharedPreferences);
-
-        Log.e(TAG, "onCreate: "+ GUID);
-        Log.e(TAG, "About Us GUID: "+ GUID);
+//        // Retrieve GUID ID from SharedPreferences
+//        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+//        String GUID = OTPVerificationActivity.getUserId(sharedPreferences);
+//
+//        Log.e(TAG, "onCreate: "+ GUID);
+//        Log.e(TAG, "About Us GUID: "+ GUID);
 
         return view;
     }

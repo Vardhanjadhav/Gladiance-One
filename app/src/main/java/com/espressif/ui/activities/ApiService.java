@@ -40,7 +40,7 @@ public interface ApiService {
     @GET("mqtt/nodeid/{MacId}")
     Call<NodeResponseModel> getData2(@Path("MacId") String macId);
 
-    @POST("/mobileapp/loginuser")
+    @POST("mobileapp/loginuser")
     Call<LoginResponseModel> loginUser(@Body LoginRequestModel request);
 
     @GET("mobileapp/loginlandingpagedata/{LoginToken}/{LoginDeviceId}")

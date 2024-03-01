@@ -144,7 +144,6 @@ public class ProjectSpaceActivity extends AppCompatActivity {
                         Log.e("ProjectSpaceActivity", "Failed to get response");
                     }
                 }
-
             }
 
             @Override
