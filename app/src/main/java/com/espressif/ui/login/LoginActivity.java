@@ -106,40 +106,59 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        //btnLogin.setEnabled(false);
+        btnLogin.setEnabled(false);
 
-//        editTextUserId.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void afterTextChanged(Editable arg0) {
-//                // Toast.makeText(getApplicationContext(), "Please Enter Username and Password", Toast.LENGTH_SHORT).show();
-//
-//                boolean isReady = editTextUserId.getText().toString().length() > 2;
-//                boolean isReady2 = editTextPassword.getText().toString().length() > 2;
-//
-//                if (isReady && isReady2 == true) {
-//                    enableSubmitIfReady();
-//                }
-//            }
-//
-//            public void enableSubmitIfReady() {
-//
-//                boolean isReady = editTextUserId.getText().toString().length() > 2;
-//                boolean isReady2 = editTextPassword.getText().toString().length() > 2;
-//
-//                btnLogin.setEnabled(isReady && isReady2);
-//
-//                btnLogin.setBackgroundResource(R.drawable.orange_button_background);
-//
-//            }
-//
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//            }
-//        });
+        editTextUserId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable arg0) {
+
+                boolean isReady = editTextUserId.getText().toString().length() > 0;
+                boolean isReady2 = editTextPassword.getText().toString().length() > 0;
+
+                if (isReady && isReady2 == true) {
+                    btnLogin.setBackgroundResource(R.drawable.orange_button_background);
+                    btnLogin.setEnabled(true);
+
+                } else {
+                    btnLogin.setBackgroundResource(R.drawable.transparent_button_background);
+                }
+            }
+
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
+        editTextPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void afterTextChanged(Editable arg0) {
+
+                boolean isReady = editTextUserId.getText().toString().length() > 0;
+                boolean isReady2 = editTextPassword.getText().toString().length() > 0;
+
+                if (isReady && isReady2 == true) {
+                    btnLogin.setBackgroundResource(R.drawable.orange_button_background);
+                    btnLogin.setEnabled(true);
+                }
+                else {
+                    btnLogin.setBackgroundResource(R.drawable.transparent_button_background);
+                }
+            }
+
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+        });
+
 
 
         // Retrieve GUID ID from SharedPreferences
@@ -158,9 +177,18 @@ public class LoginActivity extends AppCompatActivity {
                 String deviceId = GUID.trim();
                 btnLoginRequestClick(userId, password,deviceId);
                 // Check if user input is empty
-                if (userId.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Please enter UserID and Password", Toast.LENGTH_SHORT).show();
+                if (userId.isEmpty() && password.isEmpty()) {
+                    Toast.makeText(LoginActivity.this, "Please enter Email ID and Password", Toast.LENGTH_SHORT).show();
                     return;
+                } else if (userId.isEmpty()){
+                    Toast.makeText(LoginActivity.this, "Please enter Email ID", Toast.LENGTH_SHORT).show();
+                    return;
+                } else if (password.isEmpty()){
+                    Toast.makeText(LoginActivity.this, "Please enter password", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
+
                 }
 
 //                Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
