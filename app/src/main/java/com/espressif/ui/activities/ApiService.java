@@ -11,6 +11,7 @@ import com.espressif.ui.models.LoginRequestModel;
 import com.espressif.ui.models.LoginResponseModel;
 import com.espressif.ui.models.NodeResponseModel;
 import com.espressif.ui.models.ProjectSpaceGroupResModel;
+import com.espressif.ui.models.ProjectSpaceLandingResModel;
 import com.espressif.ui.models.ProjectSpaceResponseModel;
 import com.espressif.ui.models.RequestModel;
 import com.espressif.ui.models.ResponseModel;
@@ -56,4 +57,11 @@ public interface ApiService {
     Call<SpaceSpaceGroupResModel> getSpaceGroupData(@Path("GAAProjectSpaceGroupRef") String gaaProjectSpaceGroupRef,
                                                     @Path("LoginToken") String loginToken,
                                                     @Path("LoginDeviceId") String loginDeviceId);
+
+    @GET("mobileapp/spacegrouplandingpagedata/{GAAProjectSpaceGroupRef}/{LoginToken}/{LoginDeviceId}")
+    Call<ProjectSpaceLandingResModel> getSpaceNameData(
+            @Path("GAAProjectSpaceGroupRef") String GAAProjectSpaceGroupRef,
+            @Path("LoginToken") String LoginToken,
+            @Path("LoginDeviceId") String LoginDeviceId
+    );
 }

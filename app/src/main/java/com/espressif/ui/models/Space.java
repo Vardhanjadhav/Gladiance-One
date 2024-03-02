@@ -2,7 +2,7 @@ package com.espressif.ui.models;
 
 public class Space {
     private String GAAProjectSpaceRef;
-    private String SpaceName;
+    private String GAAProjectSpaceName;
     private int DisplayOrder;
     private String Description;
 
@@ -14,12 +14,12 @@ public class Space {
         this.GAAProjectSpaceRef = GAAProjectSpaceRef;
     }
 
-    public String getSpaceName() {
-        return SpaceName;
+    public String getGAAProjectSpaceName() {
+        return GAAProjectSpaceName;
     }
 
-    public void setSpaceName(String spaceName) {
-        SpaceName = spaceName;
+    public void setGAAProjectSpaceName(String GAAProjectSpaceName) {
+        this.GAAProjectSpaceName = GAAProjectSpaceName;
     }
 
     public int getDisplayOrder() {
@@ -38,12 +38,11 @@ public class Space {
         Description = description;
     }
 
-    public Space(String GAAProjectSpaceRef, String spaceName, int displayOrder, String description) {
+    public Space(String GAAProjectSpaceRef, String GAAProjectSpaceName, int displayOrder, String description) {
         this.GAAProjectSpaceRef = GAAProjectSpaceRef;
-        SpaceName = spaceName;
+        this.GAAProjectSpaceName = GAAProjectSpaceName;
         DisplayOrder = displayOrder;
         Description = description;
     }
-
 }
 

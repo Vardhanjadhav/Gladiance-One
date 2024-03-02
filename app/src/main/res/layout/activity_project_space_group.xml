@@ -38,6 +38,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/user_name" />
 
+    <TextView
+        android:id="@+id/projectName"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_20sdp"
+        android:text="Project Space Groups"
+        android:textSize="@dimen/_15sdp"
+        android:fontFamily="@font/roboto_regular"
+        style="@style/TEXT"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_3sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/project" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rVProjectSpaceGroupName"
         android:layout_width="match_parent"
@@ -47,7 +62,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/_5sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/project"
+        app:layout_constraintTop_toBottomOf="@+id/projectName"
         tools:listitem="@layout/project_space_group_recycleview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

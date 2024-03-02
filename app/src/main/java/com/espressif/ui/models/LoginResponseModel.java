@@ -18,6 +18,17 @@ public class LoginResponseModel {
     @SerializedName("UserTypes")
     private List<String> userTypes;
 
+    @SerializedName("UserDisplayName")
+    private String userDisplayName;
+
+    public String getUserDisplayName() {
+        return userDisplayName;
+    }
+
+    public void setUserDisplayName(String userDisplayName) {
+        this.userDisplayName = userDisplayName;
+    }
+
     public boolean isSuccessful() {
         return successful;
     }
@@ -50,10 +61,11 @@ public class LoginResponseModel {
         this.userTypes = userTypes;
     }
 
-    public LoginResponseModel(boolean successful, String message, String loginToken, List<String> userTypes) {
+    public LoginResponseModel(boolean successful, String message, String loginToken, List<String> userTypes, String userDisplayName) {
         this.successful = successful;
         this.message = message;
         this.loginToken = loginToken;
         this.userTypes = userTypes;
+        this.userDisplayName = userDisplayName;
     }
 }

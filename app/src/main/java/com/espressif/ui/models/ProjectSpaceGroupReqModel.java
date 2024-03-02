@@ -3,18 +3,17 @@ package com.espressif.ui.models;
 import java.util.List;
 
 public class ProjectSpaceGroupReqModel {
-
-    private String Version;
+    private String version;
     private String GAAProjectRef;
     private String GAAProjectName;
-    private List<SpaceGroup> GAAProjectSpaceGroups;
+    private List<SpaceGroup> SpaceGroups;
 
     public String getVersion() {
-        return Version;
+        return version;
     }
 
     public void setVersion(String version) {
-        Version = version;
+        this.version = version;
     }
 
     public String getGAAProjectRef() {
@@ -33,27 +32,25 @@ public class ProjectSpaceGroupReqModel {
         this.GAAProjectName = GAAProjectName;
     }
 
-    public List<SpaceGroup> getGAAProjectSpaceGroups() {
-        return GAAProjectSpaceGroups;
+    public List<SpaceGroup> getSpaceGroups() {
+        return SpaceGroups;
     }
 
-    public void setGAAProjectSpaceGroups(List<SpaceGroup> GAAProjectSpaceGroups) {
-        this.GAAProjectSpaceGroups = GAAProjectSpaceGroups;
+    public void setSpaceGroups(List<SpaceGroup> spaceGroups) {
+        SpaceGroups = spaceGroups;
     }
 
-    public ProjectSpaceGroupReqModel(String version, String GAAProjectRef, String GAAProjectName, List<SpaceGroup> GAAProjectSpaceGroups) {
-        Version = version;
+    public ProjectSpaceGroupReqModel(String version, String GAAProjectRef, String GAAProjectName, List<SpaceGroup> spaceGroups) {
+        this.version = version;
         this.GAAProjectRef = GAAProjectRef;
         this.GAAProjectName = GAAProjectName;
-        this.GAAProjectSpaceGroups = GAAProjectSpaceGroups;
-
-
+        SpaceGroups = spaceGroups;
     }
 
     public static class SpaceGroup {
         private String GAAProjectSpaceGroupRef;
         private String GAAProjectSpaceGroupName;
-        private int DisplayOrder;
+        private int displayOrder;
 
         public String getGAAProjectSpaceGroupRef() {
             return GAAProjectSpaceGroupRef;
@@ -72,18 +69,13 @@ public class ProjectSpaceGroupReqModel {
         }
 
         public int getDisplayOrder() {
-            return DisplayOrder;
+            return displayOrder;
         }
 
         public void setDisplayOrder(int displayOrder) {
-            DisplayOrder = displayOrder;
-        }
-
-        public SpaceGroup(String GAAProjectSpaceGroupRef, String GAAProjectSpaceGroupName, int displayOrder) {
-            this.GAAProjectSpaceGroupRef = GAAProjectSpaceGroupRef;
-            this.GAAProjectSpaceGroupName = GAAProjectSpaceGroupName;
-            DisplayOrder = displayOrder;
+            this.displayOrder = displayOrder;
         }
     }
-
 }
+
+

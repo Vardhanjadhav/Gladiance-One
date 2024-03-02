@@ -26,7 +26,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
+        <activity
+            android:name="com.espressif.ui.login.ProjectSpaceLandingActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name="com.espressif.ui.login.SpaceSpaceGroupListActivity"
             android:exported="false">
@@ -34,7 +40,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name="com.espressif.ui.login.ProjectSpaceGroupActivity"
             android:exported="false">

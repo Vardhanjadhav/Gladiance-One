@@ -54,7 +54,9 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView textViewForgotPass;
 
-    private SharedPreferences sharedPreferences2;
+
+
+    private SharedPreferences sharedPreferences2 , sharedPreferences3;
 
     Context context = this;
 
@@ -76,6 +78,8 @@ public class LoginActivity extends AppCompatActivity {
         final Button btnLogin = findViewById(R.id.Loginbtn);
 
         //View view = findViewById(R.id.screen1);
+
+
 
         getGUID();
 
@@ -249,9 +253,13 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("LoginResponse", "Message: " + loginResponse.getMessage());
                         Log.d("LoginResponse", "LoginToken: " + loginResponse.getLoginToken());
                         Log.d("LoginResponse", "UserTypes: " + loginResponse.getUserTypes().toString());
+                        Log.d("LoginResponse", "UserDisplayName: " + loginResponse.getUserDisplayName());
 
-                        String retrievedLoginDeviceId = loginResponse.getLoginToken();
-                        saveLoginDeviceId(retrievedLoginDeviceId);
+                        String retrievedLoginToken = loginResponse.getLoginToken();
+                        saveLoginToken(retrievedLoginToken);
+
+                        String retrievedUserDisplayName = loginResponse.getUserDisplayName();
+                        saveUserDisplayName(retrievedUserDisplayName);
 
                         Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
                         startActivity(intent);
@@ -271,20 +279,29 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void saveLoginDeviceId(String loginDeviceId) {
+
+    private void saveUserDisplayName(String userDisplayName) {
+        sharedPreferences3 = getSharedPreferences("MyPreferencesDN", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences3.edit();
+        editor.putString("UserDisplayName", userDisplayName);
+        Log.e(TAG, "UserDisplayName1: "+userDisplayName );
+        editor.apply();
+    }
+
+    private void saveLoginToken(String loginDeviceId) {
         sharedPreferences2 = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences2.edit();
-        editor.putString("LoginDeviceId", loginDeviceId);
-        Log.e(TAG, "saveLoginDeviceId: "+loginDeviceId );
+        editor.putString("LoginToken", loginDeviceId);
+        Log.e(TAG, "save LoginToken: "+loginDeviceId );
         editor.apply();
     }
 
 
-    //Generate a GUID Code with SharedPreferences
+    //Generate a GUID Code with SharedPreferences Project GUID/LoginDeviceId:
     public void getGUID(){
         String GUID = UUID.randomUUID().toString();
         // Save the generated ID
-        Log.e(TAG, "getGUID: "+GUID );
+        Log.e(TAG, "getGUID/LoginDeviceId: "+GUID );
         saveUserId(GUID);
     }
 

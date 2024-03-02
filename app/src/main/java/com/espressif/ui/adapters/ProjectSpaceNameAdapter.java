@@ -1,6 +1,5 @@
 package com.espressif.ui.adapters;
 
-import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,25 +8,24 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.espressif.ui.models.ProjectSpaceRequestModel;
 import com.espressif.ui.models.Space;
+import com.espressif.ui.models.SpaceGroup;
 import com.espressif.wifi_provisioning.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class SpaceListAdapter extends RecyclerView.Adapter<SpaceListAdapter.ViewHolder> {
+public class ProjectSpaceNameAdapter extends RecyclerView.Adapter<ProjectSpaceNameAdapter.ViewHolder> {
 
     private static List<Space> arraylist;
 
-    public SpaceListAdapter(ArrayList<Space> arraylist) {
+    public ProjectSpaceNameAdapter(List<Space> arraylist) {
         this.arraylist = arraylist;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.space_name_recycleview, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.project_space_name_recycleview, parent, false);
         return new ViewHolder(view);
     }
 
@@ -35,7 +33,7 @@ public class SpaceListAdapter extends RecyclerView.Adapter<SpaceListAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Space space = arraylist.get(position);
         holder.spaceNameTextView.setText(space.getGAAProjectSpaceName());
-        // You can also bind other data related to the space here if needed
+        // You can also bind other data related to the space group here if needed
     }
 
     @Override
@@ -48,7 +46,7 @@ public class SpaceListAdapter extends RecyclerView.Adapter<SpaceListAdapter.View
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            spaceNameTextView = itemView.findViewById(R.id.spaceName);
+            spaceNameTextView = itemView.findViewById(R.id.ProjectSpaceName);
         }
     }
 }
