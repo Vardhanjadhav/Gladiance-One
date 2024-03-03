@@ -27,6 +27,13 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name="com.espressif.ui.login.AreaLandingActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name="com.espressif.ui.login.ProjectSpaceLandingActivity"
             android:exported="false">
             <meta-data

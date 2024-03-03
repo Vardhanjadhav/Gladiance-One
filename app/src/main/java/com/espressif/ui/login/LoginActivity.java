@@ -106,58 +106,58 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        btnLogin.setEnabled(false);
-
-        editTextUserId.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable arg0) {
-
-                boolean isReady = editTextUserId.getText().toString().length() > 0;
-                boolean isReady2 = editTextPassword.getText().toString().length() > 0;
-
-                if (isReady && isReady2 == true) {
-                    btnLogin.setBackgroundResource(R.drawable.orange_button_background);
-                    btnLogin.setEnabled(true);
-
-                } else {
-                    btnLogin.setBackgroundResource(R.drawable.transparent_button_background);
-                }
-            }
-
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-        });
-
-        editTextPassword.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable arg0) {
-
-                boolean isReady = editTextUserId.getText().toString().length() > 0;
-                boolean isReady2 = editTextPassword.getText().toString().length() > 0;
-
-                if (isReady && isReady2 == true) {
-                    btnLogin.setBackgroundResource(R.drawable.orange_button_background);
-                    btnLogin.setEnabled(true);
-                }
-                else {
-                    btnLogin.setBackgroundResource(R.drawable.transparent_button_background);
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-            }
-        });
+//        btnLogin.setEnabled(false);
+//
+//        editTextUserId.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void afterTextChanged(Editable arg0) {
+//
+//                boolean isReady = editTextUserId.getText().toString().length() > 0;
+//                boolean isReady2 = editTextPassword.getText().toString().length() > 0;
+//
+//                if (isReady && isReady2 == true) {
+//                    btnLogin.setBackgroundResource(R.drawable.orange_button_background);
+//                    btnLogin.setEnabled(true);
+//
+//                } else {
+//                    btnLogin.setBackgroundResource(R.drawable.transparent_button_background);
+//                }
+//            }
+//
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//            }
+//        });
+//
+//        editTextPassword.addTextChangedListener(new TextWatcher() {
+//            @Override
+//            public void afterTextChanged(Editable arg0) {
+//
+//                boolean isReady = editTextUserId.getText().toString().length() > 0;
+//                boolean isReady2 = editTextPassword.getText().toString().length() > 0;
+//
+//                if (isReady && isReady2 == true) {
+//                    btnLogin.setBackgroundResource(R.drawable.orange_button_background);
+//                    btnLogin.setEnabled(true);
+//                }
+//                else {
+//                    btnLogin.setBackgroundResource(R.drawable.transparent_button_background);
+//                }
+//            }
+//
+//            @Override
+//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+//            }
+//
+//            @Override
+//            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//            }
+//        });
 
 
 
@@ -191,8 +191,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
 
-//                Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
-//                startActivity(intent);
+                //Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
+                //startActivity(intent);
             }
         });
 
@@ -255,10 +255,7 @@ public class LoginActivity extends AppCompatActivity {
                 singIn();
             }
         });
-
-
     }
-
 
 
     //Login Post Req Method Code

@@ -40,6 +40,8 @@ public class ProjectSpaceLandingActivity extends AppCompatActivity {
 
     private ArrayList<Space> arrayList;
 
+    SharedPreferences sharedPreferences;
+
     private static final String PREFS_NAME = "MyPrefsFile";
 
     @Override
@@ -109,7 +111,11 @@ public class ProjectSpaceLandingActivity extends AppCompatActivity {
 
                         for (ProjectSpaceLandingReqModel.Space space1 : space) {
                             Log.e(TAG, "onResponse SpaceGroupName: " + space1.getGAAProjectSpaceName());
+                            Log.e(TAG, "onResponse getGAAProjectSpaceRef: "+space1.getGAAProjectSpaceRef());
                             arrayList.add(new Space(space1.getGAAProjectSpaceRef(), space1.getGAAProjectSpaceName(), space1.getDisplayOrder(), space1.getDescription()));
+
+//                            String retrievedName = space1.getGAAProjectSpaceRef();
+//                            saveScapeName(retrievedName);
                         }
                         //add arraylist code and create space group class
 
@@ -127,4 +133,12 @@ public class ProjectSpaceLandingActivity extends AppCompatActivity {
             }
         });
     }
+
+//    private void saveScapeName(String spaceName) {
+//        sharedPreferences = getSharedPreferences("MyPreferencesSN", Context.MODE_PRIVATE);
+//        SharedPreferences.Editor editor = sharedPreferences.edit();
+//        editor.putString("SpaceName", spaceName);
+//        Log.e(TAG, "SpaceGroupName: "+spaceName );
+//        editor.apply();
+//    }
 }

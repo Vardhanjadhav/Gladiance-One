@@ -17,6 +17,7 @@ import com.espressif.ui.navigation.ControlBouquet.ControlBouquetHorizontalParent
 import com.espressif.ui.navigation.DoNotDisturb.DoNotDisturbFragment;
 import com.espressif.ui.navigation.Home.HomeFragment;
 import com.espressif.ui.navigation.MyProfile.MyProfileFragment;
+import com.espressif.ui.navigation.RoomControl.AreaLandingFragment;
 import com.espressif.ui.navigation.RoomControl.RoomControlFragment;
 import com.espressif.wifi_provisioning.R;
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation;
@@ -39,10 +40,10 @@ public class NavBarActivity extends AppCompatActivity {
         bottomNavigation = findViewById(R.id.bottomNavigation);
 
 
-        replace(new HomeFragment());
+        replace(new AreaLandingFragment());
 
 
-        bottomNavigation.show(3, true);
+        bottomNavigation.show(1, true);
 
 
         bottomNavigation.add(new MeowBottomNavigation.Model(1, R.drawable.privacy));
@@ -57,7 +58,7 @@ public class NavBarActivity extends AppCompatActivity {
 
                 switch (model.getId()) {
                     case 1:
-                        replace(new DoNotDisturbFragment());
+                        replace(new AreaLandingFragment());
                         break;
                     case 2:
                         replace(new RoomControlFragment());

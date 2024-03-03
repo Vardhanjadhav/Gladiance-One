@@ -6,47 +6,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.espressif.ui.navigation.RoomControl.RoomControlFragment">
 
-    <LinearLayout
-        android:id="@+id/ll_1"
-        android:layout_width="@dimen/_130sdp"
-        android:layout_height="@dimen/_30sdp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="@dimen/_18sdp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal"
-        style="@style/TopButtonStyle">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bedroom"
-            android:gravity="center"
-            android:layout_marginLeft="@dimen/_12sdp"
-            android:layout_gravity="center"
-            android:fontFamily="@font/roboto_medium"
-            android:textSize="@dimen/_14ssp"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            />
-
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:src="@drawable/drop_down"
-            android:layout_gravity="center"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginRight="@dimen/_10sdp"
-
-            />
-
-    </LinearLayout>
+    <Spinner
+        android:id="@+id/areaSpinner"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
-        app:layout_constraintLeft_toRightOf="@+id/ll_1"
+        app:layout_constraintLeft_toRightOf="@+id/areaSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="@dimen/_20sdp"
@@ -66,7 +39,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ll_1"
+        app:layout_constraintTop_toBottomOf="@+id/areaSpinner"
         tools:listitem="@layout/room_item" />
 
     <FrameLayout

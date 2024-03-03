@@ -1,12 +1,6 @@
 package com.espressif.ui.activities;
 
-import static android.content.Context.MODE_PRIVATE;
-
-import android.content.SharedPreferences;
-
-import com.espressif.AppConstants;
 import com.espressif.ui.models.DeviceInfo;
-import com.espressif.ui.models.Devices;
 import com.espressif.ui.models.LoginRequestModel;
 import com.espressif.ui.models.LoginResponseModel;
 import com.espressif.ui.models.NodeResponseModel;
@@ -17,13 +11,13 @@ import com.espressif.ui.models.RequestModel;
 import com.espressif.ui.models.ResponseModel;
 import com.espressif.ui.models.ResponseModelNode;
 import com.espressif.ui.models.SpaceSpaceGroupResModel;
+import com.espressif.ui.models.arealandingmodel.ProjectAreaLandingResModel;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-import retrofit2.http.Query;
 
 public interface ApiService {
 
@@ -64,4 +58,12 @@ public interface ApiService {
             @Path("LoginToken") String LoginToken,
             @Path("LoginDeviceId") String LoginDeviceId
     );
+
+    @GET("mobileapp/spacelandingpagedata/{GAAProjectSpaceRef}/{LoginToken}/{LoginDeviceId}")
+    Call<ProjectAreaLandingResModel> getAreaLandingPageData(
+            @Path("GAAProjectSpaceRef") String projectSpaceRef,
+            @Path("LoginToken") String loginToken,
+            @Path("LoginDeviceId") String loginDeviceId
+    );
+
 }
