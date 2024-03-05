@@ -206,11 +206,12 @@ public class RGBLightActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
         Log.e(TAG, "curtainAction: "+message );
-
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
 
         requestModel.setMessage("{\""+ message +"\": {\"Power\": "+powerState+"}}");
         Log.d(TAG, "sendSwitchState: "+powerState);

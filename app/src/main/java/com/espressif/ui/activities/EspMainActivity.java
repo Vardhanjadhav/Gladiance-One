@@ -14,6 +14,8 @@
 
 package com.espressif.ui.activities;
 
+import static android.content.ContentValues.TAG;
+
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
@@ -50,11 +52,15 @@ import com.espressif.AppConstants;
 import com.espressif.provisioning.ESPConstants;
 import com.espressif.provisioning.ESPProvisionManager;
 import com.espressif.ui.adapters.CardAdapter;
+import com.espressif.ui.login.AreaLandingActivity;
+import com.espressif.ui.login.LoginActivity;
 import com.espressif.ui.models.DeviceInfo;
 import com.espressif.ui.models.Devices;
 import com.espressif.ui.models.NodeResponseModel;
 import com.espressif.ui.models.RequestModel;
 import com.espressif.ui.models.ResponseModel;
+import com.espressif.ui.models.provisioninglabel.ProvisioningRequest;
+import com.espressif.ui.models.provisioninglabel.ProvisioningResponse;
 import com.espressif.wifi_provisioning.BuildConfig;
 import com.espressif.wifi_provisioning.R;
 
@@ -99,11 +105,13 @@ public class EspMainActivity extends AppCompatActivity {
     // String nodeId = intent.getStringExtra("keyStringData");
 
     String nodeId;
+    String nodeId2;
     String mac;
-    Long GaaProjectSpaceTypeRef;
+    Long gaaProjectSpaceTypePlannedDeviceRef;
 
     Context context = this;
 
+    private static final String PREFS_NAME = "MyPrefsFile";
 
     ////////////////////
 
@@ -131,11 +139,53 @@ public class EspMainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate2: " +mac);
 
         SharedPreferences preferences7 = getSharedPreferences("my_shared_pref", MODE_PRIVATE);
-        GaaProjectSpaceTypeRef = preferences7.getLong("KEY_USERNAME", 0L);
-        Log.d(TAG, "GaaProjectSpaceTypeRef2: " +GaaProjectSpaceTypeRef);
+        gaaProjectSpaceTypePlannedDeviceRef = preferences7.getLong("KEY_USERNAME", 0L);
+        Log.d(TAG, "esp GaaProjectSpaceTypeRef2: " +gaaProjectSpaceTypePlannedDeviceRef);
+
+///////////////////////////////////
+        SharedPreferences preferences16 = getSharedPreferences("my_shared_prefty", MODE_PRIVATE);
+        boolean provision = preferences16.getBoolean("KEY_USERNAMEw", false);
+        Log.d(TAG, "esp GaaProjectSpaceTypeRef2: " +gaaProjectSpaceTypePlannedDeviceRef);
+
+        ///////////////////////////
+
+
+        SharedPreferences sharedPreferences8 = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String GUID = LoginActivity.getUserId(sharedPreferences8);
+        Log.e(TAG, "esp Project Space GUID/LoginDeviceId: "+ GUID);
+        String loginDeviceId = GUID.trim();
+
+
+        SharedPreferences  sharedPreferences9 = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        String userId2 = sharedPreferences9.getString("LoginToken", "");
+        Log.e(TAG, "esp Project Space loginToken: "+userId2 );
+        String userId = userId2.trim();
+
+        SharedPreferences  sharedPreferences10 = getSharedPreferences("MyPreferencesDN", Context.MODE_PRIVATE);
+        String savedUserDeviceName = sharedPreferences10.getString("UserDisplayName", "");
+        Log.e(TAG, "esp User Device Name2: "+savedUserDeviceName );
+        String userDeviceName = savedUserDeviceName.trim();
+
+
+        SharedPreferences sharedPreferences5 = getSharedPreferences("MyPrefsPSR", Context.MODE_PRIVATE);
+        String username = sharedPreferences5.getString("PROJECT", "");
+        String gaaProjectSpaceRef = username.trim();
+
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
 
 
 
+
+        if(provision == false) {
+
+            GetNodeID(userId, loginDeviceId, mac, gaaProjectSpaceRef, gaaProjectSpaceTypePlannedDeviceRef);
+
+        }else {
+            getDevice();
+
+        }
         // getNodeID();
        // node();
 
@@ -143,9 +193,9 @@ public class EspMainActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this,2);
 
         SharedPreferences preferences2 = getSharedPreferences("MyPrefse", MODE_PRIVATE);
-        nodeId = preferences2.getString("nodeId", "");
+        String nodeId2 = preferences2.getString("nodeId", "");
         Log.d(TAG, "SharedPre node Id: " +nodeId);
-       // getDevice();
+     //   getDevice();
 
 
 
@@ -244,6 +294,51 @@ public class EspMainActivity extends AppCompatActivity {
 
 
 
+    ////////// get node id new post api ///
+    public void GetNodeID(String userId, String loginDeviceId, String macId, String gaaProjectSpaceRef, Long gaaProjectSpaceTypePlannedDeviceRef) {
+        // Create an instance of ApiService
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        // Prepare login request
+
+        ProvisioningRequest loginRequest = new ProvisioningRequest(userId,loginDeviceId,macId,gaaProjectSpaceRef,gaaProjectSpaceTypePlannedDeviceRef);
+
+        // Make API call
+        Call<ProvisioningResponse> call = apiService.postAssociateNodeToPlannedDevice(loginRequest);
+        call.enqueue(new Callback<ProvisioningResponse>() {
+            @Override
+            public void onResponse(Call<ProvisioningResponse> call, Response<ProvisioningResponse> response) {
+                if (response.isSuccessful()) {
+                    ProvisioningResponse loginResponse = response.body();
+                    if (loginResponse != null && loginResponse.isSuccessful()) {
+                        // Handle successful response
+                        Log.e("espmain", "Successful: " + loginResponse.isSuccessful());
+                        Log.e("espmain", "Message: " + loginResponse.getMessage());
+                        Toast.makeText(EspMainActivity.this, ""+loginResponse.isSuccessful(), Toast.LENGTH_SHORT).show();
+//
+
+//                        SharedPreferences preferences16 = getSharedPreferences("my_shared_prefty", MODE_PRIVATE);
+//                        boolean provision = preferences16.getBoolean("KEY_USERNAMEw", false);
+//                        Log.d(TAG, "esp GaaProjectSpaceTypeRef2: " +gaaProjectSpaceTypePlannedDeviceRef);
+
+                     //   preferences16.updateBoolean(getApplicationContext(), true);
+                        Intent intent = new Intent(getApplicationContext(), AreaLandingActivity.class);
+                        startActivity(intent);
+                    }
+                } else {
+                    // Handle unsuccessful response
+                    Log.e("espmain", "Unsuccessful: " + response.message());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProvisioningResponse> call, Throwable t) {
+                // Handle failure
+                Log.e("LoginResponse", "Failure: " + t.getMessage());
+            }
+        });
+    }
+
 
 //    private void getNodeID() {
 //        Log.d(TAG, "getNodeID: "+mac);
@@ -264,7 +359,8 @@ public class EspMainActivity extends AppCompatActivity {
         private void getDevice() {
           //  String NodeId = "WI84xt861kS39p2b5sXeGQ";
             ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-            Call<DeviceInfo> call = apiService.getAllData(nodeId);
+            Call<DeviceInfo> call = apiService.getAllData(nodeId2);
+            Log.e(TAG, "getDevice: "+nodeId2 );
 
             call.enqueue(new Callback<DeviceInfo>() {
                 @Override
@@ -331,7 +427,7 @@ public class EspMainActivity extends AppCompatActivity {
         // Create a RequestModel with the required data
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
 
           //Change
 //        nodeId = "WI84xt861kS39p2b5sXeGQ";

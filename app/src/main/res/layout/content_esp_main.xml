@@ -77,6 +77,17 @@
 
     </RelativeLayout>
 
+<!--    <include-->
+<!--        android:id="@+id/btn_provision_device2"-->
+<!--        layout="@layout/button"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_above="@id/ll_version"-->
+<!--        android:layout_marginStart="@dimen/margin_32"-->
+<!--        android:layout_marginTop="@dimen/margin_18"-->
+<!--        android:layout_marginEnd="@dimen/margin_32" />-->
+
+
     <include
         android:id="@+id/btn_provision_device"
         layout="@layout/button"

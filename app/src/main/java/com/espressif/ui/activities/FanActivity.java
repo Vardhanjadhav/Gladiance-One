@@ -30,11 +30,11 @@ public class FanActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
 
     Switch fanswitch;
-    String nodeId;
+   // String nodeId;
     private ProgressBar progressBar;
     private Button incrementButton, decrementButton;
     private TextView progressTextView;
-
+    //String nodeId2;
     private int progress = 0;
 
 
@@ -43,9 +43,13 @@ public class FanActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fan);
 
-        SharedPreferences preferences2 = getSharedPreferences("MyPrefse", MODE_PRIVATE);
-        nodeId = preferences2.getString("nodeId", "");
-        Log.d(TAG, "Fannodeee: "+nodeId);
+//        SharedPreferences preferences2 = getSharedPreferences("MyPrefse", MODE_PRIVATE);
+//        nodeId = preferences2.getString("nodeId", "");
+//        Log.d(TAG, "Fannodeee: "+nodeId);
+
+//        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+//        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+//        Log.d(TAG, "node id: " +nodeId2);
 
         fanswitch = findViewById(R.id.switchButtonFan);
 
@@ -111,6 +115,9 @@ public class FanActivity extends AppCompatActivity {
     //Fan Speed Method
     private void sendFanSpeed(int fanSpeed){
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+
 
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
@@ -118,7 +125,7 @@ public class FanActivity extends AppCompatActivity {
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
         Log.d(TAG, "sendFanSpeed: "+fanSpeed);
         requestModel.setMessage("{\""+message+"\": {\"Speed\": " + fanSpeed + "}}");
 
@@ -148,7 +155,9 @@ public class FanActivity extends AppCompatActivity {
     private void sendSwitchState(boolean powerState) {
         // Create a RequestModel with the required data
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
         String primary = intent.getStringExtra("PRIMARY_KEY");
@@ -157,7 +166,7 @@ public class FanActivity extends AppCompatActivity {
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
 
         //Change
 //        nodeId = "WI84xt861kS39p2b5sXeGQ";

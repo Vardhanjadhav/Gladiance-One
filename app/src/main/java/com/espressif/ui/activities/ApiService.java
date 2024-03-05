@@ -14,6 +14,8 @@ import com.espressif.ui.models.SpaceSpaceGroupResModel;
 import com.espressif.ui.models.arealandingmodel.InstallerControl;
 import com.espressif.ui.models.arealandingmodel.ProjectAreaLandingResModel;
 import com.espressif.ui.models.lnstallerlandingpage.InstallerLandingResModel;
+import com.espressif.ui.models.provisioninglabel.ProvisioningRequest;
+import com.espressif.ui.models.provisioninglabel.ProvisioningResponse;
 
 import java.util.List;
 
@@ -77,6 +79,9 @@ public interface ApiService {
             @Path("LoginToken") String loginToken,
             @Path("LoginDeviceId") String loginDeviceId
     );
+
+    @POST("mobileapp/associatenodetoplanneddevice")
+    Call<ProvisioningResponse> postAssociateNodeToPlannedDevice(@Body ProvisioningRequest request);
 
 //    @GET("mobileapp/arealandingpageinstallercontrols/{GAAProjectSpaceRef}/{GAAProjectSpaceTypeAreaRef}/{LoginToken}/{LoginDeviceId}")
 //    Call<Object> getDevices(
