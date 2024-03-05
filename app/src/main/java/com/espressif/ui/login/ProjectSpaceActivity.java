@@ -152,6 +152,8 @@ public class ProjectSpaceActivity extends AppCompatActivity {
                                 Log.e(TAG, "onResponse Project Name: " + space1.getSpaceName() );
                                 Log.e(TAG, "onResponse Display Order : " + space1.getDisplayOrder() );
                                arrayList.add(new Space(space1.getGAAProjectSpaceRef(),space1.getSpaceName(),space1.getDisplayOrder(),space1.getDescription()));
+
+
                             }
 
 

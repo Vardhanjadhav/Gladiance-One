@@ -3,25 +3,32 @@ package com.espressif.ui.navigation.RoomControl;
 import static android.content.ContentValues.TAG;
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.espressif.ui.activities.ApiService;
 import com.espressif.ui.activities.RetrofitClient;
+import com.espressif.ui.adapters.ProjectSpaceGroupListAdapter;
+import com.espressif.ui.login.AreaAdapter;
 import com.espressif.ui.login.LoginActivity;
-import com.espressif.ui.models.ProjectAreaLandingReqModel;
+import com.espressif.ui.login.ProjectSpaceGroupActivity;
+import com.espressif.ui.models.SpaceGroup;
 import com.espressif.ui.models.arealandingmodel.Area;
 import com.espressif.ui.models.arealandingmodel.ProjectAreaLandingResModel;
+
 import com.espressif.wifi_provisioning.R;
 
 import java.util.ArrayList;
@@ -36,6 +43,14 @@ public class AreaLandingFragment extends Fragment {
 
     private Spinner spinnerAreas;
     private ApiService apiService;
+
+    private TextView devise;
+
+    private ArrayList<Area> arrayList;
+
+    RecyclerView recyclerView,areaNameRecycleView;
+
+    SharedPreferences sharedPreferences;
 
     private static final String PREFS_NAME = "MyPrefsFile";
     private static final String USER_ID_KEY = "userId";
@@ -69,7 +84,16 @@ public class AreaLandingFragment extends Fragment {
 //        Log.e(TAG, "Project Space Name: "+savedSpaceName );
 //        String GAAProjectSpaceRef = savedSpaceName.trim();
 
-        spinnerAreas = view.findViewById(R.id.areaSpinner);
+
+
+        //spinnerAreas = view.findViewById(R.id.areaSpinner);
+
+        //devise = view.findViewById(R.id.device);
+
+        arrayList = new ArrayList<>();
+
+        areaNameRecycleView = view.findViewById(R.id.AreaNameRecyclerView);
+        recyclerView = view.findViewById(R.id.controlTypeRecyclerView);
 
         Intent intent = getActivity().getIntent();
         if (intent != null) {
@@ -77,37 +101,58 @@ public class AreaLandingFragment extends Fragment {
             if (projectSpaceRef != null) {
                 projectSpaceRef = projectSpaceRef.trim();
                 Log.e(TAG, "Project Ref: " + projectSpaceRef);
+
+                saveProjectSpaceRef(projectSpaceRef);
+
                 fetchAreas(projectSpaceRef,loginToken,loginDeviceId);
+
             }
         }
+
+
+
         return view;
+    }
+
+    private void saveProjectSpaceRef(String projectSpaceRef) {
+
+        SharedPreferences sharedPreferences = requireContext().getSharedPreferences("MyPrefsPSR", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("PROJECT", projectSpaceRef);
+        editor.apply();
+
     }
 
     private void fetchAreas(String GAAProjectSpaceRef,String LoginToken, String LoginDeviceId) {
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-
         Call<ProjectAreaLandingResModel> call = apiService.getAreaLandingPageData(GAAProjectSpaceRef,LoginToken,LoginDeviceId);
         call.enqueue(new Callback<ProjectAreaLandingResModel>() {
             @Override
             public void onResponse(Call<ProjectAreaLandingResModel> call, Response<ProjectAreaLandingResModel> response) {
-                if (response.isSuccessful()) {
-                    ProjectAreaLandingResModel data = response.body();
-                    if (data != null && data.getSuccessful()) {
-                        List<Area> areas = data.getData().getAreas();
-                        if (areas != null && !areas.isEmpty()) {
-                            List<String> areaNames = new ArrayList<>();
-                            for (Area area : areas) {
-                                Log.e(TAG, "Area Landing Fragment onResponse: "+area.getGAAProjectSpaceTypeAreaName() );
-                                Log.e(TAG, "onResponse: "+area.getGAAProjectSpaceTypeAreaRef() );
-                                areaNames.add(area.getGAAProjectSpaceTypeAreaName());
+                    if (response.isSuccessful()) {
+                        ProjectAreaLandingResModel projectAreaLandingResModel = response.body();
+                        if (projectAreaLandingResModel != null && projectAreaLandingResModel.getSuccessful()){
+                            List<Area> areas = projectAreaLandingResModel.getData().getAreas();
+
+                            for(Area area : areas){
+                                Log.e(TAG, "onResponse AreaName: " + area.getGAAProjectSpaceTypeAreaName());
+                                Log.e(TAG, "onResponse Area Ref: " + area.getGAAProjectSpaceTypeAreaRef());
+                                arrayList.add(new Area(area.getGAAProjectSpaceTypeAreaRef(),area.getGAAProjectSpaceTypeAreaName(),area.getWifiSSID(),area.getWifiPassword(),area.getGuestControls(),area.getInstallerControls()));
+
+
+
                             }
-                            ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, areaNames);
-                            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            spinnerAreas.setAdapter(adapter);
+
+                            //add arraylist code and create space group class
+                            AreaAdapter adapter = new AreaAdapter(arrayList);
+                            areaNameRecycleView.setAdapter(adapter);
+                            GridLayoutManager gridLayoutManager1 = new GridLayoutManager(requireContext(),1, GridLayoutManager.VERTICAL,false);
+                            areaNameRecycleView.setLayoutManager(gridLayoutManager1);
+
                         }
-                        }
-                    } else {
+                    }
+                    else {
                         // Handle error
                     }
                 }
@@ -116,7 +161,6 @@ public class AreaLandingFragment extends Fragment {
                     // Handle failure
                 }
         });
-
     }
 
 }

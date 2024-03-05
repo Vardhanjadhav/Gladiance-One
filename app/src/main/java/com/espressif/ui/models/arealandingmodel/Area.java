@@ -28,6 +28,8 @@ public class Area {
     @Expose
     private List<InstallerControl> installerControls;
 
+
+
     public Long getGAAProjectSpaceTypeAreaRef() {
         return gAAProjectSpaceTypeAreaRef;
     }
@@ -76,4 +78,12 @@ public class Area {
         this.installerControls = installerControls;
     }
 
+    public Area(Long gAAProjectSpaceTypeAreaRef, String gAAProjectSpaceTypeAreaName, String wifiSSID, String wifiPassword, List<Object> guestControls, List<InstallerControl> installerControls) {
+        this.gAAProjectSpaceTypeAreaRef = gAAProjectSpaceTypeAreaRef;
+        this.gAAProjectSpaceTypeAreaName = gAAProjectSpaceTypeAreaName;
+        this.wifiSSID = wifiSSID;
+        this.wifiPassword = wifiPassword;
+        this.guestControls = guestControls;
+        this.installerControls = installerControls;
+    }
 }

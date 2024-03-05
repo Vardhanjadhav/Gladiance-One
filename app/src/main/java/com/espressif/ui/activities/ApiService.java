@@ -11,7 +11,11 @@ import com.espressif.ui.models.RequestModel;
 import com.espressif.ui.models.ResponseModel;
 import com.espressif.ui.models.ResponseModelNode;
 import com.espressif.ui.models.SpaceSpaceGroupResModel;
+import com.espressif.ui.models.arealandingmodel.InstallerControl;
 import com.espressif.ui.models.arealandingmodel.ProjectAreaLandingResModel;
+import com.espressif.ui.models.lnstallerlandingpage.InstallerLandingResModel;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -66,4 +70,19 @@ public interface ApiService {
             @Path("LoginDeviceId") String loginDeviceId
     );
 
+    @GET("mobileapp/arealandingpageinstallercontrols/{GAAProjectSpaceRef}/{GAAProjectSpaceTypeAreaRef}/{LoginToken}/{LoginDeviceId}")
+    Call<InstallerLandingResModel> getDevices(
+            @Path("GAAProjectSpaceRef") String projectSpaceRef,
+            @Path("GAAProjectSpaceTypeAreaRef") Long gAAProjectSpaceTypeAreaRef,
+            @Path("LoginToken") String loginToken,
+            @Path("LoginDeviceId") String loginDeviceId
+    );
+
+//    @GET("mobileapp/arealandingpageinstallercontrols/{GAAProjectSpaceRef}/{GAAProjectSpaceTypeAreaRef}/{LoginToken}/{LoginDeviceId}")
+//    Call<Object> getDevices(
+//            @Path("GAAProjectSpaceRef") String projectSpaceRef,
+//            @Path("GAAProjectSpaceTypeAreaRef") Long gAAProjectSpaceTypeAreaRef,
+//            @Path("LoginToken") String loginToken,
+//            @Path("LoginDeviceId") String loginDeviceId
+//    );
 }

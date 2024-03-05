@@ -1,13 +1,10 @@
-
-package com.espressif.ui.models.arealandingmodel;
+package com.espressif.ui.models.lnstallerlandingpage;
 
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-
-public class ProjectAreaLandingResModel {
-
+public class InstallerLandingResModel {
     @SerializedName("Successful")
     @Expose
     private Boolean successful;
@@ -16,6 +13,7 @@ public class ProjectAreaLandingResModel {
     private String message;
     @SerializedName("Data")
     @Expose
+
     private Data data;
 
     public Boolean getSuccessful() {
@@ -41,5 +39,4 @@ public class ProjectAreaLandingResModel {
     public void setData(Data data) {
         this.data = data;
     }
-
 }

@@ -81,21 +81,19 @@ public class ProjectSpaceLandingActivity extends AppCompatActivity {
         projectName.setText(saveProjectName);
         Log.e(TAG, "ProjectSpaceLandingActivity Project Name : "+savedUserDeviceName );
 
-        SharedPreferences sharedPreferences5 = getSharedPreferences("MyPreferencesSGN", Context.MODE_PRIVATE);
-        String saveSpaceGroupName = sharedPreferences5.getString("SpaceGroupName", "");
-        spaceGroupName.setText(saveSpaceGroupName);
-        Log.e(TAG, "ProjectSpaceLandingActivity SpaceGroupName: "+savedUserDeviceName );
-
 
         Intent intent = getIntent();
         String ProjectSpaceGroupRef = intent.getStringExtra("SPACE_GROUP_REF").trim();
         Log.e(TAG, "get Project Ref: "+ProjectSpaceGroupRef);
 
         getSpaceName(ProjectSpaceGroupRef,loginToken,loginDeviceId);
+
+
     }
 
 
     private void  getSpaceName(String ProjectSpaceGroupRef, String loginToken,String loginDeviceId) {
+
 
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
@@ -114,9 +112,9 @@ public class ProjectSpaceLandingActivity extends AppCompatActivity {
                             Log.e(TAG, "onResponse getGAAProjectSpaceRef: "+space1.getGAAProjectSpaceRef());
                             arrayList.add(new Space(space1.getGAAProjectSpaceRef(), space1.getGAAProjectSpaceName(), space1.getDisplayOrder(), space1.getDescription()));
 
-//                            String retrievedName = space1.getGAAProjectSpaceRef();
-//                            saveScapeName(retrievedName);
+
                         }
+
                         //add arraylist code and create space group class
 
                         ProjectSpaceNameAdapter projectSpaceNameAdapter = new ProjectSpaceNameAdapter(arrayList);
@@ -134,11 +132,5 @@ public class ProjectSpaceLandingActivity extends AppCompatActivity {
         });
     }
 
-//    private void saveScapeName(String spaceName) {
-//        sharedPreferences = getSharedPreferences("MyPreferencesSN", Context.MODE_PRIVATE);
-//        SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putString("SpaceName", spaceName);
-//        Log.e(TAG, "SpaceGroupName: "+spaceName );
-//        editor.apply();
-//    }
+
 }

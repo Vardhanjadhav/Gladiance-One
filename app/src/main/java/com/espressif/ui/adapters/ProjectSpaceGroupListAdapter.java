@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.espressif.ui.login.AreaLandingActivity;
 import com.espressif.ui.login.ProjectSpaceGroupActivity;
 import com.espressif.ui.login.ProjectSpaceLandingActivity;
 import com.espressif.ui.models.Project;
@@ -67,6 +68,7 @@ public class ProjectSpaceGroupListAdapter extends RecyclerView.Adapter<ProjectSp
                         Context context = view.getContext();
                         Intent intent = new Intent(context, ProjectSpaceLandingActivity.class);
                         intent.putExtra("SPACE_GROUP_REF", name);
+
 
                         context.startActivity(intent);
 

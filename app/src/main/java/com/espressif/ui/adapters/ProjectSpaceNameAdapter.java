@@ -1,7 +1,10 @@
 package com.espressif.ui.adapters;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.espressif.ui.login.AreaLandingActivity;
 import com.espressif.ui.login.ProjectSpaceLandingActivity;
 import com.espressif.ui.models.Space;
 import com.espressif.ui.models.SpaceGroup;
@@ -64,8 +68,10 @@ public class ProjectSpaceNameAdapter extends RecyclerView.Adapter<ProjectSpaceNa
                         Context context = view.getContext();
                         Intent intent = new Intent(context, NavBarActivity.class);
                         intent.putExtra("PROJECT_SPACE_REF", name);
-
+                        Log.e(TAG, "PROJECT_SPACE_REF: "+name );
                         context.startActivity(intent);
+
+
                     }
                 }
             });
