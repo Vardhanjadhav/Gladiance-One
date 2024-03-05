@@ -131,7 +131,7 @@ public class EspMainActivity extends AppCompatActivity {
        // getNodeID();
        // node();
 
-        getNodeID2();
+        //getNodeID2();
         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this,2);
 
         SharedPreferences preferences2 = getSharedPreferences("MyPrefse", MODE_PRIVATE);

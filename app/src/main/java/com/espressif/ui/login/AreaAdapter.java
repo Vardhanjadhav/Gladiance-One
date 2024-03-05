@@ -35,6 +35,7 @@ public class AreaAdapter extends RecyclerView.Adapter<AreaAdapter.AreaViewHolder
     public void onBindViewHolder(@NonNull AreaViewHolder holder, int position) {
         Area area = areas.get(position);
         holder.areaNameTextView.setText(area.getGAAProjectSpaceTypeAreaName());
+
     }
 
     @Override

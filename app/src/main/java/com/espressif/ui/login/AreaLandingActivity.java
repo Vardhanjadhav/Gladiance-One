@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.espressif.ui.activities.ApiService;
 import com.espressif.ui.activities.RetrofitClient;
 import com.espressif.ui.adapters.ControlAdapter;
+import com.espressif.ui.models.lnstallerlandingpage.Controls;
 import com.espressif.ui.models.lnstallerlandingpage.Data;
 import com.espressif.ui.models.lnstallerlandingpage.InstallerControl;
 import com.espressif.ui.models.lnstallerlandingpage.InstallerLandingResModel;
@@ -34,6 +35,8 @@ public class AreaLandingActivity extends AppCompatActivity {
 
     TextView DeviceName;
     RecyclerView recyclerView;
+
+    Context context;
 
     private static final String PREFS_NAME = "MyPrefsFile";
     private static final String USER_ID_KEY = "userId";
@@ -80,39 +83,6 @@ public class AreaLandingActivity extends AppCompatActivity {
 
         Call<InstallerLandingResModel> call = apiService.getDevices(GAAProjectSpaceRef,AreaRef,LoginToken,LoginDeviceId);
 
-        //Call<Object> call = apiService.getDevices(GAAProjectSpaceRef,AreaRef,LoginToken,LoginDeviceId);
-
-//        call.enqueue(new Callback<Object>() {
-//            @Override
-//            public void onResponse(Call<Object> call, Response<Object> response) {
-//                if (response.isSuccessful()) {
-////                    InstallerLandingResModel installerLandingResModel = response.body();
-////                    if (installerLandingResModel != null && installerLandingResModel.getSuccessful()) {
-////                        Data data = installerLandingResModel.getData();
-////                        List<InstallerControl> installerControls = data.getInstallerControls();
-////                        if (!installerControls.isEmpty()) {
-////                            // Display controlTypeName in TextView
-////                            DeviceName.setText(installerControls.get(0).getControlTypeName());
-////
-////                            // Display controls in RecyclerView
-////                            recyclerView.setLayoutManager(new LinearLayoutManager(AreaLandingActivity.this));
-////                            ControlAdapter adapter = new ControlAdapter(installerControls);
-////                            recyclerView.setAdapter(adapter);
-////
-////
-////
-////                        }
-////                    }
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Object> call, Throwable t) {
-//                DeviceName.setText("Network error: " + t.getMessage());
-//            }
-//        });
-
         call.enqueue(new Callback<InstallerLandingResModel>() {
             @Override
             public void onResponse(Call<InstallerLandingResModel> call, Response<InstallerLandingResModel> response) {
@@ -120,20 +90,20 @@ public class AreaLandingActivity extends AppCompatActivity {
                     InstallerLandingResModel installerLandingResModel = response.body();
                     if (installerLandingResModel != null && installerLandingResModel.getSuccessful()) {
                         Data data = installerLandingResModel.getData();
-//                        List<InstallerControl> installerControls = data.getInstallerControls();
-//                        if (!installerControls.isEmpty()) {
+                        List<InstallerControl> installerControls = data.getInstallerControls();
+                        if (!installerControls.isEmpty()) {
 //                            // Display controlTypeName in TextView
-//                            //DeviceName.setText(installerControls.get(0).getControlTypeName());
-//
+                            DeviceName.setText(installerControls.get(0).getControlTypeName());
+
 //                           // Display controls in RecyclerView
                             recyclerView.setLayoutManager(new LinearLayoutManager(AreaLandingActivity.this));
-                            ControlAdapter adapter = new ControlAdapter(data.getInstallerControls().get(0).getControls());
+                            ControlAdapter adapter = new ControlAdapter(data.getInstallerControls().get(0).getControls(),context);
                             recyclerView.setAdapter(adapter);
 
                         }
                     }
                 }
-
+            }
 
 
             @Override
@@ -141,6 +111,9 @@ public class AreaLandingActivity extends AppCompatActivity {
                 DeviceName.setText("Network error: " + t.getMessage());
             }
         });
+
     }
+
+
 
 }

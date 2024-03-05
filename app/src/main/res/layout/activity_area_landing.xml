@@ -8,6 +8,10 @@
 
     <TextView
         android:id="@+id/device"
+        android:paddingStart="@dimen/_10sdp"
+        style="@style/TEXT"
+        android:textSize="@dimen/_17sdp"
+        android:text="OutPut"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/controlTypeRecyclerView"

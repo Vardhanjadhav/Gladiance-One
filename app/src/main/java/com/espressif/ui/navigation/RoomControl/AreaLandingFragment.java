@@ -84,8 +84,6 @@ public class AreaLandingFragment extends Fragment {
 //        Log.e(TAG, "Project Space Name: "+savedSpaceName );
 //        String GAAProjectSpaceRef = savedSpaceName.trim();
 
-
-
         //spinnerAreas = view.findViewById(R.id.areaSpinner);
 
         //devise = view.findViewById(R.id.device);
@@ -105,12 +103,8 @@ public class AreaLandingFragment extends Fragment {
                 saveProjectSpaceRef(projectSpaceRef);
 
                 fetchAreas(projectSpaceRef,loginToken,loginDeviceId);
-
             }
         }
-
-
-
         return view;
     }
 
@@ -140,8 +134,6 @@ public class AreaLandingFragment extends Fragment {
                                 Log.e(TAG, "onResponse Area Ref: " + area.getGAAProjectSpaceTypeAreaRef());
                                 arrayList.add(new Area(area.getGAAProjectSpaceTypeAreaRef(),area.getGAAProjectSpaceTypeAreaName(),area.getWifiSSID(),area.getWifiPassword(),area.getGuestControls(),area.getInstallerControls()));
 
-
-
                             }
 
                             //add arraylist code and create space group class
@@ -162,5 +154,4 @@ public class AreaLandingFragment extends Fragment {
                 }
         });
     }
-
 }
