@@ -1,8 +1,11 @@
 package com.espressif.ui.adapters;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.service.controls.Control;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.espressif.ui.activities.AddDeviceActivity;
+import com.espressif.ui.activities.EspMainActivity;
 import com.espressif.ui.login.AreaLandingActivity;
 import com.espressif.ui.login.LoginActivity;
 import com.espressif.ui.login.OTPVerificationActivity;
@@ -56,9 +60,15 @@ public class ControlAdapter extends RecyclerView.Adapter<ControlAdapter.ViewHold
 
                     if (!control.isProvisioned()) {
                         LayoutInflater inflater = LayoutInflater.from(holder.itemView.getContext());
+                        Long GaaProjectSpaceTypePlannedDeviceRef = control.getGaaProjectSpaceTypePlannedDeviceRef();
+                        SharedPreferences sharedPreferences = inflater.getContext().getSharedPreferences("my_shared_pref", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        Log.e(TAG, "GaaProjectSpaceTypePlannedDeviceName11: "+GaaProjectSpaceTypePlannedDeviceRef );
+                        editor.putLong("KEY_USERNAME", GaaProjectSpaceTypePlannedDeviceRef);
+                        editor.apply();
 
                         Toast.makeText(inflater.getContext(), "This is a toast message"+control.getGaaProjectSpaceTypePlannedDeviceName(), Toast.LENGTH_SHORT).show();
-                        holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), AddDeviceActivity.class));
+                        holder.itemView.getContext().startActivity(new Intent(holder.itemView.getContext(), EspMainActivity.class));
                     } else {
                         LayoutInflater inflater = LayoutInflater.from(holder.itemView.getContext());
 

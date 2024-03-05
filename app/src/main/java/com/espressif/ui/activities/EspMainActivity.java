@@ -100,6 +100,7 @@ public class EspMainActivity extends AppCompatActivity {
 
     String nodeId;
     String mac;
+    Long GaaProjectSpaceTypeRef;
 
     Context context = this;
 
@@ -128,7 +129,14 @@ public class EspMainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         mac = preferences.getString("mac", "");
         Log.d(TAG, "onCreate2: " +mac);
-       // getNodeID();
+
+        SharedPreferences preferences7 = getSharedPreferences("my_shared_pref", MODE_PRIVATE);
+        GaaProjectSpaceTypeRef = preferences7.getLong("KEY_USERNAME", 0L);
+        Log.d(TAG, "GaaProjectSpaceTypeRef2: " +GaaProjectSpaceTypeRef);
+
+
+
+        // getNodeID();
        // node();
 
         //getNodeID2();
@@ -137,7 +145,7 @@ public class EspMainActivity extends AppCompatActivity {
         SharedPreferences preferences2 = getSharedPreferences("MyPrefse", MODE_PRIVATE);
         nodeId = preferences2.getString("nodeId", "");
         Log.d(TAG, "SharedPre node Id: " +nodeId);
-        getDevice();
+       // getDevice();
 
 
 
