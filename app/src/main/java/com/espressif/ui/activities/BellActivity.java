@@ -81,6 +81,10 @@ public class BellActivity extends AppCompatActivity {
         // Create a RequestModel with the required data
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
+
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
         String primary = intent.getStringExtra("PRIMARY_KEY");
@@ -89,7 +93,7 @@ public class BellActivity extends AppCompatActivity {
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
 
         requestModel.setMessage("{\""+message+"\": {\""+primary+"\": "+powerState+"}}");
         Log.d(TAG, "sendSwitchState: "+powerState);
@@ -123,6 +127,9 @@ public class BellActivity extends AppCompatActivity {
     private void sendSwitchState(boolean powerState) {
         // Create a RequestModel with the required data
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
 
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
@@ -130,9 +137,10 @@ public class BellActivity extends AppCompatActivity {
         Log.e(TAG, "curtainAction: "+message );
         Log.e(TAG, "curtainAction: "+primary );
 
+
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
 
         requestModel.setMessage("{\""+message+"\": {\""+primary+"\": "+powerState+"}}");
         Log.d(TAG, "sendSwitchState: "+powerState);
@@ -173,9 +181,13 @@ public class BellActivity extends AppCompatActivity {
         Log.e(TAG, "curtainAction: "+message );
         Log.e(TAG, "curtainAction: "+primary );
 
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
+
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
 
         requestModel.setMessage("{\""+message+"\": {\""+primary+"\": "+powerState+"}}");
         Log.d(TAG, "sendSwitchState: "+powerState);

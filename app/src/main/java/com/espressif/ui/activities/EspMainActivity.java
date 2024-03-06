@@ -136,7 +136,7 @@ public class EspMainActivity extends AppCompatActivity {
 
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         mac = preferences.getString("mac", "");
-        Log.d(TAG, "onCreate2: " +mac);
+        Log.d(TAG, "onCreate Mac: " +mac);
 
         SharedPreferences preferences7 = getSharedPreferences("my_shared_pref", MODE_PRIVATE);
         gaaProjectSpaceTypePlannedDeviceRef = preferences7.getLong("KEY_USERNAME", 0L);

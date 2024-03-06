@@ -205,10 +205,13 @@ public class AirContiningActivity extends AppCompatActivity {
         String message = intent.getStringExtra("MESSAGE_KEY");
         Log.e(TAG, "curtainAction: "+message );
 
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
         Log.d(TAG, "sendFanSpeed: "+mood);
         requestModel.setMessage("{\""+message+"\": {\"Mode\":\"" + mood + "\"}}");
         Log.e(TAG, "sendMood: "+mood );
@@ -243,10 +246,13 @@ public class AirContiningActivity extends AppCompatActivity {
         String message = intent.getStringExtra("MESSAGE_KEY");
         Log.e(TAG, "curtainAction: "+message );
 
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
         Log.d(TAG, "sendFanSpeed: "+unit);
         requestModel.setMessage("{\""+message+"\": {\"Unit\":\"" + unit + "\"}}");
         Log.e(TAG, "sendUnit: "+unit );
@@ -281,10 +287,13 @@ public class AirContiningActivity extends AppCompatActivity {
         String message = intent.getStringExtra("MESSAGE_KEY");
         Log.e(TAG, "curtainAction: "+message );
 
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
         Log.d(TAG, "sendFanSpeed: "+progress1);
         requestModel.setMessage("{\""+ message +"\": {\"Speed\":\"" + progress1 + "\"}}");
         Log.e(TAG, "AirCondProgress: "+progress1);
@@ -319,10 +328,13 @@ public class AirContiningActivity extends AppCompatActivity {
         String message = intent.getStringExtra("MESSAGE_KEY");
         Log.e(TAG, "curtainAction: "+message );
 
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
         Log.d(TAG, "sendFanSpeed: "+fanSpeed);
         requestModel.setMessage("{\""+message+"\": {\"Set\": " + fanSpeed + "}}");
 
@@ -357,10 +369,13 @@ public class AirContiningActivity extends AppCompatActivity {
         String message = intent.getStringExtra("MESSAGE_KEY");
         Log.e(TAG, "curtainAction: "+message );
 
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
 
 
         requestModel.setMessage("{\""+message+"\": {\"Power\": "+powerState+"}}");

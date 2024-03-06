@@ -155,6 +155,7 @@ public class FanActivity extends AppCompatActivity {
     private void sendSwitchState(boolean powerState) {
         // Create a RequestModel with the required data
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+
         SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
         String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
         Log.d(TAG, "node id: " +nodeId2);

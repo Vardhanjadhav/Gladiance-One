@@ -130,6 +130,10 @@ public class CurtainActivity extends AppCompatActivity {
     private void curtainAction(String open){
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         //
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
+
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
 
@@ -137,7 +141,7 @@ public class CurtainActivity extends AppCompatActivity {
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
         Log.d(TAG, "sendFanSpeed: "+open);
         requestModel.setMessage("{\""+message+"\": {\"Action\": \""+ open +"\"}}");
         //requestModel.setQosLevel(0);
@@ -174,10 +178,13 @@ public class CurtainActivity extends AppCompatActivity {
         String message = intent.getStringExtra("MESSAGE_KEY");
         Log.e(TAG, "curtainAction: "+message );
 
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
         Log.d(TAG, "sendFanSpeed: "+count);
         requestModel.setMessage("{\""+message+"\": {\"Transition\": " + count + "}}");
 

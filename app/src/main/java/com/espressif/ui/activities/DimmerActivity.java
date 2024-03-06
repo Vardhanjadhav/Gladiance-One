@@ -43,6 +43,8 @@ public class DimmerActivity extends AppCompatActivity {
         nodeId = preferences2.getString("nodeId", "");
         Log.d(TAG, "Fannodeee: " + nodeId);
 
+
+
         dimmerswitch = findViewById(R.id.switchButtonDimmer);
         seekBar = findViewById(R.id.seekBarDimmer);
         textView = findViewById(R.id.textView);
@@ -91,6 +93,10 @@ public class DimmerActivity extends AppCompatActivity {
     private void dimmerProgress(int progress){
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
+
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
         Log.e(TAG, "curtainAction: "+message );
@@ -98,7 +104,7 @@ public class DimmerActivity extends AppCompatActivity {
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
         Log.d(TAG, "sendFanSpeed: "+progress);
         requestModel.setMessage("{\""+ message +"\": {\"Intensity\": " + progress + "}}");
         Log.e(TAG, "dimmerProgress: "+progress );
@@ -133,10 +139,13 @@ public class DimmerActivity extends AppCompatActivity {
         String message = intent.getStringExtra("MESSAGE_KEY");
         Log.e(TAG, "curtainAction: "+message );
 
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
 
         RequestModel requestModel = new RequestModel();
         requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
 
         requestModel.setMessage("{\""+ message +"\": {\"Power\": "+powerState+"}}");
         Log.d(TAG, "sendSwitchState: "+powerState);
