@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.espressif.NetworkApiManager;
 import com.espressif.ui.models.RequestModel;
 import com.espressif.ui.models.ResponseModel;
 import com.espressif.wifi_provisioning.R;
@@ -27,7 +29,9 @@ public class RGBLightActivity extends AppCompatActivity {
 
     Switch rgbLightSwitch;
     String nodeId;
-
+    NetworkApiManager networkApiManager;
+    private EspApplication espApp;
+    Context context = this;
     SeekBar seekBar1,seekBar2,seekBar3,seekBar4,seekBar5;
     TextView textView1,textView2,textView3,textView4,textView5;
 
@@ -35,7 +39,8 @@ public class RGBLightActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rgblight);
-
+        espApp = new EspApplication(getApplicationContext());
+        networkApiManager = new NetworkApiManager(context.getApplicationContext(), espApp);
         SharedPreferences preferences2 = getSharedPreferences("MyPrefse", MODE_PRIVATE);
         nodeId = preferences2.getString("nodeId", "");
         Log.d(TAG, "Fannodeee: " + nodeId);
@@ -201,225 +206,306 @@ public class RGBLightActivity extends AppCompatActivity {
     //RGB ON/OFF
     private void rgbLightState(boolean powerState) {
         // Create a RequestModel with the required data
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
-        Log.e(TAG, "curtainAction: "+message );
+        String commandBody = "{\""+ message +"\": {\"Power\": "+powerState+"}}";
+
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+
         SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
         String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
 
-        RequestModel requestModel = new RequestModel();
-        requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
+        String remoteCommandTopic = "node/"+ nodeId2 +"/params/remote";
 
-        requestModel.setMessage("{\""+ message +"\": {\"Power\": "+powerState+"}}");
-        Log.d(TAG, "sendSwitchState: "+powerState);
-        //  requestModel.setQosLevel(0);
-        // Make the API call
-        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
-        call.enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                if (response.isSuccessful()) {
-                    ResponseModel responseModel = response.body();
-                    Log.d(TAG, "onResponse: "+responseModel);
-                    handleApiResponse(responseModel);
-                } else {
-                    // Handle unsuccessful response
-                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
-                }
-            }
+        networkApiManager.updateParamValue(nodeId2, commandBody, apiService, remoteCommandTopic);
 
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                // Handle failure
-                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-            }
-        });
+
+//        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+//
+//        Intent intent = getIntent();
+//        String message = intent.getStringExtra("MESSAGE_KEY");
+//        Log.e(TAG, "curtainAction: "+message );
+//        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+//        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+//
+//        RequestModel requestModel = new RequestModel();
+//        requestModel.setSenderLoginToken(0);
+//        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
+//
+//        requestModel.setMessage("{\""+ message +"\": {\"Power\": "+powerState+"}}");
+//        Log.d(TAG, "sendSwitchState: "+powerState);
+//        //  requestModel.setQosLevel(0);
+//        // Make the API call
+//        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
+//        call.enqueue(new Callback<ResponseModel>() {
+//            @Override
+//            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+//                if (response.isSuccessful()) {
+//                    ResponseModel responseModel = response.body();
+//                    Log.d(TAG, "onResponse: "+responseModel);
+//                    handleApiResponse(responseModel);
+//                } else {
+//                    // Handle unsuccessful response
+//                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseModel> call, Throwable t) {
+//                // Handle failure
+//                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void rgbBrightness(int progress){
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
-        Log.e(TAG, "curtainAction: "+message );
+        String commandBody = "{\""+ message +"\": {\"Brightness\": " + progress + "}}";
 
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
 
-        RequestModel requestModel = new RequestModel();
-        requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
-        Log.d(TAG, "sendBrightness: "+progress);
-        requestModel.setMessage("{\""+ message +"\": {\"Brightness\": " + progress + "}}");
-        Log.e(TAG, "sendBrightness: "+progress );
+        String remoteCommandTopic = "node/"+ nodeId2 +"/params/remote";
 
-        //requestModel.setQosLevel(0);
-        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
-        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
-        call.enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                if (response.isSuccessful()) {
-                    ResponseModel responseModel = response.body();
-                    handleApiResponse(responseModel);
-                } else {
-                    // Handle unsuccessful response
-                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                // Handle failure
-                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-            }
-        });
+        networkApiManager.updateParamValue(nodeId2, commandBody, apiService, remoteCommandTopic);
+
+       ////////////////////////////
+
+//        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+//
+//        Intent intent = getIntent();
+//        String message = intent.getStringExtra("MESSAGE_KEY");
+//        Log.e(TAG, "curtainAction: "+message );
+//
+//
+//        RequestModel requestModel = new RequestModel();
+//        requestModel.setSenderLoginToken(0);
+//        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+//        Log.d(TAG, "sendBrightness: "+progress);
+//        requestModel.setMessage("{\""+ message +"\": {\"Brightness\": " + progress + "}}");
+//        Log.e(TAG, "sendBrightness: "+progress );
+//
+//        //requestModel.setQosLevel(0);
+//        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
+//        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
+//        call.enqueue(new Callback<ResponseModel>() {
+//            @Override
+//            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+//                if (response.isSuccessful()) {
+//                    ResponseModel responseModel = response.body();
+//                    handleApiResponse(responseModel);
+//                } else {
+//                    // Handle unsuccessful response
+//                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<ResponseModel> call, Throwable t) {
+//                // Handle failure
+//                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void rgbHue(int progress){
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+
 
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
-        Log.e(TAG, "curtainAction: "+message );
+        String commandBody = "{\""+ message +"\": {\"Hue\": " + progress + "}}";
 
-        RequestModel requestModel = new RequestModel();
-        requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
-        Log.d(TAG, "sendFanSpeed: "+progress);
-        requestModel.setMessage("{\""+ message +"\": {\"Hue\": " + progress + "}}");
-        Log.e(TAG, "dimmerProgress: "+progress );
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        String remoteCommandTopic = "node/"+ nodeId2 +"/params/remote";
 
-        //requestModel.setQosLevel(0);
-        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
-        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
-        call.enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                if (response.isSuccessful()) {
-                    ResponseModel responseModel = response.body();
-                    handleApiResponse(responseModel);
-                } else {
-                    // Handle unsuccessful response
-                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                // Handle failure
-                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-            }
-        });
+        networkApiManager.updateParamValue(nodeId2, commandBody, apiService, remoteCommandTopic);
+        //////////////////////////////
+
+
+//        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+//
+//        Intent intent = getIntent();
+//        String message = intent.getStringExtra("MESSAGE_KEY");
+//        Log.e(TAG, "curtainAction: "+message );
+//
+//        RequestModel requestModel = new RequestModel();
+//        requestModel.setSenderLoginToken(0);
+//        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+//        Log.d(TAG, "sendFanSpeed: "+progress);
+//        requestModel.setMessage("{\""+ message +"\": {\"Hue\": " + progress + "}}");
+//        Log.e(TAG, "dimmerProgress: "+progress );
+//
+//        //requestModel.setQosLevel(0);
+//        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
+//        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
+//        call.enqueue(new Callback<ResponseModel>() {
+//            @Override
+//            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+//                if (response.isSuccessful()) {
+//                    ResponseModel responseModel = response.body();
+//                    handleApiResponse(responseModel);
+//                } else {
+//                    // Handle unsuccessful response
+//                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<ResponseModel> call, Throwable t) {
+//                // Handle failure
+//                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void rgbSaturation(int progress){
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
-        Log.e(TAG, "curtainAction: "+message );
+        String commandBody = "{\""+ message +"\": {\"Saturation\": " + progress + "}}";
 
-        RequestModel requestModel = new RequestModel();
-        requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
-        Log.d(TAG, "sendFanSpeed: "+progress);
-        requestModel.setMessage("{\""+ message +"\": {\"Saturation\": " + progress + "}}");
-        Log.e(TAG, "dimmerProgress: "+progress );
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        String remoteCommandTopic = "node/"+ nodeId2 +"/params/remote";
 
-        //requestModel.setQosLevel(0);
-        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
-        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
-        call.enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                if (response.isSuccessful()) {
-                    ResponseModel responseModel = response.body();
-                    handleApiResponse(responseModel);
-                } else {
-                    // Handle unsuccessful response
-                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                // Handle failure
-                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-            }
-        });
+        networkApiManager.updateParamValue(nodeId2, commandBody, apiService, remoteCommandTopic);
+
+        /////////////////////////////
+//        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+//
+//        Intent intent = getIntent();
+//        String message = intent.getStringExtra("MESSAGE_KEY");
+//        Log.e(TAG, "curtainAction: "+message );
+//
+//        RequestModel requestModel = new RequestModel();
+//        requestModel.setSenderLoginToken(0);
+//        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+//        Log.d(TAG, "sendFanSpeed: "+progress);
+//        requestModel.setMessage("{\""+ message +"\": {\"Saturation\": " + progress + "}}");
+//        Log.e(TAG, "dimmerProgress: "+progress );
+//
+//        //requestModel.setQosLevel(0);
+//        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
+//        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
+//        call.enqueue(new Callback<ResponseModel>() {
+//            @Override
+//            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+//                if (response.isSuccessful()) {
+//                    ResponseModel responseModel = response.body();
+//                    handleApiResponse(responseModel);
+//                } else {
+//                    // Handle unsuccessful response
+//                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<ResponseModel> call, Throwable t) {
+//                // Handle failure
+//                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void rgbCCT(int progress){
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
-        Log.e(TAG, "curtainAction: "+message );
+        String commandBody = "{\""+ message +"\": {\"CCT\": " + progress + "}}";
 
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        String remoteCommandTopic = "node/"+ nodeId2 +"/params/remote";
 
-        RequestModel requestModel = new RequestModel();
-        requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
-        Log.d(TAG, "sendFanSpeed: "+progress);
-        requestModel.setMessage("{\""+ message +"\": {\"CCT\": " + progress + "}}");
-        Log.e(TAG, "dimmerProgress: "+progress );
+        networkApiManager.updateParamValue(nodeId2, commandBody, apiService, remoteCommandTopic);
 
-        //requestModel.setQosLevel(0);
-        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
-        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
-        call.enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                if (response.isSuccessful()) {
-                    ResponseModel responseModel = response.body();
-                    handleApiResponse(responseModel);
-                } else {
-                    // Handle unsuccessful response
-                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                // Handle failure
-                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-            }
-        });
+        ///////////////////////////////////////
+//        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+//
+//        Intent intent = getIntent();
+//        String message = intent.getStringExtra("MESSAGE_KEY");
+//        Log.e(TAG, "curtainAction: "+message );
+//
+//
+//        RequestModel requestModel = new RequestModel();
+//        requestModel.setSenderLoginToken(0);
+//        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+//        Log.d(TAG, "sendFanSpeed: "+progress);
+//        requestModel.setMessage("{\""+ message +"\": {\"CCT\": " + progress + "}}");
+//        Log.e(TAG, "dimmerProgress: "+progress );
+//
+//        //requestModel.setQosLevel(0);
+//        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
+//        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
+//        call.enqueue(new Callback<ResponseModel>() {
+//            @Override
+//            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+//                if (response.isSuccessful()) {
+//                    ResponseModel responseModel = response.body();
+//                    handleApiResponse(responseModel);
+//                } else {
+//                    // Handle unsuccessful response
+//                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<ResponseModel> call, Throwable t) {
+//                // Handle failure
+//                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void rgbWhiteBrightness(int progress){
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
-        Log.e(TAG, "curtainAction: "+message );
+        String commandBody = "{\""+ message +"\": {\"White Brightness\": " + progress + "}}";
 
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        String remoteCommandTopic = "node/"+ nodeId2 +"/params/remote";
 
-        RequestModel requestModel = new RequestModel();
-        requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId +"/params/remote");
-        Log.d(TAG, "sendFanSpeed: "+progress);
-        requestModel.setMessage("{\""+ message +"\": {\"White Brightness\": " + progress + "}}");
-        Log.e(TAG, "dimmerProgress: "+progress );
+        networkApiManager.updateParamValue(nodeId2, commandBody, apiService, remoteCommandTopic);
 
-        //requestModel.setQosLevel(0);
-        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
-        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
-        call.enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                if (response.isSuccessful()) {
-                    ResponseModel responseModel = response.body();
-                    handleApiResponse(responseModel);
-                } else {
-                    // Handle unsuccessful response
-                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                // Handle failure
-                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-            }
-        });
+        ////////////////////////////////////
+//        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+//
+//        Intent intent = getIntent();
+//        String message = intent.getStringExtra("MESSAGE_KEY");
+//        Log.e(TAG, "curtainAction: "+message );
+//
+//
+//        RequestModel requestModel = new RequestModel();
+//        requestModel.setSenderLoginToken(0);
+//        requestModel.setTopic("node/"+ nodeId +"/params/remote");
+//        Log.d(TAG, "sendFanSpeed: "+progress);
+//        requestModel.setMessage("{\""+ message +"\": {\"White Brightness\": " + progress + "}}");
+//        Log.e(TAG, "dimmerProgress: "+progress );
+//
+//        //requestModel.setQosLevel(0);
+//        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
+//        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
+//        call.enqueue(new Callback<ResponseModel>() {
+//            @Override
+//            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+//                if (response.isSuccessful()) {
+//                    ResponseModel responseModel = response.body();
+//                    handleApiResponse(responseModel);
+//                } else {
+//                    // Handle unsuccessful response
+//                    Toast.makeText(RGBLightActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<ResponseModel> call, Throwable t) {
+//                // Handle failure
+//                Toast.makeText(RGBLightActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     private void handleApiResponse(ResponseModel responseModel) {

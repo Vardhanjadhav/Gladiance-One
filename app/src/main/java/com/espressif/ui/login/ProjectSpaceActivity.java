@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.espressif.ui.activities.ApiService;
@@ -47,6 +50,7 @@ public class ProjectSpaceActivity extends AppCompatActivity {
 
     TextView userName;
 
+    Button btnCamera;
     String loginToken, loginDeviceId;
 
     private static final String PREFS_NAME = "MyPrefsFile";
@@ -60,6 +64,7 @@ public class ProjectSpaceActivity extends AppCompatActivity {
         rvProjectList = findViewById(R.id.rVProjectName);
         rvSpaceList  =findViewById(R.id.rVSpaceName);
 
+        btnCamera = findViewById(R.id.btn_Camera);
         userName = findViewById(R.id.user_name);
 
         arrayList1 = new ArrayList<>();
@@ -90,6 +95,16 @@ public class ProjectSpaceActivity extends AppCompatActivity {
         getProjectName(loginToken,loginDeviceId);
         //Space List Recycle Code
         getSpaceName(loginToken,loginDeviceId);
+
+        btnCamera.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), CameraDetailActivity.class);
+                startActivity(i);
+            }
+        });
+
+
     }
 
     private void getProjectName(String loginToken,String loginDeviceId) {

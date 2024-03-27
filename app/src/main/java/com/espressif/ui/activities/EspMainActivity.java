@@ -33,7 +33,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -43,12 +43,11 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.espressif.AppConstants;
+import com.espressif.NetworkApiManager;
 import com.espressif.provisioning.ESPConstants;
 import com.espressif.provisioning.ESPProvisionManager;
 import com.espressif.ui.adapters.CardAdapter;
@@ -58,11 +57,13 @@ import com.espressif.ui.models.DeviceInfo;
 import com.espressif.ui.models.Devices;
 import com.espressif.ui.models.NodeResponseModel;
 import com.espressif.ui.models.RequestModel;
+import com.espressif.ui.models.ResetResponse;
 import com.espressif.ui.models.ResponseModel;
 import com.espressif.ui.models.provisioninglabel.ProvisioningRequest;
 import com.espressif.ui.models.provisioninglabel.ProvisioningResponse;
 import com.espressif.wifi_provisioning.BuildConfig;
 import com.espressif.wifi_provisioning.R;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,6 +89,7 @@ public class EspMainActivity extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private String deviceType;
 
+    NetworkApiManager networkApiManager;
 
     /////////////////
     private EspApplication espApp;
@@ -96,6 +98,7 @@ public class EspMainActivity extends AppCompatActivity {
     String power;
     private ApiService apiService;
     EspMainActivity espMainActivity;
+    Button resetButton;
 
     private ArrayList<Devices> arrayList;
     private RecyclerView recyclerView;
@@ -125,9 +128,13 @@ public class EspMainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         recyclerView = findViewById(R.id.recycleViewCard);
 
+        resetButton = findViewById(R.id.btn_reset);
+
         instance = this;
 
-
+//        espApp = (EspApplication) getApplicationContext();
+        espApp = new EspApplication(getApplicationContext());
+        networkApiManager = new NetworkApiManager(context.getApplicationContext(), espApp);
         arrayList = new ArrayList<>();
 
         setSupportActionBar(toolbar);
@@ -179,22 +186,69 @@ public class EspMainActivity extends AppCompatActivity {
 
 
         if(provision == false) {
-
             GetNodeID(userId, loginDeviceId, mac, gaaProjectSpaceRef, gaaProjectSpaceTypePlannedDeviceRef);
 
         }else {
             getDevice();
 
         }
+
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+//
+//                                               // Prepare request body
+                // ResetBody requestBody = new ResetResponse();
+                SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+                String nodeId3 = preferences9.getString("KEY_USERNAMEs", "");
+                Log.d(TAG, "node id2: " +nodeId3);
+                                               // Make API call
+                Call<ResetResponse> call = apiService.factoryResetNode(nodeId3, userId2);
+                call.enqueue(new Callback<ResetResponse>() {
+                    @Override
+                    public void onResponse(Call<ResetResponse> call, Response<ResetResponse> response) {
+                        if (response.isSuccessful()) {
+                            ResetResponse responseModel = response.body();
+                            if (responseModel != null) {
+                                boolean success = responseModel.getSuccessful();
+                                String message = responseModel.getMessage();
+                                Log.d(TAG, "Success: " + success + ", Message: " + message);
+                            }
+                        } else {
+                            Log.e(TAG, "API call failed with code: " + response.code());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResetResponse> call, Throwable t) {
+                        Log.e(TAG, "API call failed: " + t.getMessage());
+                    }
+                });
+            }
+        });
+
+
+                //Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
+                //startActivity(intent);
+
+
+
         // getNodeID();
        // node();
 
         //getNodeID2();
         GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this,2);
 
-        SharedPreferences preferences2 = getSharedPreferences("MyPrefse", MODE_PRIVATE);
-        String nodeId2 = preferences2.getString("nodeId", "");
-        Log.d(TAG, "SharedPre node Id: " +nodeId);
+        ///This shared Preference can be used for previous getnode method ///////////////
+//        SharedPreferences preferences2 = getSharedPreferences("MyPrefse", MODE_PRIVATE);
+//        String nodeId2 = preferences2.getString("nodeId", "");
+//        Log.d(TAG, "SharedPre node Id3: " +nodeId2);
+
+        SharedPreferences preferences2 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        nodeId2 = preferences2.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id: " +nodeId2);
+
      //   getDevice();
 
 
@@ -359,13 +413,30 @@ public class EspMainActivity extends AppCompatActivity {
         private void getDevice() {
           //  String NodeId = "WI84xt861kS39p2b5sXeGQ";
             ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-            Call<DeviceInfo> call = apiService.getAllData(nodeId2);
-            Log.e(TAG, "getDevice: "+nodeId2 );
+
+            SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+            String nodeId4 = preferences9.getString("KEY_USERNAMEs", "");
+            Log.d(TAG, "node id4: " +nodeId4);
+
+            Call<DeviceInfo> call = apiService.getAllData(nodeId4);
+            Log.e(TAG, "getDevice: "+nodeId4 );
 
             call.enqueue(new Callback<DeviceInfo>() {
                 @Override
                 public void onResponse(Call<DeviceInfo> call, Response<DeviceInfo> response) {
                     if (response.isSuccessful() && response.body() != null) {
+
+//                        String n = String.valueOf(response.body());
+                        Log.d(TAG, "onResponse: "+response.body());
+                        Gson gson = new Gson();
+                        String n = gson.toJson(response.body());
+
+                        SharedPreferences sharedPreferences10 = context.getSharedPreferences("my_shared_prefet", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences10.edit();
+                      //  Log.e(TAG, "GaaProjectSpaceTypePlannedDeviceName11: "+nodeId );
+                        editor.putString("KEY_USERNAMEst", n);
+                        editor.apply();
+
                         List<DeviceInfo.Device> devices = response.body().getDevices();
                         for (DeviceInfo.Device device : devices) {
                             List<DeviceInfo.Param> params = device.getParams();
@@ -375,6 +446,9 @@ public class EspMainActivity extends AppCompatActivity {
                                 Log.e(TAG, "onResponse: "+param.getName());
                                 String uiType = param.getUi_type();
                                 Log.e(TAG, "onResponse22222: "+param.getUi_type());
+                                Log.e(TAG, "onResponse22222: "+param.getUi_type());
+
+
 
                                 //arrayList.add(new Devices(Devices.getName(),Devices.getType(),Devices.getData_type(),param.getUi_type()));
                                 // Use the name and uiType as needed
@@ -418,47 +492,57 @@ public class EspMainActivity extends AppCompatActivity {
         } else {
             ivEsp.setImageResource(R.drawable.ic_esp);
         }
+        espApp.refreshData();
     }
 
     //
     public void sendSwitchState(boolean powerState,String name,String power) {
+        String commandBody = "{\""+name+"\": {\""+power+"\": " + powerState + "}}";
+
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
+        String remoteCommandTopic = "node/"+ nodeId2 +"/params/remote";
+
+        networkApiManager.updateParamValue(nodeId2, commandBody, apiService, remoteCommandTopic);
+
         // Create a RequestModel with the required data
-        RequestModel requestModel = new RequestModel();
-        requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
-
-          //Change
-//        nodeId = "WI84xt861kS39p2b5sXeGQ";
- //       requestModel.setTopic("node/"+ nodeId +"/params/remote");
-
-       requestModel.setMessage("{\""+name+"\": {\""+power+"\": " + powerState + "}}");
-       // requestModel.setMessage("{\"Fan 1\": {\"Power\": " + powerState + "}}");
-        Log.e(TAG, "sendSwitchState: "+name );
-
-         // requestModel.setQosLevel(0);
-        // Make the API call
-        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
-        call.enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                if (response.isSuccessful()) {
-                    ResponseModel responseModel = response.body();
-                    handleApiResponse(responseModel);
-
-                } else {
-                    // Handle unsuccessful response
-                    Toast.makeText(EspMainActivity.this, "Failed to make the API call2", Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                // Handle failure
-                Toast.makeText(EspMainActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-            }
-        });
+//        RequestModel requestModel = new RequestModel();
+//        requestModel.setSenderLoginToken(0);
+//        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
+//
+//          //Change
+////        nodeId = "WI84xt861kS39p2b5sXeGQ";
+// //       requestModel.setTopic("node/"+ nodeId +"/params/remote");
+//
+//       requestModel.setMessage(commandBody);
+//
+//
+//
+//       // requestModel.setMessage("{\"Fan 1\": {\"Power\": " + powerState + "}}");
+//        Log.e(TAG, "sendSwitchState: "+name );
+//
+//         // requestModel.setQosLevel(0);
+//        // Make the API call
+//        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
+//        call.enqueue(new Callback<ResponseModel>() {
+//            @Override
+//            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+//                if (response.isSuccessful()) {
+//                    ResponseModel responseModel = response.body();
+//                    handleApiResponse(responseModel);
+//
+//                } else {
+//                    // Handle unsuccessful response
+//                    Toast.makeText(EspMainActivity.this, "Failed to make the API call2", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<ResponseModel> call, Throwable t) {
+//                // Handle failure
+//                Toast.makeText(EspMainActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
     }
 

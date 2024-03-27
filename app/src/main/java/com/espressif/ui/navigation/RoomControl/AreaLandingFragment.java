@@ -23,6 +23,7 @@ import com.espressif.ui.activities.ApiService;
 import com.espressif.ui.activities.RetrofitClient;
 import com.espressif.ui.adapters.ProjectSpaceGroupListAdapter;
 import com.espressif.ui.login.AreaAdapter;
+import com.espressif.ui.login.AreaLandingActivity;
 import com.espressif.ui.login.LoginActivity;
 import com.espressif.ui.login.ProjectSpaceGroupActivity;
 import com.espressif.ui.models.SpaceGroup;
@@ -133,6 +134,12 @@ public class AreaLandingFragment extends Fragment {
                                 Log.e(TAG, "onResponse AreaName: " + area.getGAAProjectSpaceTypeAreaName());
                                 Log.e(TAG, "onResponse Area Ref: " + area.getGAAProjectSpaceTypeAreaRef());
                                 arrayList.add(new Area(area.getGAAProjectSpaceTypeAreaRef(),area.getGAAProjectSpaceTypeAreaName(),area.getWifiSSID(),area.getWifiPassword(),area.getGuestControls(),area.getInstallerControls()));
+
+                                if(area.getGAAProjectSpaceTypeAreaRef() == 0)
+                                {
+                                    Intent intent = new Intent(requireContext(), AreaLandingActivity.class);
+                                    requireContext().startActivity(intent);
+                                }
 
                             }
 

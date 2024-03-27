@@ -1,9 +1,12 @@
 package com.espressif.ui.navigation.MyProfile;
 
 import static android.content.ContentValues.TAG;
+import static android.content.Context.MODE_PRIVATE;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -21,11 +24,20 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.espressif.ui.activities.ApiService;
+import com.espressif.ui.activities.RetrofitClient;
 import com.espressif.ui.login.LoginActivity;
+import com.espressif.ui.models.LogoutRequestModel;
+import com.espressif.ui.models.LogoutResponseModel;
 import com.espressif.wifi_provisioning.R;
 
 import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class BasicInfoFragment extends Fragment {
@@ -47,11 +59,26 @@ public class BasicInfoFragment extends Fragment {
     Button btnYes,btnNo;
 
 
+    private static final String PREFS_NAME = "MyPrefsFile";
+
+
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_basic_info, container, false);
+
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        String GUID = LoginActivity.getUserId(sharedPreferences);
+        Log.e(TAG, "Project Space GUID/LoginDeviceId: "+ GUID);
+        String loginDeviceId = GUID.trim();
+
+        SharedPreferences  sharedPreferences2 = getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        String savedLoginDeviceId = sharedPreferences2.getString("LoginToken", "");
+        Log.e(TAG, "Project Space loginToken: "+savedLoginDeviceId );
+        String loginToken = savedLoginDeviceId.trim();
 
         llChangePassword = view.findViewById(R.id.llChangePassword);
         llChangePassword.setOnClickListener(new View.OnClickListener() {
@@ -142,8 +169,7 @@ public class BasicInfoFragment extends Fragment {
                 btnYes.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(getActivity(), LoginActivity.class);
-                        startActivity(intent);
+                        logoutUser(loginToken,loginDeviceId);
                     }
                 });
 
@@ -160,6 +186,38 @@ public class BasicInfoFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void logoutUser(String loginToken, String loginDeviceId) {
+        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+
+        LogoutRequestModel request = new LogoutRequestModel(loginToken, loginDeviceId);
+
+        Call<LogoutResponseModel> call = apiService.logoutUser(request);
+        call.enqueue(new Callback<LogoutResponseModel>() {
+            @Override
+            public void onResponse(Call<LogoutResponseModel> call, Response<LogoutResponseModel> response) {
+                if (response.isSuccessful() && response.body() != null) {
+                    LogoutResponseModel logoutResponse = response.body();
+                    if (logoutResponse.isSuccessful()) {
+                        Toast.makeText(requireContext(), "Logout successful", Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(getActivity(), LoginActivity.class);
+                        startActivity(intent);
+
+                    } else {
+                        Toast.makeText(requireContext(), "Logout failed: " + logoutResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "Failed to logout", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LogoutResponseModel> call, Throwable t) {
+                Toast.makeText(requireContext(), "Error: " + t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 }

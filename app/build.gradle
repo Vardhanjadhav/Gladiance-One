@@ -9,6 +9,14 @@ def getGitHash = { ->
     return stdout.toString().trim()
 }
 
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+def defaultBaseUrl = "https://api.rainmaker.espressif.com"
+
+def defaultClaimBaseUrl = "https://esp-claiming.rainmaker.espressif.com"
+
+def defaultUserPool = "2"
+
 android {
 
     compileSdkVersion 33
@@ -20,6 +28,15 @@ android {
         versionCode 18
         versionName "2.1.2 - ${getGitHash()}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "boolean", "isLocalControlSupported", localProperties.getProperty("isLocalControlSupported", "true")
+        // User pool selection
+        def userPool = localProperties.getProperty("userPool", defaultUserPool)
+        buildConfigField "String", "USER_POOL", '"' + userPool + '"'
+        buildConfigField "String", "CLAIM_BASE_URL", '"' + localProperties.getProperty("claimBaseUrl", defaultClaimBaseUrl) + '"'
+        buildConfigField "String", "BASE_URL", '"' + localProperties.getProperty("baseUrl", defaultBaseUrl) + '"'
+
+        buildConfigField "boolean", "isNodeGroupingSupported", localProperties.getProperty("isNodeGroupingSupported", "true")
+
     }
 
     buildTypes {
@@ -34,6 +51,9 @@ android {
             buildConfigField "boolean", "isQrCodeSupported", "true"
             buildConfigField "boolean", "isSettingsAllowed", "true"
             buildConfigField "boolean", "isFilteringByPrefixAllowed", "true"
+            buildConfigField "boolean", "isNodeGroupingSupported", localProperties.getProperty("isNodeGroupingSupported", "true")
+
+
         }
 
         debug {
@@ -98,6 +118,10 @@ dependencies {
     //OR Code
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
     //git qr code
+
+    //vlc player
+    implementation 'de.mrmaffen:libvlc-android:2.1.12@aar'
+    implementation group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
 
 
 

@@ -18,6 +18,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.espressif.NetworkApiManager;
 import com.espressif.ui.models.RequestModel;
 import com.espressif.ui.models.ResponseModel;
 import com.espressif.wifi_provisioning.R;
@@ -31,6 +32,7 @@ public class CurtainActivity extends AppCompatActivity {
     CardView curtainOpen,curtainClose,curtainStop;
     String nodeId;
     String open;
+    NetworkApiManager networkApiManager;
 
     SeekBar seekBar;
     TextView textView;
@@ -128,42 +130,54 @@ public class CurtainActivity extends AppCompatActivity {
 
 
     private void curtainAction(String open){
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-        //
-        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
-        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
-        Log.d(TAG, "node id: " +nodeId2);
-
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
+        String commandBody = "{\""+message+"\": {\"Action\": \""+ open +"\"}}";
 
-        Log.e(TAG, "curtainAction: "+message );
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+        String remoteCommandTopic = "node/"+ nodeId2 +"/params/remote";
 
-        RequestModel requestModel = new RequestModel();
-        requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
-        Log.d(TAG, "sendFanSpeed: "+open);
-        requestModel.setMessage("{\""+message+"\": {\"Action\": \""+ open +"\"}}");
-        //requestModel.setQosLevel(0);
-        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
-        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
-        call.enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                if (response.isSuccessful()) {
-                    ResponseModel responseModel = response.body();
-                    handleApiResponse(responseModel);
-                } else {
-                    // Handle unsuccessful response
-                    Toast.makeText(CurtainActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                // Handle failure
-                Toast.makeText(CurtainActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-            }
-        });
+        networkApiManager.updateParamValue(nodeId2, commandBody, apiService, remoteCommandTopic);
+
+        ////////////////////////////////////////////
+//        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+//        //
+//        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+//        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+//        Log.d(TAG, "node id: " +nodeId2);
+//
+//        Intent intent = getIntent();
+//        String message = intent.getStringExtra("MESSAGE_KEY");
+//
+//        Log.e(TAG, "curtainAction: "+message );
+//
+//        RequestModel requestModel = new RequestModel();
+//        requestModel.setSenderLoginToken(0);
+//        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
+//        Log.d(TAG, "sendFanSpeed: "+open);
+//        requestModel.setMessage("{\""+message+"\": {\"Action\": \""+ open +"\"}}");
+//        //requestModel.setQosLevel(0);
+//        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
+//        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
+//        call.enqueue(new Callback<ResponseModel>() {
+//            @Override
+//            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+//                if (response.isSuccessful()) {
+//                    ResponseModel responseModel = response.body();
+//                    handleApiResponse(responseModel);
+//                } else {
+//                    // Handle unsuccessful response
+//                    Toast.makeText(CurtainActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<ResponseModel> call, Throwable t) {
+//                // Handle failure
+//                Toast.makeText(CurtainActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
     /**
@@ -172,43 +186,55 @@ public class CurtainActivity extends AppCompatActivity {
      */
 
     private void curtainCount(int count){
-        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
-
         Intent intent = getIntent();
         String message = intent.getStringExtra("MESSAGE_KEY");
-        Log.e(TAG, "curtainAction: "+message );
+        String commandBody = "{\""+message+"\": {\"Transition\": " + count + "}}";
 
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
         SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
         String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
-        Log.d(TAG, "node id: " +nodeId2);
+        String remoteCommandTopic = "node/"+ nodeId2 +"/params/remote";
 
-        RequestModel requestModel = new RequestModel();
-        requestModel.setSenderLoginToken(0);
-        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
-        Log.d(TAG, "sendFanSpeed: "+count);
-        requestModel.setMessage("{\""+message+"\": {\"Transition\": " + count + "}}");
+        networkApiManager.updateParamValue(nodeId2, commandBody, apiService, remoteCommandTopic);
 
-
-        //requestModel.setQosLevel(0);
-        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
-        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
-        call.enqueue(new Callback<ResponseModel>() {
-            @Override
-            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
-                if (response.isSuccessful()) {
-                    ResponseModel responseModel = response.body();
-                    handleApiResponse(responseModel);
-                } else {
-                    // Handle unsuccessful response
-                    Toast.makeText(CurtainActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<ResponseModel> call, Throwable t) {
-                // Handle failure
-                Toast.makeText(CurtainActivity.this, "Network error", Toast.LENGTH_SHORT).show();
-            }
-        });
+        //////////////////////////////////
+//        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+//
+//        Intent intent = getIntent();
+//        String message = intent.getStringExtra("MESSAGE_KEY");
+//        Log.e(TAG, "curtainAction: "+message );
+//
+//        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+//        String nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
+//        Log.d(TAG, "node id: " +nodeId2);
+//
+//        RequestModel requestModel = new RequestModel();
+//        requestModel.setSenderLoginToken(0);
+//        requestModel.setTopic("node/"+ nodeId2 +"/params/remote");
+//        Log.d(TAG, "sendFanSpeed: "+count);
+//        requestModel.setMessage("{\""+message+"\": {\"Transition\": " + count + "}}");
+//
+//
+//        //requestModel.setQosLevel(0);
+//        Log.d(TAG, "sendFanSpeed: "+requestModel.getMessage());
+//        Call<ResponseModel> call = apiService.sendSwitchState(requestModel);
+//        call.enqueue(new Callback<ResponseModel>() {
+//            @Override
+//            public void onResponse(Call<ResponseModel> call, Response<ResponseModel> response) {
+//                if (response.isSuccessful()) {
+//                    ResponseModel responseModel = response.body();
+//                    handleApiResponse(responseModel);
+//                } else {
+//                    // Handle unsuccessful response
+//                    Toast.makeText(CurtainActivity.this, "Failed to make the API call", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//            @Override
+//            public void onFailure(Call<ResponseModel> call, Throwable t) {
+//                // Handle failure
+//                Toast.makeText(CurtainActivity.this, "Network error", Toast.LENGTH_SHORT).show();
+//            }
+//        });
     }
 
 

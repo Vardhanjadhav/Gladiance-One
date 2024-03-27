@@ -280,6 +280,7 @@ public class LoginActivity extends AppCompatActivity {
                         Log.d("LoginResponse", "UserTypes: " + loginResponse.getUserTypes().toString());
                         Log.d("LoginResponse", "UserDisplayName: " + loginResponse.getUserDisplayName());
 
+                        Log.e(TAG, "onResponse: "+ loginResponse.getLoginToken());
                         String retrievedLoginToken = loginResponse.getLoginToken();
                         saveLoginToken(retrievedLoginToken);
 

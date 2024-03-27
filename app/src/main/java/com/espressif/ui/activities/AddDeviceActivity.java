@@ -408,38 +408,38 @@ public class AddDeviceActivity extends AppCompatActivity {
 //        fetchData();
     }
 
-    private void fetchData() {
-        // Create an instance of your ApiService
-        ApiService apiService = ApiClient.getClient().create(ApiService.class);
-
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-        String macId = sharedPreferences.getString("mac", "");
-
-        Log.d(TAG, "MacId = " + macId);
-
-        if (macId.trim().length() > 0) {
-            // Make the API call
-            Call<ResponseModelNode> call = apiService.getData("");
-            call.enqueue(new Callback<ResponseModelNode>() {
-                @Override
-                public void onResponse(Call<ResponseModelNode> call, Response<ResponseModelNode> response) {
-                    if (response.isSuccessful()) {
-                        ResponseModelNode data = response.body();
-                        Log.d(TAG, "nodeId: " + data.getNodeId());
-                        //  handleApiResponse(data);
-                        // Handle the response data here
-                    } else {
-                        // Handle unsuccessful response
-                    }
-                }
-
-                @Override
-                public void onFailure(Call<ResponseModelNode> call, Throwable t) {
-                    // Handle failure
-                }
-            });
-        }
-    }
+//    private void fetchData() {
+//        // Create an instance of your ApiService
+//        ApiService apiService = ApiClient.getClient().create(ApiService.class);
+//
+//        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+//        String macId = sharedPreferences.getString("mac", "");
+//
+//        Log.d(TAG, "MacId = " + macId);
+//
+//        if (macId.trim().length() > 0) {
+//            // Make the API call
+//            Call<ResponseModelNode> call = apiService.getData("");
+//            call.enqueue(new Callback<ResponseModelNode>() {
+//                @Override
+//                public void onResponse(Call<ResponseModelNode> call, Response<ResponseModelNode> response) {
+//                    if (response.isSuccessful()) {
+//                        ResponseModelNode data = response.body();
+//                        Log.d(TAG, "nodeId: " + data.getNodeId());
+//                        //  handleApiResponse(data);
+//                        // Handle the response data here
+//                    } else {
+//                        // Handle unsuccessful response
+//                    }
+//                }
+//
+//                @Override
+//                public void onFailure(Call<ResponseModelNode> call, Throwable t) {
+//                    // Handle failure
+//                }
+//            });
+//        }
+//    }
 
     private void handleApiResponse(ResponseModelNode data) {
         // Handle the response as needed

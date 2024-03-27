@@ -93,12 +93,28 @@
         layout="@layout/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/ll_version"
+        android:layout_above="@id/btn_reset"
         android:layout_marginStart="@dimen/margin_32"
         android:layout_marginTop="@dimen/margin_8"
         android:layout_marginEnd="@dimen/margin_32" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="@dimen/margin_32"
+        android:layout_marginTop="@dimen/margin_32"
+        android:layout_marginEnd="@dimen/margin_32"
+        android:layout_marginBottom="@dimen/margin_32"
+        android:background="@color/color_black"
+        android:orientation="vertical"
+        android:text="Reset Button"
+        android:textColor="@color/white" />
+
     <LinearLayout
+        android:visibility="gone"
         android:id="@+id/ll_version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

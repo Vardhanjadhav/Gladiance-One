@@ -14,6 +14,8 @@
 
 package com.espressif;
 
+import com.espressif.wifi_provisioning.BuildConfig;
+
 public class AppConstants {
 
     // Keys used to pass data between activities and to store data in SharedPreference.
@@ -35,6 +37,82 @@ public class AppConstants {
     public static final String KEY_ID = "id";
     public static final String NODE_TABLE = "node_table";
     public static final String KEY_FAILURE_RESPONSE = "failure";
+
+
+   public static final String KEY_DEVICE_NAME_PREFIX = "device_prefix";
+   public static final String KEY_ESP_DEVICE = "esp_device";
+   public static final String KEY_NODE_ID = "node_id";
+   public static final String KEY_EMAIL = "email";
+   public static final String KEY_USER_ID = "user_id";
+   public static final String KEY_ID_TOKEN = "id_token";
+   public static final String KEY_ACCESS_TOKEN = "access_token";
+   public static final String KEY_REFRESH_TOKEN = "refresh_token";
+   public static final String KEY_IS_OAUTH_LOGIN = "is_github_login";
+   public static final String KEY_ERROR_MSG = "err_msg";
+   public static final String KEY_SSID = "ssid";
+   public static final String KEY_PASSWORD = "password";
+   public static final String KEY_SHOULD_SAVE_PWD = "save_password";
+   public static final String KEY_NEW_PASSWORD = "newpassword";
+   public static final String KEY_REQUEST = "request";
+   public static final String KEY_VERIFICATION_CODE = "verification_code";
+   public static final String KEY_MOBILE_DEVICE_TOKEN = "mobile_device_token";
+   public static final String KEY_PLATFORM = "platform";
+   public static final String KEY_GCM = "GCM";
+   public static final String KEY_MESSAGE_BODY = "message_body";
+   public static final String KEY_ALERT_STRING = "esp.alert.str";
+   public static final String KEY_PARAM_NAME = "param_name";
+   public static final String KEY_AGGREGATE = "aggregate";
+   public static final String KEY_AGGREGATION_INTERVAL = "aggregation_interval";
+   public static final String KEY_WEEK_START = "week_start";
+   public static final String KEY_START_TIME = "start_time";
+   public static final String KEY_END_TIME = "end_time";
+   public static final String KEY_NUM_INTERVALS = "num_intervals";
+   public static final String KEY_NUM_RECORDS = "num_records";
+   public static final String KEY_TIMEZONE = "timezone";
+   public static final String KEY_OTA_JOB_ID = "ota_job_id";
+   public static final String KEY_OTA_DETAILS = "ota_details";
+   public static final String KEY_OTA_AVAILABLE = "ota_available";
+
+    public static final String URL_CLAIM_INITIATE = BuildConfig.CLAIM_BASE_URL + "/claim/initiate";
+
+    public static final String URL_USER_NODE_GROUP = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/node_group";
+
+    public static final String URL_USER_NODE_AUTOMATION = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/node_automation";
+
+    public static final String URL_USER_NODES_SHARING_REQUESTS = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/nodes/sharing/requests";
+
+    public static final String URL_USER_NODES_SHARING = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/nodes/sharing";
+
+    public static final String URL_USER_NODES_TS = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/nodes/tsdata";
+
+    public static final String URL_NODE_OTA_UPDATE = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/nodes/ota_update";
+
+    public static final String URL_NODE_OTA_STATUS = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/nodes/ota_status";
+
+    // Cloud API End point Urls
+    public static final String URL_LOGIN = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/login";
+
+    public static final String URL_USER = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user";
+
+    public static final String URL_LOGIN_2 = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/login2";
+    public static final String URL_USER_2 = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user2";
+
+    public static final String MDNS_SERVICE_TYPE = "_esp_local_ctrl._tcp.";
+
+   public static final String LOCAL_CONTROL_ENDPOINT = "esp_local_ctrl/control";
+
+ public static final String LOCAL_SESSION_ENDPOINT = "esp_local_ctrl/session";
 
     public static final String KEY_DEVICES = "devices";
 
@@ -88,9 +166,16 @@ public class AppConstants {
     public static final int SEC_TYPE_DEFAULT = SEC_TYPE_2;
     public static final String DEFAULT_USER_NAME = "wifiprov";
     public static final String HEADER_AUTHORIZATION = "Authorization";
-    public static final String KEY_NODE_ID = "node_id";
+
     public static final String URL_USER_NODES = "https://api.rainmaker.espressif.com" + AppConstants.PATH_SEPARATOR
             + AppConstants.CURRENT_VERSION + "/user/nodes";
+   public static final String PREF_FILE_WIFI_NETWORKS = "wifi_networks";
+
+    public static final String URL_USER_NODES_PARAMS = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/nodes/params";
+
+    public static final String URL_CLAIM_VERIFY = BuildConfig.CLAIM_BASE_URL + "/claim/verify";
+
 
     // Service Types
     public static final String SERVICE_TYPE_SCHEDULE = "esp.service.schedule";
@@ -299,6 +384,15 @@ public class AppConstants {
     public static final String PARAM_TYPE_REBOOT = "esp.param.reboot";
     public static final String PARAM_TYPE_FACTORY_RESET = "esp.param.factory-reset";
     public static final String PARAM_TYPE_WIFI_RESET = "esp.param.wifi-reset";
+
+    public static final String URL_USER_NODES_DETAILS = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/nodes?node_details=true";
+
+    public static final String URL_USER_NODE_STATUS = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/nodes/status";
+
+    public static final String URL_USER_NODE_MAPPING = BuildConfig.BASE_URL + AppConstants.PATH_SEPARATOR
+            + AppConstants.CURRENT_VERSION + "/user/nodes/mapping";
 
 //    private static AppConstants instance;
 //    private String yourString;

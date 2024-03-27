@@ -208,6 +208,7 @@ public class CardAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                         Devices clickedCard = arrayList.get(position);
                         String name = clickedCard.getName();
                         String power = clickedCard.getPrimary();
+
                         espMainActivity.sendSwitchState(powerState, name,power);
                         //text color change
 //                    if(!powerState) {

@@ -358,7 +358,6 @@ public class JsonDataParser {
     }
 
     public static void setAllParams(EspApplication espAppContext, EspNode node, JSONObject paramsJson) {
-
         String nodeId = node.getNodeId();
         ArrayList<Device> devices = node.getDevices();
         ArrayList<Service> services = node.getServices();
@@ -431,7 +430,7 @@ public class JsonDataParser {
                             key = key + "_" + days + "_" + mins;
                         }
 
-                        Schedule schedule = espAppContext.scheduleMap.get(key);
+                        Schedule schedule = null; // espAppContext.scheduleMap.get(key);
                         if (schedule == null) {
                             schedule = new Schedule();
                         }
@@ -551,7 +550,7 @@ public class JsonDataParser {
                                 }
                             }
                         }
-                        espAppContext.scheduleMap.put(key, schedule);
+//                        espAppContext.scheduleMap.put(key, schedule);
                     }
                 }
             }
@@ -584,7 +583,7 @@ public class JsonDataParser {
                         String info = scJson.optString(AppConstants.KEY_INFO);
                         key = key + "_" + name + "_" + info;
 
-                        Scene scene = espAppContext.sceneMap.get(key);
+                        Scene scene = null; //espAppContext.sceneMap.get(key);
                         if (scene == null) {
                             scene = new Scene();
                         }
@@ -703,7 +702,7 @@ public class JsonDataParser {
                                 }
                             }
                         }
-                        espAppContext.sceneMap.put(key, scene);
+//                        espAppContext.sceneMap.put(key, scene);
                     }
                 }
             }
