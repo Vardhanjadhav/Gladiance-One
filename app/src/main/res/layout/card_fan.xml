@@ -14,7 +14,6 @@
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"> <!-- Replace with your image resource -->
 
@@ -30,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:padding="1dp"
-                android:src="@drawable/fan"
+                android:src="@drawable/fan_white"
                 />
             <TextView
                 android:id="@+id/TextView"
@@ -39,7 +38,6 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:padding="5dp"
-                android:textColor="#7A1616"
                 android:textStyle="bold"
                 android:text="Fan"
                 android:textSize="20sp" />

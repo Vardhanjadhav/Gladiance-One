@@ -58,7 +58,8 @@
         android:scrollbars="none"
         app:layout_constraintTop_toTopOf="parent"
         android:visibility="gone"
-        android:layout_marginTop="2dp"/>
+        android:layout_marginTop="2dp">
+    </androidx.recyclerview.widget.RecyclerView>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -100,17 +101,19 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_reset"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_30sdp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="@dimen/margin_32"
         android:layout_marginTop="@dimen/margin_32"
         android:layout_marginEnd="@dimen/margin_32"
         android:layout_marginBottom="@dimen/margin_32"
+        android:textAllCaps="false"
         android:background="@color/color_black"
         android:orientation="vertical"
         android:text="Reset Button"
+        android:padding="@dimen/_4sdp"
         android:textColor="@color/white" />
 
     <LinearLayout

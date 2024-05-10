@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_black"
-    tools:context="com.espressif.ui.login.LoginActivity">
+    tools:context="com.espressif.ui.activities.Login.LoginActivity">
 
     <ImageView
         android:id="@+id/imageView"
@@ -136,11 +136,11 @@
         android:layout_width="@dimen/_150sdp"
         android:layout_height="@dimen/_40sdp"
         android:layout_marginTop="52dp"
-        android:background="@drawable/transparent_button_background"
+        android:background="@drawable/orange_button_background"
         android:fontFamily="@font/roboto_medium"
         android:text="Login"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        style="@style/TEXT"
         android:textSize="@dimen/_18ssp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

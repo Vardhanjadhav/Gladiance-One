@@ -2,19 +2,12 @@ package com.espressif.ui.activities;
 
 import static android.content.Context.MODE_PRIVATE;
 
-import android.app.Application;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.espressif.AppConstants;
 import com.espressif.JsonDataParser;
@@ -25,12 +18,11 @@ import com.espressif.local_control.EspLocalDevice;
 import com.espressif.local_control.LocalControlApiManager;
 import com.espressif.local_control.mDNSManager;
 import com.espressif.provisioning.ESPProvisionManager;
-import com.espressif.ui.adapters.CardAdapter;
+import com.espressif.ui.activities.API.ApiService;
+import com.espressif.ui.activities.API.RetrofitClient;
 import com.espressif.ui.models.Action;
 import com.espressif.ui.models.Automation;
 import com.espressif.ui.models.Device;
-import com.espressif.ui.models.DeviceInfo;
-import com.espressif.ui.models.Devices;
 import com.espressif.ui.models.EspOtaUpdate;
 import com.espressif.ui.models.Group;
 import com.espressif.ui.models.Param;
@@ -39,11 +31,8 @@ import com.espressif.ui.models.Schedule;
 import com.espressif.ui.models.Service;
 import com.espressif.ui.models.UpdateEvent;
 import com.espressif.wifi_provisioning.BuildConfig;
-import com.espressif.wifi_provisioning.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 
 import org.greenrobot.eventbus.EventBus;
@@ -54,7 +43,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import retrofit2.Call;

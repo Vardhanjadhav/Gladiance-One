@@ -12,7 +12,7 @@ def getGitHash = { ->
 def localProperties = new Properties()
 localProperties.load(new FileInputStream(rootProject.file("local.properties")))
 def defaultBaseUrl = "https://api.rainmaker.espressif.com"
-
+def defaultAuthUrl = "https://3pauth.rainmaker.espressif.com"
 def defaultClaimBaseUrl = "https://esp-claiming.rainmaker.espressif.com"
 
 def defaultUserPool = "2"
@@ -29,6 +29,19 @@ android {
         versionName "2.1.2 - ${getGitHash()}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "boolean", "isLocalControlSupported", localProperties.getProperty("isLocalControlSupported", "true")
+
+        def authUrl = localProperties.getProperty("authUrl", defaultAuthUrl)
+
+        // Alexa App Linking Configurations
+        buildConfigField "String", "ALEXA_CLIENT_ID", '"' + localProperties.getProperty("alexaClientId") + '"'
+        buildConfigField "String", "ALEXA_CLIENT_SECRET", '"' + localProperties.getProperty("alexaClientSecret") + '"'
+        buildConfigField "String", "ALEXA_REDIRECT_URL", '"' + localProperties.getProperty("alexaRedirectUrl") + '"'
+        buildConfigField "String", "ALEXA_RM_CLIENT_ID", '"' + localProperties.getProperty("alexaRMClientId") + '"'
+        buildConfigField "String", "SKILL_ID", '"' + localProperties.getProperty("skillId") + '"'
+        buildConfigField "String", "SKILL_STAGE", '"' + localProperties.getProperty("skillStage") + '"'
+        buildConfigField "String", "ALEXA_ACCESS_TOKEN_URL", '"' + localProperties.getProperty("alexaAccessTokenUrl") + '"'
+
+        buildConfigField "String", "AUTH_URL", '"' + authUrl + '"'
         // User pool selection
         def userPool = localProperties.getProperty("userPool", defaultUserPool)
         buildConfigField "String", "USER_POOL", '"' + userPool + '"'
@@ -68,6 +81,9 @@ android {
         }
     }
     namespace 'com.espressif.wifi_provisioning'
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -92,6 +108,8 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 
     // Room dependencies
     def room_version = "2.4.3"
@@ -124,6 +142,9 @@ dependencies {
     implementation group: 'org.apache.httpcomponents' , name: 'httpclient-android' , version: '4.3.5.1'
 
 
+
+    def work_version = "2.7.1"
+    implementation "androidx.work:work-runtime:$work_version"
 
 
 }

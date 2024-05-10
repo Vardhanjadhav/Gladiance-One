@@ -11,8 +11,8 @@ import com.espressif.AppConstants;
 import com.espressif.CloudException;
 import com.espressif.JsonDataParser;
 import com.espressif.db.EspDatabase;
-import com.espressif.ui.activities.ApiClient;
-import com.espressif.ui.activities.ApiInterface;
+import com.espressif.ui.activities.API.ApiClient;
+import com.espressif.ui.activities.API.ApiInterface;
 import com.espressif.ui.activities.EspApplication;
 import com.espressif.ui.activities.EspNode;
 import com.espressif.ui.models.Action;
@@ -38,7 +38,6 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;

@@ -3,17 +3,14 @@ package com.espressif;
 import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.espressif.cloudapi.ApiManager;
 import com.espressif.cloudapi.ApiResponseListener;
 import com.espressif.local_control.LocalControlApiManager;
-import com.espressif.ui.activities.ApiService;
+import com.espressif.ui.activities.API.ApiService;
 import com.espressif.ui.activities.EspApplication;
-import com.espressif.ui.activities.EspMainActivity;
 import com.espressif.ui.models.RequestModel;
 import com.espressif.ui.models.ResponseModel;
-import com.google.gson.JsonObject;
 
 import retrofit2.Call;
 import retrofit2.Callback;

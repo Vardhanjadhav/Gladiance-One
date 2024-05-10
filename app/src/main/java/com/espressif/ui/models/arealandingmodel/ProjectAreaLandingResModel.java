@@ -11,9 +11,11 @@ public class ProjectAreaLandingResModel {
     @SerializedName("Successful")
     @Expose
     private Boolean successful;
+
     @SerializedName("Message")
     @Expose
     private String message;
+
     @SerializedName("Data")
     @Expose
     private Data data;

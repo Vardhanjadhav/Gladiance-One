@@ -1,0 +1,6 @@
+<!-- custom_seekbar_thumb.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/round_seekbar" android:gravity="center"
+        android:width="30dp" android:height="30dp" />
+
+</layer-list>

@@ -1,0 +1,158 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/SCREEN"
+    android:layout_marginTop="@dimen/_100sdp"
+    tools:context="com.espressif.ui.fragment.MyProfile.EditSceneFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- TextView -->
+            <TextView
+                style="@style/TEXT"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_14sdp"
+                android:text="Project Name"
+                android:textSize="@dimen/_13sdp" />
+
+            <!-- EditText -->
+            <EditText
+                android:id="@+id/SMProjectName"
+                style="@style/MyEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp" />
+
+            <TextView
+                style="@style/TEXT"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_14sdp"
+                android:text="Space Name"
+                android:textSize="@dimen/_13sdp" />
+
+            <!-- EditText -->
+            <EditText
+                android:id="@+id/SMSpaceName"
+                style="@style/MyEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp" />
+
+            <TextView
+                style="@style/TEXT"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_14sdp"
+                android:text="Scene Name"
+                android:textSize="@dimen/_13sdp" />
+
+            <!-- EditText -->
+            <EditText
+                android:id="@+id/SMSceneName"
+                style="@style/MyEditTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:paddingStart="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12sdp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_10sdp" />
+
+            <TextView
+                style="@style/TEXT"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/roboto_light"
+                android:gravity="center|left"
+                android:paddingStart="@dimen/_14sdp"
+                android:text="Select Area"
+                android:textSize="@dimen/_13sdp" />
+
+            <Spinner
+                android:id="@+id/sceneAreaSpinner"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.062"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycleViewDeviceName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="2dp"
+                tools:listitem="@layout/item_scene_control_card">
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_20sdp" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/buttonSave"
+                android:layout_width="@dimen/_120sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:background="@drawable/orange_button_background"
+                android:text="Save"
+                android:layout_marginStart="@dimen/_95sdp"
+                android:textAllCaps="false"
+                style="@style/TEXT"
+                android:fontFamily="@font/roboto_regular"
+                android:textSize="@dimen/_17sdp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

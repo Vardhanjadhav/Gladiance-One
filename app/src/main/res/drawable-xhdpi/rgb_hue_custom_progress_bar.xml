@@ -1,0 +1,10 @@
+<!-- custom_progress_bar.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <gradient
+        android:startColor="#FF0000"
+    android:endColor="#FF0000"
+    android:angle="0" />
+    <corners android:radius="6dp"/>
+</shape>

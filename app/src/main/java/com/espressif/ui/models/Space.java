@@ -38,6 +38,7 @@ public class Space {
         Description = description;
     }
 
+
     public Space(String GAAProjectSpaceRef, String GAAProjectSpaceName, int displayOrder, String description) {
         this.GAAProjectSpaceRef = GAAProjectSpaceRef;
         this.GAAProjectSpaceName = GAAProjectSpaceName;

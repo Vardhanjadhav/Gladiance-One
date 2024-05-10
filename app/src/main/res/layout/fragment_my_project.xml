@@ -2,9 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    style="@style/SCREEN"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.espressif.ui.navigation.MyProfile.MyProjectFragment">
+    tools:context="com.espressif.ui.fragment.MyProfile.MyProjectFragment">
 
     <LinearLayout
         android:id="@+id/linearLayoutMyProject"

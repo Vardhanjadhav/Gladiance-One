@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     style="@style/SCREEN"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.espressif.ui.navigation.MyProfile.MyProfileFragment">
+    tools:context="com.espressif.ui.fragment.MyProfile.MyProfileFragment">
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_profile"
@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="@dimen/_20sdp"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notificationbell" />
+        style="@style/Notification_Bell" />
 
 
     <LinearLayout

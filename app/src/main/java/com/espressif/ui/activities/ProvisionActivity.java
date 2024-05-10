@@ -59,6 +59,7 @@ public class ProvisionActivity extends AppCompatActivity {
 //    // Retrieve the string using the key
 //    String nodeId = intent.getStringExtra("keyStringData");
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -111,7 +112,7 @@ public class ProvisionActivity extends AppCompatActivity {
             provisionManager.getEspDevice().disconnectDevice();
             Intent intent = new Intent(ProvisionActivity.this, EspMainActivity.class);
             startActivity(intent);
-           // finish();
+            // finish();
         }
     };
 

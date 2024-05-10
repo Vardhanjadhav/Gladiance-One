@@ -28,6 +28,7 @@ import android.os.Looper;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.SparseArray;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresPermission;
@@ -234,7 +235,7 @@ public class ESPProvisionManager {
                         espDevice = new ESPDevice(context, transportType, securityType);
                         espDevice.setDeviceName(deviceName);
                         espDevice.setProofOfPossession(pop);
-                      //  espDevice.setMac(mac);
+                        //  espDevice.setMac(mac);
                         espDevice.setUserName(userName);
 
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && transportType.equals(ESPConstants.TransportType.TRANSPORT_SOFTAP)) {
@@ -256,7 +257,7 @@ public class ESPProvisionManager {
                 }
 
 
-          //      fetchData();
+                //      fetchData();
 
             }
         });
@@ -294,7 +295,7 @@ public class ESPProvisionManager {
                         String deviceName = jsonObject.optString("name");
                         String pop = jsonObject.optString("pop");
                         String mac = jsonObject.optString("mac");
-                        Mac = mac;
+                        Mac = mac; //we get mac here
                         Log.d(TAG, "Mac " +Mac);
                         String transport = jsonObject.optString("transport");
                         int security = jsonObject.optInt("security", ESPConstants.SecurityType.SECURITY_2.ordinal());
@@ -336,52 +337,91 @@ public class ESPProvisionManager {
                                 return;
                             }
                         } else {
-                            Log.e(TAG, "Transport is not available in QR code data");
-                            qrCodeScanListener.onFailure(new RuntimeException("QR code is not valid"), scannedData);
-                            return;
+                            // COMMENTED OUT ON 01-04-2024 FOR INPUT DEVICE PROVISIONING TESTING
+//                            Log.e(TAG, "Transport is not available in QR code data");
+//                            qrCodeScanListener.onFailure(new RuntimeException("QR code is not valid"), scannedData);
+//                            return;
                         }
 
-                        securityType = setSecurityType(security);
+                        if (!pop.equals("")) {
+                            securityType = setSecurityType(security);
 
-                        espDevice = new ESPDevice(context, transportType, securityType);
-                        espDevice.setDeviceName(deviceName);
-                        espDevice.setProofOfPossession(pop);
+                            espDevice = new ESPDevice(context, transportType, securityType);
+                            espDevice.setDeviceName(deviceName);
+                            espDevice.setProofOfPossession(pop);
 //                        espDevice.setMac(mac);
 
-                        espDevice.setUserName(userName);
+                            espDevice.setUserName(userName);
 
-                  //      fetchData(nodeId);
+                            //      fetchData(nodeId);
 
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && transportType.equals(ESPConstants.TransportType.TRANSPORT_SOFTAP)) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && transportType.equals(ESPConstants.TransportType.TRANSPORT_SOFTAP)) {
 
-                            WiFiAccessPoint wiFiDevice = new WiFiAccessPoint();
-                            wiFiDevice.setWifiName(deviceName);
-                            wiFiDevice.setPassword(password);
-                            espDevice.setWifiDevice(wiFiDevice);
+                                WiFiAccessPoint wiFiDevice = new WiFiAccessPoint();
+                                wiFiDevice.setWifiName(deviceName);
+                                wiFiDevice.setPassword(password);
+                                espDevice.setWifiDevice(wiFiDevice);
+                                qrCodeScanListener.deviceDetected(espDevice);
+                            } else {
+                                isDeviceAvailable(espDevice, password, qrCodeScanListener);
+                            }
+                        }
+                        else
+                        {////start from here
+                            //    GetNodeId(userId, loginDeviceId, mac, gaaProjectSpaceRef, gaaProjectSpaceTypePlannedDeviceRef);
+                            espDevice = new ESPDevice(context, ESPConstants.TransportType.TRANSPORT_INPUT, ESPConstants.SecurityType.SECURITY_0);
                             qrCodeScanListener.deviceDetected(espDevice);
-                        } else {
-                            isDeviceAvailable(espDevice, password, qrCodeScanListener);
+                            String a = "InputDevice";
+                            saveInput(a);
+                            return;
+
                         }
 
                     } catch (JSONException e) {
 
                         e.printStackTrace();
                         qrCodeScanListener.onFailure(new RuntimeException("QR code is not valid"), scannedData);
+                        Toast.makeText(context, "Excep1", Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     qrCodeScanListener.onFailure(new RuntimeException("QR code is not valid"), scannedData);
+                    Toast.makeText(context, "Excep2", Toast.LENGTH_SHORT).show();
+
                 }
             }
+
+            private void saveInput(String A) {
+                SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs_Input", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("Input", A);
+                editor.apply();
+            }
+
+            public String getString(String key, String defaultValue) {
+                SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs_Input", Context.MODE_PRIVATE);
+                return sharedPreferences.getString(key, defaultValue);
+            }
+//            public void goToMyActivity() {
+//                // Create an Intent to start the MyActivity
+//                Intent intent = new Intent(context, AddDeviceActivity.class);
+//
+//                // If you need to pass data to MyActivity, you can add extras to the intent
+//                intent.putExtra("key", "value");
+//
+//                // Start the MyActivity
+//                context.startActivity(intent);
+//            }
+
         });
-       // espDevice.getMac());
+        // espDevice.getMac());
     }
 
-     public void saveMacId(String mac) {
-            SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("mac", mac);
-            editor.apply();
-        }
+    public void saveMacId(String mac) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("mac", mac);
+        editor.apply();
+    }
 
     public String getString(String key, String defaultValue) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("MyPrefs", Context.MODE_PRIVATE);

@@ -14,9 +14,8 @@
 
 package com.espressif.ui.activities;
 
-import static android.content.ContentValues.TAG;
-
 import android.app.Activity;
+import android.app.Dialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
@@ -25,6 +24,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -50,13 +52,14 @@ import com.espressif.AppConstants;
 import com.espressif.NetworkApiManager;
 import com.espressif.provisioning.ESPConstants;
 import com.espressif.provisioning.ESPProvisionManager;
+import com.espressif.ui.activities.API.ApiService;
+import com.espressif.ui.activities.API.RetrofitClient;
 import com.espressif.ui.adapters.CardAdapter;
-import com.espressif.ui.login.AreaLandingActivity;
-import com.espressif.ui.login.LoginActivity;
+import com.espressif.ui.activities.Login.LoginActivity;
+import com.espressif.ui.activities.Home.ProjectSpaceLandingActivity;
 import com.espressif.ui.models.DeviceInfo;
 import com.espressif.ui.models.Devices;
 import com.espressif.ui.models.NodeResponseModel;
-import com.espressif.ui.models.RequestModel;
 import com.espressif.ui.models.ResetResponse;
 import com.espressif.ui.models.ResponseModel;
 import com.espressif.ui.models.provisioninglabel.ProvisioningRequest;
@@ -67,18 +70,17 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class EspMainActivity extends AppCompatActivity {
 
     private static final String TAG = EspMainActivity.class.getSimpleName();
 
-    NodeViewModel nodeViewModel;
+    //NodeViewModel nodeViewModel;
     // Request codes
     private static final int REQUEST_LOCATION = 1;
     private static final int REQUEST_ENABLE_BT = 2;
@@ -102,10 +104,6 @@ public class EspMainActivity extends AppCompatActivity {
 
     private ArrayList<Devices> arrayList;
     private RecyclerView recyclerView;
-    //Intent intent = getIntent();
-
-    // Retrieve the string using the key
-    // String nodeId = intent.getStringExtra("keyStringData");
 
     String nodeId;
     String nodeId2;
@@ -114,11 +112,12 @@ public class EspMainActivity extends AppCompatActivity {
 
     Context context = this;
 
+    TextView tvMessage;
+
+    Button btnYes,btnNo;
+
     private static final String PREFS_NAME = "MyPrefsFile";
 
-    ////////////////////
-
-   // private ApiService apiService2 = RetrofitClient.getRetrofitInstance().create(ApiService.class);
     private static EspMainActivity instance;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,17 +128,16 @@ public class EspMainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycleViewCard);
 
         resetButton = findViewById(R.id.btn_reset);
-
+        resetButton.setVisibility(View.GONE);
         instance = this;
 
-//        espApp = (EspApplication) getApplicationContext();
         espApp = new EspApplication(getApplicationContext());
         networkApiManager = new NetworkApiManager(context.getApplicationContext(), espApp);
         arrayList = new ArrayList<>();
 
         setSupportActionBar(toolbar);
         initViews();
-        Log.d(TAG, "onCreate: " +mac);
+   //     Log.d(TAG, "onCreate2: " +mac);
 
         SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
         mac = preferences.getString("mac", "");
@@ -149,12 +147,10 @@ public class EspMainActivity extends AppCompatActivity {
         gaaProjectSpaceTypePlannedDeviceRef = preferences7.getLong("KEY_USERNAME", 0L);
         Log.d(TAG, "esp GaaProjectSpaceTypeRef2: " +gaaProjectSpaceTypePlannedDeviceRef);
 
-///////////////////////////////////
         SharedPreferences preferences16 = getSharedPreferences("my_shared_prefty", MODE_PRIVATE);
         boolean provision = preferences16.getBoolean("KEY_USERNAMEw", false);
-        Log.d(TAG, "esp GaaProjectSpaceTypeRef2: " +gaaProjectSpaceTypePlannedDeviceRef);
+        Log.d(TAG, "esp Provision: " +provision);
 
-        ///////////////////////////
 
 
         SharedPreferences sharedPreferences8 = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
@@ -175,129 +171,105 @@ public class EspMainActivity extends AppCompatActivity {
 
 
         SharedPreferences sharedPreferences5 = getSharedPreferences("MyPrefsPSR", Context.MODE_PRIVATE);
-        String username = sharedPreferences5.getString("PROJECT", "");
+        String username = sharedPreferences5.getString("Project_Space_Ref", "");
         String gaaProjectSpaceRef = username.trim();
 
         SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
         nodeId2 = preferences9.getString("KEY_USERNAMEs", "");
         Log.d(TAG, "node id: " +nodeId2);
 
+        SharedPreferences sharedPreferencesDeviceRef = getSharedPreferences("MyPreferencesPDR", Context.MODE_PRIVATE);
+        String DeviceRef = sharedPreferencesDeviceRef.getString("SpaceTypePlannedDeviceRef", "");
+        Log.e(TAG, "Space Type Planned DeviceRef : "+DeviceRef);
 
 
+        // BeastLogic
 
-        if(provision == false) {
-            GetNodeID(userId, loginDeviceId, mac, gaaProjectSpaceRef, gaaProjectSpaceTypePlannedDeviceRef);
-
-        }else {
+//        if(provision == false) {
+//            GetNodeID(userId, loginDeviceId, mac, gaaProjectSpaceRef, gaaProjectSpaceTypePlannedDeviceRef);
+//        }else {
             getDevice();
-
-        }
+     //   }
 
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
-//
-//                                               // Prepare request body
-                // ResetBody requestBody = new ResetResponse();
-                SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
-                String nodeId3 = preferences9.getString("KEY_USERNAMEs", "");
-                Log.d(TAG, "node id2: " +nodeId3);
-                                               // Make API call
-                Call<ResetResponse> call = apiService.factoryResetNode(nodeId3, userId2);
-                call.enqueue(new Callback<ResetResponse>() {
-                    @Override
-                    public void onResponse(Call<ResetResponse> call, Response<ResetResponse> response) {
-                        if (response.isSuccessful()) {
-                            ResetResponse responseModel = response.body();
-                            if (responseModel != null) {
-                                boolean success = responseModel.getSuccessful();
-                                String message = responseModel.getMessage();
-                                Log.d(TAG, "Success: " + success + ", Message: " + message);
-                            }
-                        } else {
-                            Log.e(TAG, "API call failed with code: " + response.code());
-                        }
-                    }
+                String message = "Are you sure you want to Reset";
+                showCustomDialogBox(message);
+            }
 
+            private void showCustomDialogBox(String message) {
+
+                final Dialog dialog = new Dialog(EspMainActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setCancelable(false);
+                dialog.setContentView(R.layout.layout_custom_dailog);
+                Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                tvMessage = dialog.findViewById(R.id.tvMessage);
+                btnYes = dialog.findViewById(R.id.btn_Yes);
+                btnNo = dialog.findViewById(R.id.btn_No);
+
+                tvMessage.setText(message);
+
+                btnYes.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onFailure(Call<ResetResponse> call, Throwable t) {
-                        Log.e(TAG, "API call failed: " + t.getMessage());
+                    public void onClick(View view) {
+                        ApiService apiService = RetrofitClient.getClient().create(ApiService.class);
+                        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+                        String nodeId3 = preferences9.getString("KEY_USERNAMEs", "");
+                        Log.d(TAG, "node id2: " +nodeId3);
+                        // Make API call
+                        Call<ResetResponse> call = apiService.factoryResetNode(nodeId3, userId2);
+                        call.enqueue(new Callback<ResetResponse>() {
+                            @Override
+                            public void onResponse(Call<ResetResponse> call, Response<ResetResponse> response) {
+                                if (response.isSuccessful()) {
+                                    ResetResponse responseModel = response.body();
+                                    if (responseModel != null) {
+                                        boolean success = responseModel.getSuccessful();
+                                        String message = responseModel.getMessage();
+                                        Log.d(TAG, "Success: " + success + ", Message: " + message);
+
+                                        Intent intent = new Intent(EspMainActivity.this, ProjectSpaceLandingActivity.class);
+                                        startActivity(intent);
+
+                                        Toast.makeText(getApplicationContext(), "Device Remove Successfully...", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                } else {
+                                    Log.e(TAG, "API call failed with code: " + response.code());
+                                }
+                            }
+                            @Override
+                            public void onFailure(Call<ResetResponse> call, Throwable t) {
+                                Log.e(TAG, "API call failed: " + t.getMessage());
+                            }
+                        });
+
                     }
                 });
+
+                btnNo.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
             }
         });
 
-
-                //Intent intent = new Intent(getApplicationContext(), ProjectSpaceActivity.class);
-                //startActivity(intent);
-
-
-
-        // getNodeID();
-       // node();
-
-        //getNodeID2();
-        GridLayoutManager gridLayoutManager1 = new GridLayoutManager(this,2);
-
-        ///This shared Preference can be used for previous getnode method ///////////////
-//        SharedPreferences preferences2 = getSharedPreferences("MyPrefse", MODE_PRIVATE);
-//        String nodeId2 = preferences2.getString("nodeId", "");
-//        Log.d(TAG, "SharedPre node Id3: " +nodeId2);
-
-        SharedPreferences preferences2 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
-        nodeId2 = preferences2.getString("KEY_USERNAMEs", "");
-        Log.d(TAG, "node id: " +nodeId2);
-
-     //   getDevice();
-
-
-
-
-//        cardView = findViewById(R.id.node_cardView);
 //        if(mac == null || mac == ""){
-//            cardView.setVisibility(View.INVISIBLE);
-//        } else {
-//            cardView.setVisibility(View.VISIBLE);
+//            recyclerView.setVisibility(View.INVISIBLE);
+//        }else{
+//            recyclerView.setVisibility(View.VISIBLE);
 //        }
-
-      //  recyclerView = findViewById(R.id.recycleViewCard);
-        if(mac == null || mac == ""){
-            recyclerView.setVisibility(View.INVISIBLE);
-        }else{
-            recyclerView.setVisibility(View.VISIBLE);
-        }
-
-      //  switchButton = findViewById(R.id.switch_btn);
-       // switchButton = findViewById(R.id.switch_btn);
-
-        // Initialize Retrofit
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://enscloud.in/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        // Create an instance of the ApiService
-        apiService = retrofit.create(ApiService.class);
-
-        // Find your switch in the layout
-//        Switch switchButton = findViewById(R.id.switch_btn);
-//
-//     //    Set a listener on the switch button
-//        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                // Handle switch state change
-//                sendSwitchState(isChecked);
-//            }
-//        });
-        //////
 
         sharedPreferences = getSharedPreferences(AppConstants.ESP_PREFERENCES, Context.MODE_PRIVATE);
         provisionManager = ESPProvisionManager.getInstance(getApplicationContext());
 
     }
-
 
     public static EspMainActivity getInstance() {
         return instance;
@@ -368,20 +340,11 @@ public class EspMainActivity extends AppCompatActivity {
                         Log.e("espmain", "Successful: " + loginResponse.isSuccessful());
                         Log.e("espmain", "Message: " + loginResponse.getMessage());
                         Toast.makeText(EspMainActivity.this, ""+loginResponse.isSuccessful(), Toast.LENGTH_SHORT).show();
-//
 
-//                        SharedPreferences preferences16 = getSharedPreferences("my_shared_prefty", MODE_PRIVATE);
-//                        boolean provision = preferences16.getBoolean("KEY_USERNAMEw", false);
-//                        Log.d(TAG, "esp GaaProjectSpaceTypeRef2: " +gaaProjectSpaceTypePlannedDeviceRef);
-
-                     //   preferences16.updateBoolean(getApplicationContext(), true);
-                        Intent intent = new Intent(getApplicationContext(), AreaLandingActivity.class);
-                        startActivity(intent);
                     }
                 } else {
                     // Handle unsuccessful response
                     Log.e("espmain", "Unsuccessful: " + response.message());
-
                 }
             }
 
@@ -394,88 +357,75 @@ public class EspMainActivity extends AppCompatActivity {
     }
 
 
-//    private void getNodeID() {
-//        Log.d(TAG, "getNodeID: "+mac);
-//        // Initialize nodeViewModel
-//        nodeViewModel = new ViewModelProvider(this).get(NodeViewModel.class);
-//        nodeViewModel.getNode(mac);
-//        Log.e(TAG, "getNodeID: "+nodeId);
-//        nodeViewModel.getNodeLiveData().observe(this, nodeResponse -> {
-//            // Handle successful response
-//        });
-//
-//        nodeViewModel.getErrorLiveData().observe(this, error -> {
-//            // Handle error
-//        });
-//    }
-
     //Get Device
-        private void getDevice() {
-          //  String NodeId = "WI84xt861kS39p2b5sXeGQ";
-            ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+    private void getDevice() {
+        //  String NodeId = "WI84xt861kS39p2b5sXeGQ";
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
-            SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
-            String nodeId4 = preferences9.getString("KEY_USERNAMEs", "");
-            Log.d(TAG, "node id4: " +nodeId4);
+        SharedPreferences preferences9 = getSharedPreferences("my_shared_prefe", MODE_PRIVATE);
+        String nodeId4 = preferences9.getString("KEY_USERNAMEs", "");
+        Log.d(TAG, "node id4: " +nodeId4);
 
-            Call<DeviceInfo> call = apiService.getAllData(nodeId4);
-            Log.e(TAG, "getDevice: "+nodeId4 );
+        Call<DeviceInfo> call = apiService.getAllData(nodeId4);
+        Log.e(TAG, "getDevice: "+nodeId4 );
 
-            call.enqueue(new Callback<DeviceInfo>() {
-                @Override
-                public void onResponse(Call<DeviceInfo> call, Response<DeviceInfo> response) {
-                    if (response.isSuccessful() && response.body() != null) {
+        call.enqueue(new Callback<DeviceInfo>() {
+            @Override
+            public void onResponse(Call<DeviceInfo> call, Response<DeviceInfo> response) {
+                if (response.isSuccessful() && response.body() != null) {
 
 //                        String n = String.valueOf(response.body());
-                        Log.d(TAG, "onResponse: "+response.body());
-                        Gson gson = new Gson();
-                        String n = gson.toJson(response.body());
+                    Log.d(TAG, "onResponse: "+response.body());
+                    Gson gson = new Gson();
+                    String n = gson.toJson(response.body());
 
-                        SharedPreferences sharedPreferences10 = context.getSharedPreferences("my_shared_prefet", Context.MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences10.edit();
-                      //  Log.e(TAG, "GaaProjectSpaceTypePlannedDeviceName11: "+nodeId );
-                        editor.putString("KEY_USERNAMEst", n);
-                        editor.apply();
+                    SharedPreferences sharedPreferences10 = context.getSharedPreferences("my_shared_prefet", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences10.edit();
+                    //  Log.e(TAG, "GaaProjectSpaceTypePlannedDeviceName11: "+nodeId );
+                    editor.putString("KEY_USERNAMEst", n);
+                    editor.apply();
 
-                        List<DeviceInfo.Device> devices = response.body().getDevices();
-                        for (DeviceInfo.Device device : devices) {
-                            List<DeviceInfo.Param> params = device.getParams();
-                            Log.e(TAG, "Device Type: "+device.getName());
-                            for (DeviceInfo.Param param : params) {
-                                String name = param.getUi_type();
-                                Log.e(TAG, "onResponse: "+param.getName());
-                                String uiType = param.getUi_type();
-                                Log.e(TAG, "onResponse22222: "+param.getUi_type());
-                                Log.e(TAG, "onResponse22222: "+param.getUi_type());
+                    List<DeviceInfo.Device> devices = response.body().getDevices();
+                    for (DeviceInfo.Device device : devices) {
+                        List<DeviceInfo.Param> params = device.getParams();
+                        Log.e(TAG, "Device Type: "+device.getName());
+                        Log.e(TAG, "Device Type: "+device.getType());
+                        for (DeviceInfo.Param param : params) {
+                            String name = param.getUi_type();
+                            Log.e(TAG, "onResponse: "+param.getName());
+                            String uiType = param.getUi_type();
+                            Log.e(TAG, "onResponse22222: "+param.getUi_type());
+                            Log.e(TAG, "onResponse22222: "+uiType);
 
 
 
-                                //arrayList.add(new Devices(Devices.getName(),Devices.getType(),Devices.getData_type(),param.getUi_type()));
-                                // Use the name and uiType as needed
-                            }
-                            arrayList.add(new Devices(device.getName(),device.getType(),device.getPrimary()));
+                            //arrayList.add(new Devices(Devices.getName(),Devices.getType(),Devices.getData_type(),param.getUi_type()));
+                            // Use the name and uiType as needed
                         }
-                    } else {
-                        // Handle unsuccessful response
+                        arrayList.add(new Devices(device.getName(),device.getType(),device.getPrimary()));
                     }
                     CardAdapter cardAdapter = new CardAdapter(arrayList);
+                    recyclerView.setVisibility(View.VISIBLE);
                     recyclerView.setAdapter(cardAdapter);
                     GridLayoutManager gridLayoutManager1 = new GridLayoutManager(EspMainActivity.this,2, GridLayoutManager.VERTICAL,false);
                     recyclerView.setLayoutManager(gridLayoutManager1);
+                } else {
+                    // Handle unsuccessful response
                 }
 
-                @Override
-                public void onFailure(Call<DeviceInfo> call, Throwable t) {
-                    // Handle failure
-                }
-            });
-        }
+            }
 
-    
+            @Override
+            public void onFailure(Call<DeviceInfo> call, Throwable t) {
+                // Handle failure
+            }
+        });
+    }
+
+
     @Override
     protected void onResume() {
         super.onResume();
-
 
         deviceType = sharedPreferences.getString(AppConstants.KEY_DEVICE_TYPES, AppConstants.DEVICE_TYPE_DEFAULT);
         if (deviceType.equals("wifi")) {
@@ -497,7 +447,16 @@ public class EspMainActivity extends AppCompatActivity {
 
     //
     public void sendSwitchState(boolean powerState,String name,String power) {
+
         String commandBody = "{\""+name+"\": {\""+power+"\": " + powerState + "}}";
+        String message = powerState ? "on" : "off";
+        Toast.makeText(this, "Switch is "+message, Toast.LENGTH_SHORT).show();
+        boolean shPowerState = powerState;
+        SharedPreferences sharedPreferencesPowerState = getSharedPreferences("MyPreferencesPS", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferencesPowerState.edit();
+        editor.putBoolean("PowerState", shPowerState);
+        editor.apply();
+        Log.e(TAG, "EspMain Activity PowerState:"+shPowerState );
 
         ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
 
@@ -562,66 +521,6 @@ public class EspMainActivity extends AppCompatActivity {
     }
 
 
-
-
-//        switchButton.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                // Check if the switch button is checked
-//                if (isChecked) {
-//                    // Make the API call
-//                    power = "true";
-//                    Log.d(TAG, "onCheckedChanged: " +power);
-//                    makeApiCall();
-//                }
-//                // Check if the switch button is unchecked
-//
-//                else {
-//                    power = "false";
-//                    Log.d(TAG, "onCheckedChanged: " +power);
-//                    makeApiCall();
-//                }
-//            }
-//        });
-//
-//    }
-//
-//    private void makeApiCall() {
-//        // Create an instance of ApiRequest
-//        ApiRequest apiRequest = new ApiRequest(0, "node/<<"+node_id+">>/params/remote",
-//                "{\"Switch\": {\"Power\": "+power+"}}", 0);
-//
-//        // Get the ApiService instance
-//        ApiService apiService = ApiClient.getApiService();
-//
-//        // Make the POST request
-//        Call<Void> call = apiService.postApiRequest(apiRequest);
-//        call.enqueue(new Callback<Void>() {
-//            @Override
-//            public void onResponse(Call<Void> call, Response<Void> response) {
-//                if (response.isSuccessful()) {
-//                    // Request was successful
-//                    Log.d(TAG, "onResponse: succesfull");
-//                } else {
-//                    // Handle unsuccessful request
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<Void> call, Throwable t) {
-//                // Handle network error
-//            }
-//        });
-//    }
-
-//    private void node() {
-//        if(nodeId != null){
-//            cardView.setVisibility(View.VISIBLE);
-//        }
-//    }
-
-    /////////////////////
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -637,9 +536,6 @@ public class EspMainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
@@ -675,6 +571,7 @@ public class EspMainActivity extends AppCompatActivity {
 
         ivEsp = findViewById(R.id.iv_esp);
         btnAddDevice = findViewById(R.id.btn_provision_device);
+        btnAddDevice.setVisibility(View.GONE);
         btnAddDevice.findViewById(R.id.iv_arrow).setVisibility(View.GONE);
         btnAddDevice.setOnClickListener(addDeviceBtnClickListener);
 

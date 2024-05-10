@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.espressif.ui.activities.CurtainActivity">
+    tools:context="com.espressif.ui.activities.DeviceControls.CurtainActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -12,9 +12,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Curtains"
-        android:textColor="@color/color_text"
-        android:textSize="20dp"
-        android:layout_marginTop="15dp"
+        style="@style/TEXT"
+        android:textSize="@dimen/_18sdp"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/_20sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
@@ -24,12 +25,11 @@
         android:id="@+id/linearLayout3"
         android:layout_width="331dp"
         android:layout_height="157dp"
+        android:layout_marginTop="@dimen/_30sdp"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23000002">
+        app:layout_constraintTop_toBottomOf="@+id/textView2">
 
         <!-- First CardView -->
         <androidx.cardview.widget.CardView
@@ -63,9 +63,9 @@
                     android:gravity="center"
                     android:padding="5dp"
                     android:text="Open"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -90,7 +90,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="96dp"
                     android:padding="9dp"
-                    android:src="@drawable/curtains_close"/> <!-- Replace with your image resource -->
+                    android:src="@drawable/curtains_close" /> <!-- Replace with your image resource -->
 
                 <!-- Text in CardView -->
                 <TextView
@@ -100,9 +100,9 @@
                     android:gravity="center"
                     android:padding="5dp"
                     android:text="Close"
-                    android:textStyle="bold"
                     android:textColor="@color/white"
-                    android:textSize="18dp" />
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -114,15 +114,15 @@
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
+        android:layout_marginTop="32dp"
         android:layout_weight="1"
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="8dp"
+
         app:cardElevation="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.6"> <!-- Replace with your image resource -->
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"> <!-- Replace with your image resource -->
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -135,24 +135,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="96dp"
                 android:padding="9dp"
-                android:src="@drawable/curtains_stop"/> <!-- Replace with your image resource -->
+                android:src="@drawable/curtains_stop" /> <!-- Replace with your image resource -->
 
             <!-- Text in CardView -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textStyle="bold"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="Stop"
                 android:textColor="@color/white"
-                android:textSize="18dp" />
+                android:textSize="18dp"
+                android:textStyle="bold" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
     <SeekBar
         android:id="@+id/seekBar"
+        style="@style/CustomSeekBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -161,35 +162,35 @@
         android:progress="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/curtainStop"
-        app:layout_constraintVertical_bias="0.166"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.134"
+        tools:layout_editor_absoluteX="9dp" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="116dp"
         android:gravity="center"
         android:text="0"
         android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/setTimeBtn"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:text="Set"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/_20sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.395" />
+        app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/setTimeBtn"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:text="Set"
+        android:background="@drawable/orange_button_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

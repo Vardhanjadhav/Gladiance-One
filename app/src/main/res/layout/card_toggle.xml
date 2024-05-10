@@ -13,17 +13,24 @@
         app:cardBackgroundColor="@android:color/transparent"
         app:cardCornerRadius="8dp"
         app:cardElevation="0dp"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"> <!-- Replace with your image resource -->
 
         <LinearLayout
+            android:id="@+id/llLight"
             android:layout_width="match_parent"
             android:layout_height="130dp"
             android:background="#A6A6A6"
             android:orientation="vertical">
-
             <!-- Image in CardView -->
+            <ImageView
+                android:id="@+id/switch_btn"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:padding="1dp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:src="@drawable/lighting"
+                />
 
             <TextView
                 android:id="@+id/TextView"
@@ -33,7 +40,6 @@
                 android:gravity="center"
                 android:padding="5dp"
                 android:textStyle="bold"
-                android:layout_marginTop="80dp"
                 android:text="Smart Button"
                 android:textSize="20sp" />
         </LinearLayout>

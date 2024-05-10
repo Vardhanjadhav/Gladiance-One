@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     style="@style/SCREEN"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.espressif.ui.navigation.MyProfile.IntegrationFragment">
+    tools:context="com.espressif.ui.fragment.MyProfile.IntegrationFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -32,5 +32,107 @@
             android:textSize="@dimen/_17sdp" />
     </LinearLayout>
 
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_160sdp"
+        android:columnCount="2"
+        android:columnOrderPreserved="false"
+        android:padding="20dp"
+        android:rowCount="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
+        app:layout_constraintVertical_bias="0.066">
 
+        <!-- Card 1 -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/transparentColor"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:id="@+id/voiceService"
+                style="@style/MyButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <ImageView
+                    style="@style/Wallpaper"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_17sdp"
+                    android:paddingStart="@dimen/_80sdp" />
+
+                <TextView
+                    style="@style/TEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="Voice Services"
+                    android:textSize="@dimen/_20sdp" />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:layout_margin="8dp"
+            app:cardBackgroundColor="@color/transparentColor"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                style="@style/MyButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:weightSum="2">
+
+                <ImageView
+                    style="@style/Wallpaper"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:padding="@dimen/_17sdp"
+                    android:paddingStart="@dimen/_80sdp" />
+
+                <TextView
+                    style="@style/TEXT"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|left"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:text="Change wallpaper"
+                    android:textSize="@dimen/_20sdp" />
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </GridLayout>
+
+    <FrameLayout
+        android:id="@+id/thirdPartyIntegration"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/_49sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

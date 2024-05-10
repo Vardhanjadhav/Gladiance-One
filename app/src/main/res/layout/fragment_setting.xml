@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     style="@style/SCREEN"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.espressif.ui.navigation.MyProfile.SettingFragment">
+    tools:context="com.espressif.ui.fragment.MyProfile.SettingFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout4"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     style="@style/SCREEN"
-    tools:context="com.espressif.ui.login.ProjectSpaceLandingActivity">
+    tools:context="com.espressif.ui.activities.Home.ProjectSpaceLandingActivity">
 
     <TextView
         android:id="@+id/userName"

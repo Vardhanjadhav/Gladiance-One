@@ -54,6 +54,8 @@ public class ProjectSpaceLandingReqModel {
 
         private String GAAProjectSpaceRef;
         private String GAAProjectSpaceName;
+        private String GAAProjectSpaceTypeRef;
+        private String GAAProjectSpaceTypeName;
         private int DisplayOrder;
         private String Description;
 
@@ -89,9 +91,27 @@ public class ProjectSpaceLandingReqModel {
             Description = description;
         }
 
-        public Space(String GAAProjectSpaceRef, String GAAProjectSpaceName, int displayOrder, String description) {
+        public String getGAAProjectSpaceTypeRef() {
+            return GAAProjectSpaceTypeRef;
+        }
+
+        public void setGAAProjectSpaceTypeRef(String GAAProjectSpaceTypeRef) {
+            this.GAAProjectSpaceTypeRef = GAAProjectSpaceTypeRef;
+        }
+
+        public String getGAAProjectSpaceTypeName() {
+            return GAAProjectSpaceTypeName;
+        }
+
+        public void setGAAProjectSpaceTypeName(String GAAProjectSpaceTypeName) {
+            this.GAAProjectSpaceTypeName = GAAProjectSpaceTypeName;
+        }
+
+        public Space(String GAAProjectSpaceRef, String GAAProjectSpaceName, String GAAProjectSpaceTypeRef, String GAAProjectSpaceTypeName, int displayOrder, String description) {
             this.GAAProjectSpaceRef = GAAProjectSpaceRef;
             this.GAAProjectSpaceName = GAAProjectSpaceName;
+            this.GAAProjectSpaceTypeRef = GAAProjectSpaceTypeRef;
+            this.GAAProjectSpaceTypeName = GAAProjectSpaceTypeName;
             DisplayOrder = displayOrder;
             Description = description;
         }

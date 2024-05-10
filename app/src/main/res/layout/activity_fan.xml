@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.espressif.ui.activities.FanActivity">
+    style="@style/SCREEN"
+    tools:context="com.espressif.ui.activities.DeviceControls.FanActivity">
 
 
     <TextView
@@ -13,26 +14,26 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Ceiling Fan"
-        android:textColor="@color/color_text"
-        android:textSize="15sp"
-        android:layout_marginTop="15sp"
+        style="@style/TEXT"
+        android:textSize="@dimen/_18sdp"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/_20sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
 
-
     <Switch
         android:id="@+id/switchButtonFan"
-        android:theme="@style/Theme.AppCompat.Light"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:checked="false"
-        android:textSize="25dp"
-        android:textOn="ON"
-        android:textOff="OFF"
         android:showText="true"
+        android:textOff="OFF"
+        android:textOn="ON"
+        android:textSize="25dp"
+        android:theme="@style/Theme.AppCompat.Light"
         android:thumb="@drawable/switch_thumb2"
         android:track="@drawable/switch_bg"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -40,23 +41,23 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.146" />
+        app:layout_constraintVertical_bias="0.117" />
+
 
     <TextView
         android:id="@+id/textView5"
+        style="@style/TEXT"
         android:layout_width="108dp"
         android:layout_height="35dp"
         android:gravity="center"
         android:text="FAN SPEED"
-        android:textColor="@color/color_text"
-        android:textSize="18dp"
+        android:textSize="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.25" />
-
+        app:layout_constraintVertical_bias="0.209" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -76,29 +77,33 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/incrementButton"
-        android:layout_width="60dp"
+        android:layout_width="@dimen/_70sdp"
         android:layout_height="wrap_content"
         android:layout_below="@id/progressBar"
-        android:layout_marginBottom="176dp"
+        android:layout_marginBottom="244dp"
         android:text="+"
         android:textSize="20dp"
+        style="@style/TEXT"
+        android:background="@drawable/orange_button_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.852"
+        app:layout_constraintHorizontal_bias="0.84"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/decrementButton"
-        android:layout_width="60dp"
+        android:layout_width="@dimen/_70sdp"
         android:layout_height="wrap_content"
         android:layout_below="@id/progressBar"
-        android:layout_marginBottom="176dp"
+        android:layout_marginBottom="244dp"
         android:layout_toEndOf="@id/incrementButton"
         android:text="-"
         android:textSize="20dp"
+        style="@style/TEXT"
+        android:background="@drawable/orange_button_background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.141"
+        app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

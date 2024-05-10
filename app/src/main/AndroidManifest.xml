@@ -24,17 +24,28 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
+        android:icon="@drawable/gladiance"
         android:theme="@style/AppTheme"
+
         android:usesCleartextTraffic="true">
         <activity
-            android:name="com.espressif.ui.login.PlayActivity"
+            android:name="com.espressif.ui.activities.AlexaLinking.AlexaAppLinkingActivity"
+            android:exported="false"
+            android:label="@string/title_activity_alexa_app_linking"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="com.espressif.ui.activities.Home.PlayActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.login.CameraDetailActivity"
+            android:name="com.espressif.ui.activities.Home.CameraDetailActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -48,126 +59,128 @@
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.login.AreaLandingActivity"
+            android:name="com.espressif.ui.activities.Home.ProjectSpaceLandingActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.login.ProjectSpaceLandingActivity"
+            android:name="com.espressif.ui.activities.Home.ProjectSpaceGroupActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.login.SpaceSpaceGroupListActivity"
+            android:name="com.espressif.ui.activities.Home.ProjectSpaceActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.login.ProjectSpaceGroupActivity"
+            android:name="com.espressif.ui.activities.Home.NavBarActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.login.ProjectSpaceActivity"
+            android:name="com.espressif.ui.activities.Login.ForgotPasswordActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.navigation.NavBarActivity"
+            android:name="com.espressif.ui.activities.Login.OTPVerificationActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.login.ForgotPasswordActivity"
+            android:name="com.espressif.ui.activities.Login.SignUpActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.login.OTPVerificationActivity"
+            android:name="com.espressif.ui.activities.Login.LoginActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
         <activity
-            android:name="com.espressif.ui.login.SignUpActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="com.espressif.ui.login.LoginActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name="com.espressif.ui.login.SplashScreenActivity"
+            android:name="com.espressif.ui.activities.Login.SplashScreenActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+
+            <meta-data
+                android:name="android.app.shortcuts"
+                android:resource="@xml/shortcuts" />
         </activity>
+
         <activity
-            android:name="com.espressif.ui.activities.BellActivity"
+            android:name="com.espressif.ui.activities.DeviceControls.BellActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.activities.AirContiningActivity"
+            android:name="com.espressif.ui.activities.DeviceControls.AirContiningActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.activities.RGBLightActivity"
-            android:exported="false">
+            android:name="com.espressif.ui.activities.DeviceControls.AirContiningActivity$RGBLightActivity"
+            android:exported="true">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.activities.DimmerActivity"
-            android:exported="false">
+            android:name="com.espressif.ui.activities.DeviceControls.DimmerActivity"
+            android:exported="true">
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.activities.CurtainActivity"
-            android:exported="false">
+            android:name="com.espressif.ui.activities.DeviceControls.CurtainActivity"
+            android:exported="true">
+
+
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name="com.espressif.ui.activities.FanActivity"
-            android:exported="false">
+            android:name="com.espressif.ui.activities.DeviceControls.FanActivity"
+            android:exported="true">
+
+
+
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.espressif.ui.navigation.ControlBouquet.RoomServiceFragment">
+    tools:context="com.espressif.ui.fragment.ControlBouquet.RoomServiceFragment">
 
     <GridLayout
         android:id="@+id/gridLayout"
@@ -271,11 +271,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_food_menu"
         android:layout_width="350dp"
-        android:layout_height="320dp"
+        android:layout_height="380dp"
         android:orientation="horizontal"
         android:paddingStart="5dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_menu"

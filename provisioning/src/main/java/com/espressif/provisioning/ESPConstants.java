@@ -23,7 +23,8 @@ public class ESPConstants {
 
     public enum TransportType {
         TRANSPORT_BLE,
-        TRANSPORT_SOFTAP
+        TRANSPORT_SOFTAP,
+        TRANSPORT_INPUT
     }
 
     public enum SecurityType {

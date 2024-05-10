@@ -14,8 +14,6 @@
 
 package com.espressif.ui.activities;
 
-import static android.content.ContentValues.TAG;
-
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
@@ -52,8 +50,13 @@ import com.espressif.provisioning.ESPConstants;
 import com.espressif.provisioning.ESPDevice;
 import com.espressif.provisioning.ESPProvisionManager;
 import com.espressif.provisioning.listeners.QRCodeScanListener;
-import com.espressif.ui.models.ResponseModel;
+import com.espressif.ui.activities.API.ApiService;
+import com.espressif.ui.activities.API.RetrofitClient;
+import com.espressif.ui.activities.Login.LoginActivity;
+import com.espressif.ui.activities.Home.ProjectSpaceLandingActivity;
 import com.espressif.ui.models.ResponseModelNode;
+import com.espressif.ui.models.provisioninglabel.ProvisioningRequest;
+import com.espressif.ui.models.provisioninglabel.ProvisioningResponse;
 import com.espressif.wifi_provisioning.R;
 import com.google.android.material.card.MaterialCardView;
 import com.wang.avi.AVLoadingIndicatorView;
@@ -465,6 +468,41 @@ public class AddDeviceActivity extends AppCompatActivity {
                     && ActivityCompat.checkSelfPermission(AddDeviceActivity.this, Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED) {
                 provisionManager.scanQRCode(codeScanner, qrCodeScanListener);
 
+                ////// started here ////////////
+//                SharedPreferences preferences2 = getSharedPreferences("MyPrefs_Input", MODE_PRIVATE);
+//                String Input = preferences2.getString("Input", "");
+//                Log.d(TAG, "onCreate Mac: " +Input);
+//
+//                if(Input.equals("InputDevice")){
+//                    SharedPreferences  sharedPreferences9 = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+//                    String userId2 = sharedPreferences9.getString("LoginToken", "");
+//                    Log.e(TAG, "esp Project Space loginToken: "+userId2 );
+//                    String userId = userId2.trim();
+//
+//                    SharedPreferences sharedPreferences8 = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+//                    String GUID = LoginActivity.getUserId(sharedPreferences8);
+//                    Log.e(TAG, "esp Project Space GUID/LoginDeviceId: "+ GUID);
+//                    String loginDeviceId = GUID.trim();
+//
+//                    SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+//                    String mac = preferences.getString("mac", "");
+//                    Log.d(TAG, "onCreate Mac: " +mac);
+//
+//                    SharedPreferences sharedPreferences5 = getSharedPreferences("MyPrefsPSR", Context.MODE_PRIVATE);
+//                    String username = sharedPreferences5.getString("PROJECT", "");
+//                    String gaaProjectSpaceRef = username.trim();
+//
+//                    SharedPreferences preferences7 = getSharedPreferences("my_shared_pref", MODE_PRIVATE);
+//                    Long gaaProjectSpaceTypePlannedDeviceRef = preferences7.getLong("KEY_USERNAME", 0L);
+//                    Log.d(TAG, "esp GaaProjectSpaceTypeRef2: " +gaaProjectSpaceTypePlannedDeviceRef);
+//
+//                    GetNodeId(userId, loginDeviceId, mac, gaaProjectSpaceRef, gaaProjectSpaceTypePlannedDeviceRef);
+//                }
+//                else {
+//
+//                }
+
+
             } else {
                 ActivityCompat.requestPermissions(AddDeviceActivity.this, new
                         String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.BLUETOOTH_SCAN, Manifest.permission.BLUETOOTH_CONNECT}, REQUEST_ACCESS_FINE_LOCATION);
@@ -478,6 +516,51 @@ public class AddDeviceActivity extends AppCompatActivity {
             }
         }
     }
+
+    public void GetNodeId(String userId, String loginDeviceId, String macId, String gaaProjectSpaceRef, Long gaaProjectSpaceTypePlannedDeviceRef) {
+        // Create an instance of ApiService
+        ApiService apiService = RetrofitClient.getRetrofitInstance().create(ApiService.class);
+        // Prepare login request
+
+        ProvisioningRequest loginRequest = new ProvisioningRequest(userId,loginDeviceId,macId,gaaProjectSpaceRef,gaaProjectSpaceTypePlannedDeviceRef);
+
+        // Make API call
+        Call<ProvisioningResponse> call = apiService.postAssociateNodeToPlannedDevice(loginRequest);
+        call.enqueue(new Callback<ProvisioningResponse>() {
+            @Override
+            public void onResponse(Call<ProvisioningResponse> call, Response<ProvisioningResponse> response) {
+                if (response.isSuccessful()) {
+                    ProvisioningResponse loginResponse = response.body();
+                    if (loginResponse != null || loginResponse.isSuccessful()) {
+                        // Handle successful response
+                        Log.e("espmain", "Successful2: " + loginResponse.isSuccessful());
+                        Log.e("espmain", "Message: " + loginResponse.getMessage());
+                        Toast.makeText(AddDeviceActivity.this, ""+loginResponse.isSuccessful(), Toast.LENGTH_SHORT).show();
+//
+
+//                        SharedPreferences preferences16 = getSharedPreferences("my_shared_prefty", MODE_PRIVATE);
+//                        boolean provision = preferences16.getBoolean("KEY_USERNAMEw", false);
+//                        Log.d(TAG, "esp GaaProjectSpaceTypeRef2: " +gaaProjectSpaceTypePlannedDeviceRef);
+
+                        //   preferences16.updateBoolean(getApplicationContext(), true);
+                        Intent intent = new Intent(AddDeviceActivity.this, ProjectSpaceLandingActivity.class);
+                        startActivity(intent);
+                    }
+                } else {
+                    // Handle unsuccessful response
+                    Log.e("espmain", "Unsuccessful: " + response.message());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProvisioningResponse> call, Throwable t) {
+                // Handle failure
+                Log.e("LoginResponse", "Failure: " + t.getMessage());
+            }
+        });
+    }
+
 
     private void showLoading() {
         loader.setVisibility(View.VISIBLE);
@@ -511,28 +594,73 @@ public class AddDeviceActivity extends AppCompatActivity {
             Log.d(TAG, "Device detected");
             espDevice = device;
             final String deviceType = sharedPreferences.getString(AppConstants.KEY_DEVICE_TYPES, AppConstants.DEVICE_TYPE_DEFAULT);
+            device.getTransportType().name();
+            Log.e(TAG, "deviceDetected: "+device.getTransportType().name());
+            Log.e(TAG, "deviceDetected2: "+device.getTransportType());
+            String a = String.valueOf(device.getTransportType());
 
-            runOnUiThread(new Runnable() {
+            if(a.equals("TRANSPORT_INPUT")){
+                SharedPreferences  sharedPreferences9 = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                String userId2 = sharedPreferences9.getString("LoginToken", "");
+                Log.e(TAG, "esp Project Space loginToken: "+userId2 );
+                String userId = userId2.trim();
 
-                @Override
-                public void run() {
+                SharedPreferences sharedPreferences8 = getSharedPreferences("MyPrefsFile", MODE_PRIVATE);
+                String GUID = LoginActivity.getUserId(sharedPreferences8);
+                Log.e(TAG, "esp Project Space GUID/LoginDeviceId: "+ GUID);
+                String loginDeviceId = GUID.trim();
 
-                    if (ActivityCompat.checkSelfPermission(AddDeviceActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        Log.e(TAG, "Location Permission not granted.");
-                        return;
-                    }
+                SharedPreferences preferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+                String mac = preferences.getString("mac", "");
+                Log.d(TAG, "onCreate Mac: " +mac);
 
-                    if (deviceType.equals(AppConstants.DEVICE_TYPE_BLE)) {
+                SharedPreferences sharedPreferences5 = getSharedPreferences("MyPrefsPSR", Context.MODE_PRIVATE);
+                String username = sharedPreferences5.getString("Project_Space_Ref", "");
+                String gaaProjectSpaceRef = username.trim();
 
-                        if (espDevice != null && espDevice.getTransportType().equals(ESPConstants.TransportType.TRANSPORT_SOFTAP)) {
-                            alertForDeviceNotSupported(getString(R.string.error_device_transport_not_supported));
-                        } else {
-                            device.connectToDevice();
+                SharedPreferences preferences7 = getSharedPreferences("my_shared_pref", MODE_PRIVATE);
+                Long gaaProjectSpaceTypePlannedDeviceRef = preferences7.getLong("KEY_USERNAME", 0L);
+                Log.d(TAG, "esp GaaProjectSpaceTypeRef2: " +gaaProjectSpaceTypePlannedDeviceRef);
+
+                GetNodeId(userId, loginDeviceId, mac, gaaProjectSpaceRef, gaaProjectSpaceTypePlannedDeviceRef);
+            }
+            else {
+                runOnUiThread(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        if (ActivityCompat.checkSelfPermission(AddDeviceActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            Log.e(TAG, "Location Permission not granted.");
+                            return;
                         }
-                    } else if (deviceType.equals(AppConstants.DEVICE_TYPE_SOFTAP)) {
 
-                        if (espDevice != null && espDevice.getTransportType().equals(ESPConstants.TransportType.TRANSPORT_BLE)) {
-                            alertForDeviceNotSupported(getString(R.string.error_device_transport_not_supported));
+                        if (deviceType.equals(AppConstants.DEVICE_TYPE_BLE)) {
+
+                            if (espDevice != null && espDevice.getTransportType().equals(ESPConstants.TransportType.TRANSPORT_SOFTAP)) {
+                                alertForDeviceNotSupported(getString(R.string.error_device_transport_not_supported));
+                            } else {
+                                device.connectToDevice();
+                            }
+                        } else if (deviceType.equals(AppConstants.DEVICE_TYPE_SOFTAP)) {
+
+                            if (espDevice != null && espDevice.getTransportType().equals(ESPConstants.TransportType.TRANSPORT_BLE)) {
+                                alertForDeviceNotSupported(getString(R.string.error_device_transport_not_supported));
+                            } else {
+
+                                if (espDevice.getTransportType().equals(ESPConstants.TransportType.TRANSPORT_SOFTAP)
+                                        && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+                                    WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+
+                                    if (!wifiManager.isWifiEnabled()) {
+                                        alertForWiFi();
+                                        return;
+                                    }
+                                }
+
+                                device.connectToDevice();
+                            }
                         } else {
 
                             if (espDevice.getTransportType().equals(ESPConstants.TransportType.TRANSPORT_SOFTAP)
@@ -545,25 +673,11 @@ public class AddDeviceActivity extends AppCompatActivity {
                                     return;
                                 }
                             }
-
                             device.connectToDevice();
                         }
-                    } else {
-
-                        if (espDevice.getTransportType().equals(ESPConstants.TransportType.TRANSPORT_SOFTAP)
-                                && Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-
-                            WifiManager wifiManager = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
-
-                            if (!wifiManager.isWifiEnabled()) {
-                                alertForWiFi();
-                                return;
-                            }
-                        }
-                        device.connectToDevice();
                     }
-                }
-            });
+                });
+            }
         }
 
         @Override

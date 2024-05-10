@@ -8,18 +8,14 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.Spanned;
 import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
 
-import com.espressif.ui.login.LoginActivity;
-import com.espressif.wifi_provisioning.BuildConfig;
+import com.espressif.ui.activities.Login.LoginActivity;
 import com.espressif.wifi_provisioning.R;
 import com.google.android.material.card.MaterialCardView;
 

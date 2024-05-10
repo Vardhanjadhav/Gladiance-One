@@ -17,6 +17,16 @@
         <item name="android:textColor">#000000</item>
     </style>
 
+    <style name="CustomSeekBar" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressDrawable">@drawable/custom_seekbar_progress_black</item>
+        <item name="android:thumb">@drawable/custom_seekbar_thumb_black</item>
+    </style>
+
+    <style name="CustomSeekBarRGBHue" parent="Widget.AppCompat.SeekBar">
+        <item name="android:progressDrawable">@drawable/rgb_hue_custom_progress_bar</item>
+        <item name="android:thumb">@drawable/custom_seekbar_thumb_black</item>
+    </style>
+
 
 
     <!-- LIGHT THEME CODE-->
@@ -173,5 +183,16 @@
 
     <style name="More"><item name="android:src">@drawable/more_black</item></style>
     <style name="Notification_Bell"><item name="android:src">@drawable/black_notificationbell</item></style>
+
+    <style name="Lamp1"><item name="android:src">@drawable/lampblack1</item></style>
+    <style name="Lamp2"><item name="android:src">@drawable/lampblack2</item></style>
+    <style name="Lamp3"><item name="android:src">@drawable/lampblack3</item></style>
+    <style name="Lamp4"><item name="android:src">@drawable/lampblack4</item></style>
+    <style name="Lamp5"><item name="android:src">@drawable/lampblack5</item></style>
+    <style name="Lamp6"><item name="android:src">@drawable/lampblack6</item></style>
+    <style name="Lamp7"><item name="android:src">@drawable/lampblack7</item></style>
+    <style name="Lamp8"><item name="android:src">@drawable/lampblack8</item></style>
+    <style name="Lamp9"><item name="android:src">@drawable/lampblack9</item></style>
+    <style name="Lamp10"><item name="android:src">@drawable/lampblack10</item></style>
 
 </resources>

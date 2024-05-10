@@ -20,7 +20,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="8sp"
-            android:text="@string/btn_provision_device"
+            android:text="Register"
             android:textColor="@android:color/white"
             android:textSize="16sp"
             android:textStyle="bold" />

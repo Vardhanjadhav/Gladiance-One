@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.espressif.ui.navigation.RoomControl.CurtainsFragment">
+    tools:context="com.espressif.ui.fragment.RoomControl.CurtainsFragment">
 
     <TextView
         android:id="@+id/textView2"

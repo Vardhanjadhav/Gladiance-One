@@ -8,12 +8,13 @@ public class InstallerLandingResModel {
     @SerializedName("Successful")
     @Expose
     private Boolean successful;
+
     @SerializedName("Message")
     @Expose
     private String message;
+
     @SerializedName("Data")
     @Expose
-
     private Data data;
 
     public Boolean getSuccessful() {

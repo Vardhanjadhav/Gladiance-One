@@ -2,6 +2,7 @@ package com.espressif.ui.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +11,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.espressif.ui.login.AreaLandingActivity;
-import com.espressif.ui.login.ProjectSpaceGroupActivity;
-import com.espressif.ui.login.ProjectSpaceLandingActivity;
-import com.espressif.ui.models.Project;
-import com.espressif.ui.models.ProjectSpaceGroupReqModel;
-import com.espressif.ui.models.Space;
 import com.espressif.ui.models.SpaceGroup;
+import com.espressif.ui.activities.Home.NavBarActivity;
 import com.espressif.wifi_provisioning.R;
 
 import java.util.List;
@@ -63,15 +59,23 @@ public class ProjectSpaceGroupListAdapter extends RecyclerView.Adapter<ProjectSp
                     if (position != RecyclerView.NO_POSITION) {
                         SpaceGroup clickedCard = arraylist.get(position);
                         String name = clickedCard.getGAAProjectSpaceGroupRef();
+                        String spaceName = clickedCard.getGAAProjectSpaceGroupName();
 
+                        // Storing data in SharedPreferences
+                        SharedPreferences sharedPreferences = view.getContext().getSharedPreferences("MyPrefsPSGR", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString("SPACE_GROUP_REF", name);
+                        editor.apply();
 
+                        SharedPreferences sharedPreferences1 = view.getContext().getSharedPreferences("MyPrefsPSGN", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor1 = sharedPreferences1.edit();
+                        editor1.putString("SPACE_GROUP_NAME", spaceName);
+                        editor1.apply();
+
+                        // Start the activity
                         Context context = view.getContext();
-                        Intent intent = new Intent(context, ProjectSpaceLandingActivity.class);
-                        intent.putExtra("SPACE_GROUP_REF", name);
-
-
+                        Intent intent = new Intent(context, NavBarActivity.class);
                         context.startActivity(intent);
-
 
                     }
                 }
