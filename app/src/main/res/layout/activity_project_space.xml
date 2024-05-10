@@ -18,7 +18,7 @@
             android:layout_marginEnd="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_15sdp"
             android:fontFamily="@font/roboto_medium"
-            android:text="Vardhan Jadhav"
+            android:text="Vardhan"
             android:textSize="@dimen/_17sdp"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
